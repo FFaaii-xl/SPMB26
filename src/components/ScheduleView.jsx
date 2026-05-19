@@ -25,7 +25,7 @@ export default function ScheduleView({ activeSlide }) {
     { nama: "Surat Keterangan Lulus", detail: "Asli & fotokopi SKL resmi asal", icon: "🎓" },
     { nama: "Kebenaran Dokumen", detail: "Surat pernyataan bermaterai Rp10k", icon: "✍️" },
     { nama: "Piagam Kejuaraan", detail: "Asli & fotokopi (jika memiliki / prestasi)", icon: "🏆" },
-    { nama: "DTKS / DTSEN", detail: "Bukti terdata DTKS (khusus Afirmasi)", icon: "🤝" },
+    { nama: "DTKS / DTSEN (Afirmasi)", detail: "Terdeteksi otomatis oleh sistem (bebas bukti fisik)", icon: "🤝" },
   ];
 
   // Alur Pendaftaran Kronologis Sekuensial (Daring + Luring Terintegrasi)
