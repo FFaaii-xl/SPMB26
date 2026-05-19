@@ -46,6 +46,7 @@
 - [x] Fitur Premium: Sistem Auto Slideshow Tab Kiosk Terintegrasi (Rotasi Otomatis Menu Sekolah ➔ SPMB ➔ Jadwal dengan Detik Waktu Khusus yang Dapat Diatur, Default Mati)
 - [x] Fitur Premium: Simulasi Kalkulator Nilai Akhir (NA) PPDB Resmi 2026 Terintegrasi (Rapor 50% + TKA 50% + Piagam Kejuaraan + Kepengurusan Organisasi) dengan Visual Bar Kontribusi & Micro-interactions Copy-Transfer
 - [x] Fitur Premium: Timeline Interaktif Clickable (Pengunjung Dapat Mengetuk Setiap Garis Waktu SPMB untuk Menampilkan Rincian Sub-Langkah Juknis Resmi dengan Efek Hover & Animasi Glassmorphic)
+- [x] Fitur Premium: Redesign Komponen Kiosk & Dashboard (Accent borders kiri tebal berwarna pada seleksi card, floating icon circles, rule cards dengan alternating rounded corners, circular hero badges, stadium shapes untuk alur pendaftaran, dan asimetris warning banner)
 
 
 ## 3. Catatan Teknis / Konfigurasi
