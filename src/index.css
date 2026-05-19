@@ -439,13 +439,13 @@ body {
 .seleksi-card {
   background: var(--bg-primary);
   border-radius: 16px;
-  padding: 1.5vh 1vw 1.5vh 1.2vw;
+  padding: 1.1vh 1vw 1.1vh 1.2vw;
   position: relative;
   border: 1px solid rgba(0,0,0,0.05);
   border-left: 4px solid var(--card-color);
   display: flex;
   flex-direction: column;
-  gap: 0.5vh;
+  gap: 0.4vh;
   overflow: hidden;
 }
 
@@ -1290,11 +1290,10 @@ body {
   line-height: 1.35;
 }
 
-/* Jurusan List (Center Column) */
 .jurusan-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5vh;
+  gap: 1vh;
   flex: 1;
 }
 
@@ -1302,7 +1301,7 @@ body {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-left: 4px solid var(--jur-color);
-  padding: 1.8vh 1.5vw;
+  padding: 1.2vh 1.5vw;
   display: flex;
   gap: 1vw;
   align-items: center;
@@ -1324,8 +1323,8 @@ body {
 }
 
 .jurusan-badge {
-  width: 46px;
-  height: 46px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.3);
   border: 1.5px solid color-mix(in srgb, var(--jur-color) 40%, transparent);
@@ -1337,26 +1336,26 @@ body {
 }
 
 .jurusan-icon {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   filter: drop-shadow(0 0 6px var(--jur-color));
 }
 
 .jurusan-body {
   display: flex;
   flex-direction: column;
-  gap: 0.4vh;
+  gap: 0.2vh;
 }
 
 .jurusan-title {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 800;
   color: var(--white);
 }
 
 .jurusan-desc {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--brand-100);
-  line-height: 1.35;
+  line-height: 1.3;
 }
 
 /* Jurusan Quota Badges & Pills */
@@ -1400,15 +1399,15 @@ body {
 .prestasi-list {
   display: flex;
   flex-direction: column;
-  gap: 1.2vh;
-  margin-bottom: 1.5vh;
+  gap: 0.8vh;
+  margin-bottom: 1vh;
 }
 
 .prestasi-card {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.04);
   border-left: 3px solid var(--accent-gold);
-  padding: 1vh 1.2vw;
+  padding: 0.8vh 1.2vw;
   border-radius: 24px;
   display: flex;
   gap: 1vw;
@@ -1424,8 +1423,8 @@ body {
 }
 
 .prestasi-icon-wrap {
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   background: rgba(245, 158, 11, 0.12);
   border: 1px solid rgba(245, 158, 11, 0.25);
   border-radius: 50%;
@@ -1845,7 +1844,7 @@ body {
    Achievement Certificate Lookup Tool & Calculator Styles
    -------------------------------------------------------------------------- */
 .card-detail-btn {
-  margin-top: 1.2vh;
+  margin-top: 0.6vh;
   background: linear-gradient(135deg, var(--brand-600) 0%, var(--brand-800) 100%);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: var(--white) !important;
@@ -2978,12 +2977,12 @@ input:checked + .slider:before {
 .formula-card {
   background: var(--white);
   border-radius: var(--radius-md);
-  padding: 1.5vh 1vw;
+  padding: 1.1vh 1vw;
   position: relative;
   border: 1px dashed var(--brand-300);
   display: flex;
   flex-direction: column;
-  gap: 1vh;
+  gap: 0.6vh;
   box-shadow: var(--shadow-sm);
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(243, 232, 255, 0.4) 100%);
   backdrop-filter: blur(10px);
@@ -3044,7 +3043,7 @@ input:checked + .slider:before {
 .formula-legend-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.5vh 0.5vw;
+  gap: 0.4vh 0.5vw;
 }
 
 .formula-legend-item {
@@ -3052,7 +3051,7 @@ input:checked + .slider:before {
   flex-direction: column;
   gap: 0.1vh;
   background: rgba(255,255,255,0.4);
-  padding: 0.4vh 0.5vw;
+  padding: 0.3vh 0.5vw;
   border-radius: var(--radius-sm);
   border: 1px solid rgba(168, 85, 247, 0.08);
 }
