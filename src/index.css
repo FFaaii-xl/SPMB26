@@ -719,22 +719,35 @@ body {
   margin-left: auto;
 }
 
+/* ==========================================================================
+   Footer — Modern 3-Column Layout
+   ========================================================================== */
 .footer {
-  background: linear-gradient(135deg, var(--brand-900) 0%, #3b0764 100%);
+  background: linear-gradient(135deg, var(--brand-900) 0%, #2e1065 50%, #3b0764 100%);
   background-size: 200% 200%;
-  animation: footerGradient 10s ease infinite;
+  animation: footerGradient 12s ease infinite;
   color: var(--white);
-  padding: 1.5vh 2vw;
+  padding: 1vh 2vw;
   border-radius: var(--radius-md);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex: 1.5;
-  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  flex: 0 0 auto;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 -4px 20px rgba(88, 28, 135, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Subtle shimmer overlay */
+.footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(168, 85, 247, 0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 50%, rgba(245, 158, 11, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 @keyframes footerGradient {
@@ -743,110 +756,284 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-.footer-wave { display: none; }
-
 .footer-content {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  gap: 1vw;
   align-items: center;
   width: 100%;
-  border: none;
-  padding: 0;
   z-index: 2;
 }
 
-.footer-brand { display: flex; flex-direction: column; }
-.footer-logo { margin-bottom: 0.5rem; }
-.footer-logo-img { height: 40px; width: auto; object-fit: contain; }
-.footer-school { font-size: 0.8rem; font-weight: 700; }
-.footer-tagline { display: none; }
-
-.footer-contact {
+/* --- Column Base --- */
+.footer-col {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.1vh;
-  z-index: 5;
+  gap: 0.4vh;
 }
 
-.contact-title {
-  font-size: 0.58rem;
+.footer-col-label {
+  font-size: 0.6rem;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
+  letter-spacing: 1.5px;
   color: var(--brand-300);
-  font-weight: 750;
-  margin-bottom: 0.1vh;
-  opacity: 0.85;
+  font-weight: 800;
+  opacity: 0.7;
 }
 
-.contact-list {
+/* --- Left Column: Brand Identity --- */
+.footer-col-brand {
+  justify-content: center;
+}
+
+.footer-brand-row {
   display: flex;
+  align-items: center;
   gap: 0.8vw;
+}
+
+.footer-logo-img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+}
+
+.footer-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-school {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.footer-tagline {
+  font-size: 0.6rem;
+  color: var(--brand-200);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  opacity: 0.75;
+}
+
+.footer-slogan {
+  font-size: 0.55rem;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--accent-gold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.footer-copy {
+  font-size: 0.52rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 0.2vh;
+}
+
+/* --- Center Column: Contact Chips + Socmed --- */
+.footer-col-center {
   align-items: center;
 }
 
-.contact-item {
+.footer-contact-row {
+  display: flex;
+  gap: 0.6vw;
+  align-items: center;
+}
+
+.footer-contact-chip {
   display: flex;
   align-items: center;
-  gap: 0.4vw;
-  font-size: 0.7rem;
-  background: rgba(255, 255, 255, 0.05);
+  gap: 0.35vw;
+  padding: 0.4vh 0.8vw;
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 0.3rem 0.8vw;
   border-radius: 20px;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  color: var(--white);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.contact-item:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: var(--accent-gold);
+.footer-contact-chip:hover {
+  background: rgba(37, 211, 102, 0.12);
+  border-color: rgba(37, 211, 102, 0.4);
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.15);
 }
 
-.contact-label {
+.chip-icon {
+  font-size: 0.85rem;
+}
+
+.chip-label {
+  font-size: 0.58rem;
   font-weight: 800;
   color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.contact-link {
-  color: var(--white);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s ease;
-}
-
-.contact-link:hover {
-  color: var(--accent-gold);
-}
-
-.footer-info { display: flex; align-items: center; gap: 1vw; }
-.footer-info-title { display: none; }
-.footer-socmed { display: flex; gap: 0.5vw; align-items: center; margin: 0; }
-.socmed-icon { width: 24px; height: 24px; font-size: 0.8rem; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.socmed-handle { font-size: 0.8rem; }
-
-.footer-website {
-  font-size: 0.8rem;
-  color: var(--accent-gold);
+.chip-value {
+  font-size: 0.72rem;
   font-weight: 700;
-  text-decoration: none;
-  padding: 0.4rem 1vw;
-  background: rgba(245, 158, 11, 0.05);
-  border: 1.2px solid rgba(245, 158, 11, 0.2);
-  border-radius: 20px;
-  animation: linkPulse 2.5s infinite ease-in-out;
-  transition: all 0.3s ease;
+  color: var(--white);
+}
+
+.footer-socmed-row {
+  display: flex;
+  gap: 0.4vw;
+  align-items: center;
+  margin-top: 0.2vh;
+}
+
+.socmed-pill {
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
 }
 
-.footer-website:hover {
-  background: rgba(245, 158, 11, 0.15);
-  border-color: rgba(245, 158, 11, 0.6);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+.socmed-pill svg {
+  width: 15px;
+  height: 15px;
+  color: var(--white) !important;
+  fill: var(--white) !important;
+  transition: transform 0.3s ease;
+}
+
+.socmed-pill.instagram:hover {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%) !important;
+  border-color: transparent !important;
+  box-shadow: 0 0 12px rgba(214, 36, 159, 0.65) !important;
+  transform: scale(1.22) translateY(-2px);
+}
+
+.socmed-pill.facebook:hover {
+  background: #1877f2 !important;
+  border-color: transparent !important;
+  box-shadow: 0 0 12px rgba(24, 119, 242, 0.65) !important;
+  transform: scale(1.22) translateY(-2px);
+}
+
+.socmed-pill.youtube:hover {
+  background: #ff0000 !important;
+  border-color: transparent !important;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.65) !important;
+  transform: scale(1.22) translateY(-2px);
+}
+
+.socmed-handle {
+  font-size: 0.68rem;
+  color: var(--brand-200);
+  font-weight: 600;
+  margin-left: 0.2vw;
+}
+
+/* --- Right Column: Portal Link Cards --- */
+.footer-col-links {
+  align-items: flex-end;
+}
+
+.footer-links-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6vh;
+  width: 100%;
+}
+
+.footer-link-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+  padding: 0.5vh 0.8vw;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-link-card.portal {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(217, 119, 6, 0.08) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.footer-link-card.portal:hover {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(217, 119, 6, 0.15) 100%);
+  border-color: var(--accent-gold);
+  transform: translateX(-3px);
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.2);
+}
+
+.footer-link-card.school {
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.footer-link-card.school:hover {
+  background: rgba(168, 85, 247, 0.18);
+  border-color: var(--brand-400);
+  transform: translateX(-3px);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.15);
+}
+
+.link-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.link-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.link-title {
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-link-card.portal .link-title {
+  color: var(--accent-gold);
+}
+
+.link-url {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--white);
+  opacity: 0.9;
+}
+
+.footer-link-card.portal .link-url {
+  color: var(--accent-gold);
+  font-weight: 800;
+}
+
+.link-arrow {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.footer-link-card:hover .link-arrow {
+  color: var(--accent-gold);
+  transform: translateX(3px);
 }
 
 @keyframes linkPulse {
@@ -855,13 +1042,17 @@ body {
     border-color: rgba(245, 158, 11, 0.2);
   }
   50% {
-    box-shadow: 0 0 10px 2px rgba(245, 158, 11, 0.2);
-    border-color: rgba(245, 158, 11, 0.6);
+    box-shadow: 0 0 10px 2px rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.5);
   }
   100% {
     box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.2);
     border-color: rgba(245, 158, 11, 0.2);
   }
+}
+
+.footer-link-card.portal {
+  animation: linkPulse 3s infinite ease-in-out;
 }
 
 .footer-bottom { display: none; }
@@ -1822,13 +2013,16 @@ body {
    ========================================================================== */
 @media (orientation: portrait) {
   body {
-    overflow: hidden; /* ABSOLUTELY NO SCROLL */
-    height: 100vh;
+    overflow-y: auto; /* Allow natural scroll on mobile */
+    overflow-x: hidden;
+    height: auto;
+    min-height: 100vh;
     width: 100vw;
   }
 
   .app-container {
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
     padding: 1vh 2vw;
     gap: 0.8vh;
     display: flex;
@@ -1839,33 +2033,28 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     flex: 1 1 auto;
-    min-height: 0; /* Ensures proper child scaling */
-    gap: 0;
+    min-height: 0;
+    gap: 1vh;
   }
 
   .grid-col-left, .grid-col-center, .grid-col-right {
-    height: 100%;
+    height: auto;
     width: 100%;
     padding: 1.5vh 3vw;
-    overflow: hidden;
+    overflow: visible;
   }
 
-  /* Slide Activation Logic */
+  /* Slide Activation Logic - Always show all columns stacked on mobile */
   .slide-inactive {
-    display: none !important;
+    display: flex !important;
   }
   .slide-active {
     display: flex !important;
   }
 
-  /* Slide Navigation Styles */
+  /* Hide slide navigation dots since natural scrolling is enabled */
   .slide-navigation {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    padding: 0.5vh 0;
-    flex: 0 0 auto;
+    display: none !important;
   }
 
   .slide-nav-btn {
@@ -2051,20 +2240,52 @@ body {
   .warning-badge { display: none; }
 
   .footer {
-    padding: 0.8vh 3vw;
+    padding: 1.2vh 3vw;
     width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 0;
   }
 
-  .footer-brand { flex-direction: row; align-items: center; gap: 2vw; }
-  .footer-logo-img { height: 20px; }
-  .footer-school { font-size: 0.65rem; }
-  .footer-contact { display: none; }
-  .footer-info { font-size: 0.65rem; gap: 2vw; }
-  .footer-socmed { display: none; }
-  .footer-website { font-size: 0.65rem; }
+  .footer::before { display: none; }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 0.8vh;
+  }
+
+  /* Brand row — compact horizontal */
+  .footer-col-brand { gap: 0.4vh; }
+  .footer-brand-row { gap: 2.5vw; }
+  .footer-logo-img { height: 24px; }
+  .footer-school { font-size: 0.75rem; }
+  .footer-slogan { font-size: 0.5rem; }
+  .footer-copy { display: none; }
+
+  /* Contact — show as compact chips */
+  .footer-col-center {
+    align-items: flex-start;
+    gap: 0.4vh;
+  }
+  .footer-col-label { font-size: 0.48rem; letter-spacing: 1px; }
+  .footer-contact-row { gap: 1.5vw; }
+  .footer-contact-chip {
+    padding: 0.3vh 2.5vw;
+    gap: 1.5vw;
+  }
+  .chip-icon { font-size: 0.7rem; }
+  .chip-label { font-size: 0.48rem; }
+  .chip-value { font-size: 0.62rem; }
+  .footer-socmed-row { display: none; }
+
+  /* Links — compact horizontal row */
+  .footer-col-links {
+    align-items: stretch;
+    gap: 0.3vh;
+  }
+  .footer-links-stack { flex-direction: row; gap: 1.5vw; }
+  .footer-link-card { padding: 0.4vh 2.5vw; }
+  .link-icon { font-size: 0.85rem; }
+  .link-title { font-size: 0.48rem; }
+  .link-url { font-size: 0.58rem; }
+  .link-arrow { display: none; }
 
   /* ==========================================================================
      Portrait Responsive School Info & Tabs Overrides
@@ -3369,14 +3590,22 @@ input:checked + .slider:before {
 /* Responsive / Portrait Slider Adaptations for Mobile */
 @media (max-width: 1024px) {
   .schedule-dashboard-layout {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    overflow-y: visible;
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: max-content !important;
+    overflow-y: visible !important;
   }
   
   .schedule-col-left, .schedule-col-right {
-    height: auto;
+    height: auto !important;
+    min-height: max-content !important;
+    flex: none !important;
+  }
+
+  .sched-berkas, .sched-alur {
+    flex: none !important;
+    height: auto !important;
   }
   
   /* Render horizontal timeline as a vertical line on mobile screen sizes */

@@ -5,6 +5,7 @@ export const sekolah = {
   sosmed: "@smkn4surakarta",
   website: "smkn4solo.sch.id",
   tagline: "Unggul · Berkarakter · Berprestasi",
+  slogan: "Smart · Beauty · Good Character",
   deskripsi: "SMK Negeri 4 Surakarta merupakan institusi pendidikan kejuruan negeri Pusat Keunggulan bidang Pariwisata dan Industri Kreatif terkemuka di Solo, Jawa Tengah.",
   cp1: "+62 857-4787-1815",
   cp2: "+62 819-1463-7994",
@@ -213,25 +214,25 @@ const rawJadwalSeleksi = [
   {
     tanggal: "03 - 12 Juni 2026",
     kegiatan: "Pengajuan Akun",
-    detail: "Calon murid baru mengajukan akun pendaftaran secara daring.",
+    detail: "Calon murid baru mengajukan akun pendaftaran daring di spmb.jatengprov.go.id.",
     icon: "💻"
   },
   {
     tanggal: "04 - 13 Juni 2026",
     kegiatan: "Verifikasi Dokumen & Aktivasi",
-    detail: "Verifikasi berkas fisik di sekolah & aktivasi akun mandiri secara daring.",
+    detail: "Verifikasi berkas fisik & aktivasi akun mandiri daring di spmb.jatengprov.go.id.",
     icon: "🛡️"
   },
   {
     tanggal: "15 - 18 Juni 2026",
     kegiatan: "Pendaftaran & Pilihan",
-    detail: "Pemilihan jurusan di SMKN 4 Surakarta secara daring & perubahan pilihan jika ada.",
+    detail: "Pemilihan jurusan daring di spmb.jatengprov.go.id & perubahan pilihan jika ada.",
     icon: "📝"
   },
   {
     tanggal: "21 Juni 2026",
     kegiatan: "Pengumuman Kelulusan",
-    detail: "Pengumuman resmi di website SPMB, media sosial, dan mading sekolah.",
+    detail: "Pengumuman resmi di website spmb.jatengprov.go.id, medsos, & mading sekolah.",
     icon: "🏆"
   },
   {

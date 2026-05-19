@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MotionConfig } from "framer-motion";
 import HeroSection from "./components/HeroSection";
 import SelectionComponents from "./components/SelectionComponents";
@@ -14,6 +14,23 @@ export default function App() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [animationsEnabled, setAnimationsEnabled] = useState(true);
+  const [autoSlideshowEnabled, setAutoSlideshowEnabled] = useState(false);
+  const [slideshowInterval, setSlideshowInterval] = useState(10); // default 10 seconds
+
+  // Auto Slideshow per Tab logic
+  useEffect(() => {
+    if (!autoSlideshowEnabled) return;
+
+    const interval = setInterval(() => {
+      setActiveView((currentView) => {
+        const nextView = currentView === "sekolah" ? "spmb" : currentView === "spmb" ? "jadwal" : "sekolah";
+        setActiveSlide(0); // Reset inner slide on view rotation
+        return nextView;
+      });
+    }, slideshowInterval * 1000);
+
+    return () => clearInterval(interval);
+  }, [autoSlideshowEnabled, slideshowInterval]);
 
   const handleViewChange = (view) => {
     setActiveView(view);
@@ -145,7 +162,7 @@ export default function App() {
               </div>
               
               <div className="settings-group">
-                {/* Toggle 1: Smooth Animations */}
+                 {/* Toggle 1: Smooth Animations */}
                 <div className="settings-option">
                   <div className="option-info">
                     <span className="option-label">✨ Efek Animasi</span>
@@ -161,6 +178,64 @@ export default function App() {
                     />
                     <span className="slider" />
                   </label>
+                </div>
+
+                {/* Toggle 3: Auto Slideshow per Tab */}
+                <div className="settings-option" style={{ flexDirection: "column", alignItems: "stretch", gap: "0.5rem" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <div className="option-info">
+                      <span className="option-label">📺 Auto Slideshow Tab</span>
+                      <span className="option-desc">
+                        Ganti tab otomatis (Info SMK ➔ Info SPMB ➔ Jadwal) untuk TV Kiosk.
+                      </span>
+                    </div>
+                    <label className="switch">
+                      <input 
+                        type="checkbox" 
+                        checked={autoSlideshowEnabled}
+                        onChange={(e) => setAutoSlideshowEnabled(e.target.checked)}
+                      />
+                      <span className="slider" />
+                    </label>
+                  </div>
+                  
+                  {autoSlideshowEnabled && (
+                    <div className="interval-selector" style={{ 
+                      display: "flex", 
+                      alignItems: "center", 
+                      justifyContent: "space-between",
+                      background: "rgba(255, 255, 255, 0.05)",
+                      padding: "0.5rem 0.8rem",
+                      borderRadius: "8px",
+                      border: "1px solid rgba(255, 255, 255, 0.1)",
+                      marginTop: "0.3rem"
+                    }}>
+                      <span style={{ fontSize: "0.72rem", color: "rgba(255, 255, 255, 0.8)", fontWeight: 500 }}>
+                        ⏱️ Durasi per Tab:
+                      </span>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                        <input 
+                          type="number" 
+                          min="3"
+                          max="300"
+                          value={slideshowInterval}
+                          onChange={(e) => setSlideshowInterval(Math.max(3, parseInt(e.target.value) || 3))}
+                          style={{
+                            width: "55px",
+                            background: "rgba(0, 0, 0, 0.2)",
+                            border: "1px solid rgba(255, 255, 255, 0.2)",
+                            borderRadius: "4px",
+                            color: "var(--white)",
+                            fontSize: "0.75rem",
+                            padding: "0.2rem 0.4rem",
+                            textAlign: "center",
+                            fontWeight: "bold"
+                          }}
+                        />
+                        <span style={{ fontSize: "0.72rem", color: "var(--accent-gold)", fontWeight: "bold" }}>detik</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Section 2: Print Action (Moved here) */}

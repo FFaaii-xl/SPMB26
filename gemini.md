@@ -43,6 +43,7 @@
 - [x] Fitur Premium: Alur Urutan Pendaftaran Sekuensial Terpadu 1-6 (Daring + Luring)
 - [x] Fitur Premium: Integrasi Rincian Kuota Jurusan (Rombel, Kapasitas, & Total Kuota)
 - [x] Perbaikan Kontras & Keterbacaan Kolom Kiri Kiosk (Skala Proporsional Font & Keterbacaan Tinggi)
+- [x] Fitur Premium: Sistem Auto Slideshow Tab Kiosk Terintegrasi (Rotasi Otomatis Menu Sekolah ➔ SPMB ➔ Jadwal dengan Detik Waktu Khusus yang Dapat Diatur, Default Mati)
 
 ## 3. Catatan Teknis / Konfigurasi
 - **Struktur Data:** Data konfigurasi teks, warna, persentase kuota, dan aturan dipisah di `src/data/spmb.js`. Ini bertujuan agar administrator tidak perlu membuka *source code component* jika ada perubahan kecil.
