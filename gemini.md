@@ -51,6 +51,7 @@
 - [x] Perbaikan UI & UX: Restrukturisasi Footer Portrait Mobile menjadi Grid 2-Kolom Seimbang (Bebas area kosong & hemat ruang)
 - [x] Fitur Premium: Implementasi Global Responsive Font Scaling (`18.5px` di Kiosk / `17px` di Mobile) untuk keterbacaan tingkat tinggi
 - [x] Perbaikan UI & UX: Kompresi Spasi, Padding, dan Gap Komponen Kiosk (Menghilangkan seluruh scrollbar dan masalah legend Nilai Akhir/NA yang terpotong pada resolusi tetap)
+- [x] Perbaikan UI & UX: Optimisasi Ketebalan Tinggi Footer (Mengurangi padding vertikal dan tinggi logo secara global agar layout semakin ramping dan proporsional)
 
 
 ## 3. Catatan Teknis / Konfigurasi
