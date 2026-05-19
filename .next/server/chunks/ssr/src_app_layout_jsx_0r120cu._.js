@@ -1,3 +1,0 @@
-module.exports=[49575,a=>{"use strict";var b=a.i(7997);a.s(["default",0,function({children:a}){return(0,b.jsxs)("html",{lang:"id",children:[(0,b.jsx)("head",{children:(0,b.jsx)("link",{rel:"icon",href:"/favicon.svg"})}),(0,b.jsx)("body",{children:a})]})},"metadata",0,{title:"SPMB SMKN 4 Surakarta 2026",description:"Informasi Penerimaan Peserta Didik Baru (PPDB) / SPMB Resmi SMKN 4 Surakarta Tahun Ajaran 2026/2027."}])},62243,a=>{a.n(a.i(49575))}];
-
-//# sourceMappingURL=src_app_layout_jsx_0r120cu._.js.map
