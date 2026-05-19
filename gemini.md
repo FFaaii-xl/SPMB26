@@ -52,6 +52,7 @@
 - [x] Fitur Premium: Implementasi Global Responsive Font Scaling (`18.5px` di Kiosk / `17px` di Mobile) untuk keterbacaan tingkat tinggi
 - [x] Perbaikan UI & UX: Kompresi Spasi, Padding, dan Gap Komponen Kiosk (Menghilangkan seluruh scrollbar dan masalah legend Nilai Akhir/NA yang terpotong pada resolusi tetap)
 - [x] Perbaikan UI & UX: Optimisasi Ketebalan Tinggi Footer (Mengurangi padding vertikal dan tinggi logo secara global agar layout semakin ramping dan proporsional)
+- [x] Publikasi Repositori: Rekonsiliasi & Penggabungan (*Safe Merge*) Cabang Integrasi Vercel (PR #1 & PR #2) dengan Strategi 'Ours' guna menjaga konsistensi desain premium
 
 
 ## 3. Catatan Teknis / Konfigurasi
