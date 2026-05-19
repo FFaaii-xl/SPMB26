@@ -271,9 +271,9 @@ const rawJadwalSeleksi = [
     detail: "Melakukan registrasi ulang luring/fisik di sekolah bagi yang diterima utama.",
     icon: "✍️",
     panduanLengkap: [
-      "Calon murid yang diterima utama WAJIB datang ke SMKN 4 Surakarta membawa berkas persyaratan pendaftaran lengkap.",
-      "Melakukan registrasi buku induk sekolah secara luring.",
-      "PENTING: Peserta yang lolos utama tetapi tidak melakukan daftar ulang hingga batas waktu 25 Juni pukul 15:30 WIB dinyatakan GUGUR / MENGUNDURKAN DIRI."
+      "Calon murid yang dinyatakan diterima dalam penyelenggaraan SPMB wajib melakukan daftar ulang.",
+      "Bagi calon murid yang tidak melakukan daftar ulang sampai dengan batas waktu yang ditentukan dianggap mengundurkan diri.",
+      "Persyaratan dan tata cara daftar ulang diatur lebih lanjut oleh Satuan Pendidikan masing-masing mempedomani ketentuan Dinas Pendidikan Provinsi Jawa Tengah."
     ]
   },
   {
@@ -282,9 +282,10 @@ const rawJadwalSeleksi = [
     detail: "Pengisian daya tampung kosong berdasarkan peringkat cadangan yang tidak daftar ulang.",
     icon: "🔄",
     panduanLengkap: [
-      "Panitia mendata kursi kosong akibat adanya peserta lolos utama yang gugur/tidak mendaftar ulang.",
-      "Mengumumkan daftar nama calon murid baru cadangan di website sekolah.",
-      "Peserta cadangan dipanggil luring ke sekolah sesuai urutan peringkat untuk mengisi daya tampung kosong dan langsung melakukan daftar ulang di hari yang sama."
+      "Calon murid yang dinyatakan tidak lolos dalam seleksi SPMB terdaftar sebagai calon murid cadangan didasarkan pada pilihan sesuai jalur yang dipilih.",
+      "Calon murid cadangan yang akan mengisi kekosongan daya tampung akibat adanya peserta lolos seleksi yang tidak melakukan daftar ulang akan diumumkan di website SPMB.",
+      "Calon murid cadangan yang dinyatakan dapat mengisi kekosongan daya tampung wajib melakukan daftar ulang.",
+      "Calon murid cadangan yang tidak melakukan daftar ulang sampai batas waktu yang ditentukan dianggap mengundurkan diri, dan selanjutnya tidak diberlakukan adanya calon murid cadangan."
     ]
   },
   {
