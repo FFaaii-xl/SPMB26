@@ -28,6 +28,40 @@ export default function Footer() {
         </motion.div>
 
         <motion.div
+          className="footer-contact"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.05 }}
+        >
+          <span className="contact-title">📞 Kontak SPMB 2026</span>
+          <div className="contact-list">
+            <div className="contact-item">
+              <span className="contact-label">CP 1</span>
+              <a
+                href="https://wa.me/6285747871815"
+                target="_blank"
+                rel="noreferrer"
+                className="contact-link"
+              >
+                {sekolah.cp1}
+              </a>
+            </div>
+            <div className="contact-item">
+              <span className="contact-label">CP 2</span>
+              <a
+                href="https://wa.me/6281914637994"
+                target="_blank"
+                rel="noreferrer"
+                className="contact-link"
+              >
+                {sekolah.cp2}
+              </a>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
           className="footer-info"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

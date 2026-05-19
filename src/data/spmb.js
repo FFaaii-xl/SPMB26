@@ -6,6 +6,8 @@ export const sekolah = {
   website: "smkn4solo.sch.id",
   tagline: "Unggul · Berkarakter · Berprestasi",
   deskripsi: "SMK Negeri 4 Surakarta merupakan institusi pendidikan kejuruan negeri Pusat Keunggulan bidang Pariwisata dan Industri Kreatif terkemuka di Solo, Jawa Tengah.",
+  cp1: "+62 857-4787-1815",
+  cp2: "+62 819-1463-7994",
 };
 
 export const identitasStatus = [
