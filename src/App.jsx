@@ -148,6 +148,9 @@ export default function App() {
           <Footer />
         </div>
 
+        {/* Vercel Web Analytics */}
+        <Analytics />
+
         {/* PREMIUM SETTINGS MODAL OVERLAY */}
         {isSettingsOpen && (
           <div className="settings-overlay" onClick={() => setIsSettingsOpen(false)}>
