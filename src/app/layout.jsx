@@ -1,4 +1,5 @@
 import { Outfit } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "../index.css";
 import "../App.css";
 
@@ -32,6 +33,7 @@ export default function RootLayout({ children }) {
     <html lang="id" className={outfit.variable}>
       <body>
         {children}
+        <Analytics />
       </body>
     </html>
   );
