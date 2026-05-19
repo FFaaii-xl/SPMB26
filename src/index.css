@@ -88,10 +88,51 @@ body {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   padding: 1.5vh 1vw;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(0,0,0,0.03);
+  scrollbar-width: thin;
+}
+
+/* Beautiful custom thin scrollbars for the main columns */
+.grid-col-left::-webkit-scrollbar,
+.grid-col-right::-webkit-scrollbar {
+  width: 5px;
+}
+
+.grid-col-left::-webkit-scrollbar-track,
+.grid-col-right::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.grid-col-left::-webkit-scrollbar-thumb,
+.grid-col-right::-webkit-scrollbar-thumb {
+  background: var(--brand-100);
+  border-radius: 4px;
+}
+
+.grid-col-left::-webkit-scrollbar-thumb:hover,
+.grid-col-right::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-300);
+}
+
+.grid-col-center::-webkit-scrollbar {
+  width: 5px;
+}
+
+.grid-col-center::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.grid-col-center::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+.grid-col-center::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .grid-footer {
@@ -435,7 +476,7 @@ body {
 .quota-layout {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100%;
   gap: 1.5vh;
 }
 
