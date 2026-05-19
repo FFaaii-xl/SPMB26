@@ -189,62 +189,108 @@ export const ketentuanKhusus = [
   },
 ];
 
-export const jadwalSeleksi = [
+const rawJadwalSeleksi = [
   {
     tanggal: "18 Mei 2026",
     kegiatan: "Pengumuman SPMB 2026",
     detail: "Informasi resmi kuota & syarat di website dan mading sekolah.",
-    status: "done",
     icon: "📢"
   },
   {
     tanggal: "03 - 12 Juni 2026",
     kegiatan: "Pengajuan Akun",
     detail: "Calon murid baru mengajukan akun pendaftaran secara daring.",
-    status: "active",
     icon: "💻"
   },
   {
     tanggal: "04 - 13 Juni 2026",
     kegiatan: "Verifikasi Dokumen & Aktivasi",
     detail: "Verifikasi berkas fisik di sekolah & aktivasi akun mandiri secara daring.",
-    status: "next",
     icon: "🛡️"
   },
   {
     tanggal: "15 - 18 Juni 2026",
     kegiatan: "Pendaftaran & Pilihan",
     detail: "Pemilihan jurusan di SMKN 4 Surakarta secara daring & perubahan pilihan jika ada.",
-    status: "next",
     icon: "📝"
   },
   {
     tanggal: "21 Juni 2026",
     kegiatan: "Pengumuman Kelulusan",
     detail: "Pengumuman resmi di website SPMB, media sosial, dan mading sekolah.",
-    status: "next",
     icon: "🏆"
   },
   {
     tanggal: "22 - 25 Juni 2026",
     kegiatan: "Daftar Ulang (Utama)",
     detail: "Melakukan registrasi ulang luring/fisik di sekolah bagi yang diterima utama.",
-    status: "next",
     icon: "✍️"
   },
   {
     tanggal: "26 Juni 2026",
     kegiatan: "Pengumuman Cadangan",
     detail: "Pengisian daya tampung kosong berdasarkan peringkat cadangan yang tidak daftar ulang.",
-    status: "next",
     icon: "🔄"
   },
   {
     tanggal: "13 Juli 2026",
     kegiatan: "Awal Tahun Ajaran Baru",
     detail: "Hari pertama masuk sekolah dan dimulainya kegiatan pembelajaran (MPLS).",
-    status: "next",
     icon: "🎓"
   }
 ];
+
+// Definisikan rentang tanggal absolut untuk masing-masing 8 tahapan PPDB di tahun 2026
+const ranges = [
+  { start: new Date("2026-05-18T00:00:00"), end: new Date("2026-05-18T23:59:59") }, // 18 Mei
+  { start: new Date("2026-06-03T00:00:00"), end: new Date("2026-06-12T23:59:59") }, // 03-12 Juni
+  { start: new Date("2026-06-04T00:00:00"), end: new Date("2026-06-13T23:59:59") }, // 04-13 Juni
+  { start: new Date("2026-06-15T00:00:00"), end: new Date("2026-06-18T23:59:59") }, // 15-18 Juni
+  { start: new Date("2026-06-21T00:00:00"), end: new Date("2026-06-21T23:59:59") }, // 21 Juni
+  { start: new Date("2026-06-22T00:00:00"), end: new Date("2026-06-25T23:59:59") }, // 22-25 Juni
+  { start: new Date("2026-06-26T00:00:00"), end: new Date("2026-06-26T23:59:59") }, // 26 Juni
+  { start: new Date("2026-07-13T00:00:00"), end: new Date("2026-07-13T23:59:59") }, // 13 Juli
+];
+
+const now = new Date();
+
+// Cari apakah ada tahapan yang rentang tanggalnya sedang aktif hari ini
+let activeIndices = [];
+ranges.forEach((range, idx) => {
+  if (now >= range.start && now <= range.end) {
+    activeIndices.push(idx);
+  }
+});
+
+// Jika tidak ada tahapan yang sedang aktif hari ini (berada di masa transisi jeda),
+// maka cari tahapan mendatang terdekat untuk ditandai sebagai aktif.
+let firstUpcomingIndex = -1;
+if (activeIndices.length === 0) {
+  for (let i = 0; i < ranges.length; i++) {
+    if (now < ranges[i].start) {
+      firstUpcomingIndex = i;
+      break;
+    }
+  }
+}
+
+export const jadwalSeleksi = rawJadwalSeleksi.map((item, idx) => {
+  let status = "next";
+  const range = ranges[idx];
+
+  if (now > range.end) {
+    status = "done";
+  } else if (now >= range.start && now <= range.end) {
+    status = "active";
+  } else if (activeIndices.length === 0 && idx === firstUpcomingIndex) {
+    status = "active";
+  } else {
+    status = "next";
+  }
+
+  return {
+    ...item,
+    status
+  };
+});
 
