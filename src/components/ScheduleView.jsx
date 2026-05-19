@@ -17,135 +17,138 @@ const itemVariants = {
 export default function ScheduleView({ activeSlide }) {
   // Berkas yang harus dipersiapkan
   const berkasWajib = [
-    { nama: "Kartu Keluarga (KK)", detail: "Asli & fotokopi, diterbitkan minimal 1 tahun sebelum pendaftaran.", icon: "🏠" },
-    { nama: "Rapor SMP/MTs", detail: "Asli & fotokopi nilai rapor semester 1 s.d. 5.", icon: "📘" },
-    { nama: "Surat Keterangan Lulus (SKL)", detail: "Asli & fotokopi dari pihak SMP/sederajat asal.", icon: "🎓" },
-    { nama: "Surat Kebenaran Dokumen", detail: "Surat pernyataan keabsahan dokumen bermaterai Rp10.000.", icon: "✍️" },
-    { nama: "Piagam Prestasi / Kejuaraan (Jika Memiliki)", detail: "Asli & fotokopi, dilampirkan jika memiliki (khusus pendaftar jalur Prestasi).", icon: "🏆" },
-    { nama: "Keterangan DTKS / DTSEN", detail: "Bukti cetak terdata di DTKS (khusus pendaftar jalur Afirmasi).", icon: "🤝" },
+    { nama: "Kartu Keluarga (KK)", detail: "Asli & fotokopi (min. terbit 1 tahun)", icon: "🏠" },
+    { nama: "Rapor SMP/MTs", detail: "Asli & fotokopi rapor Smt 1-5", icon: "📘" },
+    { nama: "Surat Keterangan Lulus", detail: "Asli & fotokopi SKL resmi asal", icon: "🎓" },
+    { nama: "Kebenaran Dokumen", detail: "Surat pernyataan bermaterai Rp10k", icon: "✍️" },
+    { nama: "Piagam Kejuaraan", detail: "Asli & fotokopi (jika memiliki / prestasi)", icon: "🏆" },
+    { nama: "DTKS / DTSEN", detail: "Bukti terdata DTKS (khusus Afirmasi)", icon: "🤝" },
   ];
 
   // Alur verifikasi luring di SMKN 4 Surakarta
   const alurVerifikasi = [
-    { step: "01", judul: "Ambil Antrean", ket: "Calon siswa mengambil nomor antrean di gerbang masuk atau loket aula sekolah.", icon: "🎫" },
-    { step: "02", judul: "Pra-Verifikasi Berkas", ket: "Panitia memeriksa kelengkapan fisik dokumen pendaftaran di ruang tunggu.", icon: "📋" },
-    { step: "03", judul: "Entri & Validasi Sistem", ket: "Petunjuk teknis memasukkan data berkas calon siswa ke sistem PPDB Jawa Tengah.", icon: "💻" },
-    { step: "04", judul: "Cetak Tanda Bukti", ket: "Menerima lembar tanda bukti verifikasi akun beserta Token untuk aktivasi akun.", icon: "🖨️" },
+    { step: "01", judul: "Ambil Antrean", ket: "Ambil nomor antrean di loket masuk aula", icon: "🎫" },
+    { step: "02", judul: "Pemeriksaan Berkas", ket: "Pra-verifikasi fisik dokumen di ruang tunggu", icon: "📋" },
+    { step: "03", judul: "Validasi Sistem", ket: "Panitia memasukkan data berkas ke sistem Jateng", icon: "💻" },
+    { step: "04", judul: "Cetak Bukti Akun", ket: "Menerima lembar bukti cetak akun & token", icon: "🖨️" },
   ];
 
   return (
     <motion.div
-      className="school-info-layout"
+      className="schedule-dashboard-layout"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
-      {/* Kolom Kiri: Berkas Persiapan */}
+      {/* Kolom Kiri: Dokumen Wajib & Alur Verifikasi (1/3 Kolom) */}
       <motion.div
-        className={`grid-col-left ${activeSlide === 0 ? "slide-active" : "slide-inactive"}`}
+        className={`schedule-col-left ${activeSlide === 0 ? "slide-active" : "slide-inactive"}`}
         variants={itemVariants}
       >
-        <div className="section-header">
-          <span className="section-pill">Persiapan</span>
-          <h2 className="section-title">Dokumen & Berkas Wajib</h2>
-        </div>
-
-        <div className="berkas-list">
-          {berkasWajib.map((berkas, i) => (
-            <motion.div 
-              key={i} 
-              className="berkas-card"
-              whileHover={{ x: 5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <div className="berkas-icon-wrap">
-                <span className="berkas-icon">{berkas.icon}</span>
-              </div>
-              <div className="berkas-body">
-                <h4 className="berkas-name">{berkas.nama}</h4>
-                <p className="berkas-detail">{berkas.detail}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Kolom Tengah: Timeline Jadwal Utama */}
-      <motion.div
-        className={`grid-col-center ${activeSlide === 1 ? "slide-active" : "slide-inactive"}`}
-        variants={itemVariants}
-        style={{ background: "var(--brand-900)", color: "var(--white)" }}
-      >
-        <div className="section-header">
-          <span className="section-pill" style={{ background: "rgba(255,255,255,0.1)", color: "var(--brand-100)" }}>Garis Waktu</span>
-          <h2 className="section-title" style={{ color: "var(--white)" }}>Jadwal Resmi PPDB 2026</h2>
-        </div>
-
-        <div className="timeline-scroll-wrap">
-          <div className="schedule-timeline">
-            {jadwalSeleksi.map((item, i) => (
-              <div key={i} className={`timeline-item ${item.status}`}>
-                <div className="timeline-badge-wrap">
-                  <div className="timeline-badge">
-                    <span className="timeline-icon">{item.icon}</span>
-                  </div>
-                  {i < jadwalSeleksi.length - 1 && <div className="timeline-connector-line" />}
+        {/* Persyaratan Berkas */}
+        <div className="sched-section sched-berkas">
+          <div className="section-header mini">
+            <span className="section-pill">Persiapan</span>
+            <h3 className="section-title">Dokumen & Berkas Wajib</h3>
+          </div>
+          
+          <div className="berkas-grid-compact">
+            {berkasWajib.map((berkas, i) => (
+              <motion.div 
+                key={i} 
+                className="berkas-card-compact"
+                whileHover={{ x: 3 }}
+              >
+                <span className="berkas-icon-compact">{berkas.icon}</span>
+                <div className="berkas-text-compact">
+                  <h4 className="berkas-name-compact">{berkas.nama}</h4>
+                  <p className="berkas-detail-compact">{berkas.detail}</p>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
 
-                <div className="timeline-content" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <div className="timeline-header-row">
-                    <span className="timeline-date" style={{ color: "var(--brand-300)" }}>{item.tanggal}</span>
-                    {item.status === "active" && (
-                      <span className="timeline-badge-active">Sedang Berjalan</span>
-                    )}
-                    {item.status === "done" && (
-                      <span className="timeline-badge-done">Selesai</span>
-                    )}
-                  </div>
-                  <h4 className="timeline-kegiatan" style={{ color: "var(--white)" }}>{item.kegiatan}</h4>
-                  <p className="timeline-detail" style={{ color: "rgba(255,255,255,0.7)" }}>{item.detail}</p>
+        {/* Alur Verifikasi Fisik */}
+        <div className="sched-section sched-alur">
+          <div className="section-header mini">
+            <span className="section-pill">Alur Luring</span>
+            <h3 className="section-title">Prosedur Verifikasi Fisik</h3>
+          </div>
+
+          <div className="alur-grid-compact">
+            {alurVerifikasi.map((alur, i) => (
+              <div key={i} className="alur-card-compact">
+                <span className="alur-badge-compact">{alur.step}</span>
+                <div className="alur-text-compact">
+                  <span className="alur-icon-compact">{alur.icon}</span>
+                  <span className="alur-title-compact">{alur.judul}</span>
                 </div>
               </div>
             ))}
           </div>
+
+          <div className="kiosk-note-compact">
+            ⚠️ <strong>Siswa Wajib Datang Fisik:</strong> Memakai seragam SMP rapi & bersepatu untuk verifikasi berkas & pengambilan token.
+          </div>
         </div>
       </motion.div>
 
-      {/* Kolom Kanan: Alur Verifikasi Fisik Luring */}
+      {/* Kolom Kanan: Infographic Timeline Horisontal Alternating (2/3 Kolom) */}
       <motion.div
-        className={`grid-col-right ${activeSlide === 2 ? "slide-active" : "slide-inactive"}`}
+        className={`schedule-col-right ${activeSlide >= 1 ? "slide-active" : "slide-inactive"}`}
         variants={itemVariants}
       >
-        <div className="section-header">
-          <span className="section-pill">Alur Luring</span>
-          <h2 className="section-title">Prosedur Verifikasi Fisik</h2>
+        <div className="section-header center-align">
+          <span className="section-pill">Timeline PPDB 2026</span>
+          <h2 className="section-title">Garis Waktu Resmi PPDB SMK Negeri</h2>
+          <p className="section-desc">Jadwal resmi pelaksanaan berdasarkan Juknis & Jukop Dinas Pendidikan Provinsi Jawa Tengah</p>
         </div>
 
-        <div className="alur-list">
-          {alurVerifikasi.map((alur, i) => (
-            <motion.div 
-              key={i} 
-              className="alur-card"
-              whileHover={{ scale: 1.02 }}
-            >
-              <div className="alur-badge-wrap">
-                <div className="alur-badge">{alur.step}</div>
-              </div>
-              <div className="alur-body">
-                <div className="alur-title-row">
-                  <span className="alur-icon">{alur.icon}</span>
-                  <h4 className="alur-title">{alur.judul}</h4>
+        {/* Alternating Horizontal Infographic Timeline */}
+        <div className="horizontal-timeline-container">
+          {/* Main Horizontal Axis Line */}
+          <div className="timeline-axis-line" />
+
+          <div className="timeline-horizontal-steps">
+            {jadwalSeleksi.map((item, i) => {
+              // Menghitung status urutan ganjil-genap untuk zigzag atas-bawah
+              // Indeks genap (0, 2, 4, 6) -> pos-down (Bawah Axis)
+              // Indeks ganjil (1, 3, 5, 7) -> pos-up (Atas Axis)
+              const isEven = i % 2 === 0;
+              const positionClass = isEven ? "pos-down" : "pos-up";
+
+              return (
+                <div key={i} className={`timeline-h-step ${positionClass} ${item.status}`}>
+                  {/* Step Connector Line to Main Axis */}
+                  <div className="timeline-h-connector" />
+
+                  {/* Step Node Dot on the Horizontal Axis */}
+                  <div className="timeline-h-node">
+                    <div className="node-dot" />
+                    {item.status === "active" && <div className="node-pulse-ring" />}
+                  </div>
+
+                  {/* Step Content Card */}
+                  <div className="timeline-h-card">
+                    <div className="card-header-row">
+                      <span className="card-icon">{item.icon}</span>
+                      <span className="card-date">{item.tanggal}</span>
+                    </div>
+                    <h4 className="card-title">{item.kegiatan}</h4>
+                    <p className="card-detail">{item.detail}</p>
+                    
+                    {item.status === "active" && (
+                      <span className="card-active-label">Aktif</span>
+                    )}
+                    {item.status === "done" && (
+                      <span className="card-done-label">✓</span>
+                    )}
+                  </div>
                 </div>
-                <p className="alur-ket">{alur.ket}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="kiosk-footer-note">
-          <p className="kiosk-note-text">
-            ⚠️ <strong>Penting:</strong> Verifikasi Dokumen & Pengambilan Token wajib dihadiri oleh Calon Siswa mengenakan seragam SMP asal rapi & bersepatu.
-          </p>
+              );
+            })}
+          </div>
         </div>
       </motion.div>
     </motion.div>

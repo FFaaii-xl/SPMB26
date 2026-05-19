@@ -2169,169 +2169,533 @@ input:checked + .slider:before {
 }
 
 /* ==========================================================================
-   ScheduleView (Dashboard 3) Layout & Details
+   New 2-Column Schedule Dashboard with Horizontal Timeline
    ========================================================================== */
 
-/* Berkas Persiapan Column */
-.berkas-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2vh;
-  flex: 1;
-  overflow-y: auto;
-  padding-right: 0.5vw;
+.schedule-dashboard-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 2.35fr;
+  gap: 1.2vw;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
 }
 
-.berkas-list::-webkit-scrollbar { width: 4px; }
-.berkas-list::-webkit-scrollbar-track { background: transparent; }
-.berkas-list::-webkit-scrollbar-thumb { background: var(--brand-100); border-radius: 4px; }
-
-.berkas-card {
-  background: var(--bg-primary);
+/* Left Column Styling */
+.schedule-col-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+  height: 100%;
+  min-height: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(243, 232, 255, 0.3) 100%);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--brand-100);
-  border-radius: var(--radius-md);
-  padding: 1.2vh 1vw;
-  display: flex;
-  align-items: center;
-  gap: 1vw;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.berkas-card:hover {
-  background: var(--brand-50);
-  border-color: var(--brand-300);
-  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.08);
-}
-
-.berkas-icon-wrap {
-  width: 36px;
-  height: 36px;
-  background: var(--brand-100);
-  color: var(--brand-700);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  flex-shrink: 0;
-}
-
-.berkas-body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2vh;
-  flex: 1;
-}
-
-.berkas-name {
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: var(--brand-900);
-  line-height: 1.2;
-}
-
-.berkas-detail {
-  font-size: 0.68rem;
-  color: var(--text-muted);
-  line-height: 1.3;
-}
-
-/* Timeline Scroll Wrap in Center Column */
-.timeline-scroll-wrap {
-  flex: 1;
-  overflow-y: auto;
-  padding-right: 0.5vw;
-  margin-top: 1vh;
-}
-
-.timeline-scroll-wrap::-webkit-scrollbar { width: 4px; }
-.timeline-scroll-wrap::-webkit-scrollbar-track { background: transparent; }
-.timeline-scroll-wrap::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
-
-/* Alur Verifikasi Column */
-.alur-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1vh;
-  flex: 1;
-}
-
-.alur-card {
-  background: var(--bg-primary);
-  border: 1px solid var(--brand-100);
-  border-radius: var(--radius-md);
-  padding: 1vh 0.8vw;
-  display: flex;
-  align-items: center;
-  gap: 0.75vw;
-  transition: all 0.3s ease;
-}
-
-.alur-card:hover {
-  background: var(--brand-50);
-  border-color: var(--brand-300);
+  border-radius: var(--radius-lg);
+  padding: 1.8vh 1.2vw;
   box-shadow: var(--shadow-sm);
 }
 
-.alur-badge-wrap {
-  flex-shrink: 0;
-}
-
-.alur-badge {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--brand-600);
-  color: var(--white);
-  font-size: 0.75rem;
-  font-weight: 900;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 6px rgba(147, 51, 234, 0.3);
-}
-
-.alur-body {
+.sched-section {
   display: flex;
   flex-direction: column;
-  gap: 0.1vh;
+  gap: 0.8vh;
+  min-height: 0;
+}
+
+.sched-berkas {
+  flex: 1.2;
+}
+
+.sched-alur {
   flex: 1;
+  border-top: 1px dashed var(--brand-200);
+  padding-top: 1.2vh;
 }
 
-.alur-title-row {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
+.section-header.mini {
+  margin-bottom: 0.5vh;
 }
 
-.alur-icon {
-  font-size: 0.95rem;
-}
-
-.alur-title {
+.section-header.mini .section-title {
   font-size: 0.82rem;
   font-weight: 800;
   color: var(--brand-900);
 }
 
-.alur-ket {
-  font-size: 0.68rem;
-  color: var(--text-muted);
-  line-height: 1.35;
+.section-header.mini .section-pill {
+  font-size: 0.55rem;
+  padding: 0.08rem 0.35rem;
 }
 
-.kiosk-footer-note {
-  background: rgba(245, 158, 11, 0.05);
-  border: 1px solid rgba(245, 158, 11, 0.15);
-  border-radius: var(--radius-md);
-  padding: 1.2vh 1vw;
-  margin-top: 1.5vh;
+/* Compact Document Checklist Cards */
+.berkas-grid-compact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8vh 0.6vw;
+  overflow-y: auto;
 }
 
-.kiosk-note-text {
-  font-size: 0.68rem;
-  line-height: 1.35;
+.berkas-card-compact {
+  background: var(--white);
+  border: 1px solid var(--brand-100);
+  border-radius: var(--radius-sm);
+  padding: 0.7vh 0.5vw;
+  display: flex;
+  align-items: center;
+  gap: 0.4vw;
+  transition: all 0.2s ease;
+}
+
+.berkas-card-compact:hover {
+  background: var(--brand-50);
+  border-color: var(--brand-300);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(168, 85, 247, 0.05);
+}
+
+.berkas-icon-compact {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.berkas-text-compact {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.berkas-name-compact {
+  font-size: 0.7rem;
+  font-weight: 800;
   color: var(--brand-900);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
+.berkas-detail-compact {
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Compact Offline Queue Step Cards */
+.alur-grid-compact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8vh 0.6vw;
+}
+
+.alur-card-compact {
+  background: var(--white);
+  border: 1px solid var(--brand-100);
+  border-radius: var(--radius-sm);
+  padding: 0.7vh 0.5vw;
+  display: flex;
+  align-items: center;
+  gap: 0.4vw;
+  transition: all 0.2s ease;
+}
+
+.alur-badge-compact {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--brand-600);
+  color: var(--white);
+  font-size: 0.55rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.alur-text-compact {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.alur-icon-compact {
+  font-size: 0.8rem;
+}
+
+.alur-title-compact {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--brand-800);
+}
+
+.kiosk-note-compact {
+  background: rgba(245, 158, 11, 0.05);
+  border: 1px solid rgba(245, 158, 11, 0.12);
+  border-radius: var(--radius-sm);
+  padding: 0.8vh 0.6vw;
+  font-size: 0.6rem;
+  color: var(--brand-950);
+  line-height: 1.3;
+  margin-top: 0.4vh;
+}
+
+/* Horizontal Timeline Column (66% Width) */
+.schedule-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+  height: 100%;
+  min-height: 0;
+  background: linear-gradient(135deg, var(--brand-900) 0%, #3b0764 100%);
+  border-radius: var(--radius-lg);
+  padding: 2.2vh 1.6vw;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-header.center-align {
+  text-align: center;
+  align-items: center;
+  margin-bottom: 1vh;
+}
+
+.section-header.center-align .section-title {
+  color: var(--white);
+  font-size: 1.35rem;
+}
+
+.section-header.center-align .section-pill {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--brand-100);
+}
+
+.section-header.center-align .section-desc {
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 600px;
+  font-size: 0.72rem;
+  margin-top: 0.3vh;
+}
+
+/* Infographic Alternating Horizontal Timeline Container */
+.horizontal-timeline-container {
+  flex: 1;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 0;
+}
+
+/* Axis Line horizontal */
+.timeline-axis-line {
+  position: absolute;
+  left: 2.5vw;
+  right: 2.5vw;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    var(--accent-green) 0%, 
+    var(--accent-gold) 50%, 
+    var(--brand-400) 100%
+  );
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 4px;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+  z-index: 1;
+}
+
+.timeline-horizontal-steps {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+  padding: 0 2.5vw;
+}
+
+.timeline-h-step {
+  flex: 1;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Node Dot placed exactly on the horizontal axis */
+.timeline-h-node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 4px solid var(--brand-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-h-node .node-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--brand-500);
+  transition: all 0.3s ease;
+}
+
+.timeline-h-node .node-pulse-ring {
+  position: absolute;
+  top: -6px; left: -6px; right: -6px; bottom: -6px;
+  border: 2px solid var(--accent-gold);
+  border-radius: 50%;
+  animation: nodePulse 2s infinite;
+}
+
+/* Step Content Cards */
+.timeline-h-card {
+  width: clamp(100px, 8.8vw, 135px);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--brand-200);
+  border-radius: var(--radius-md);
+  padding: 0.7vh 0.5vw;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3vh;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  z-index: 5;
+}
+
+.timeline-h-card:hover {
+  transform: translateY(var(--hover-translate)) scale(1.03);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+  background: var(--white);
+}
+
+.card-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3vw;
+}
+
+.card-icon {
+  font-size: 0.8rem;
+}
+
+.card-date {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: var(--brand-700);
+}
+
+.card-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--brand-950);
+  line-height: 1.2;
+}
+
+.card-detail {
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  line-height: 1.25;
+}
+
+.card-active-label {
+  align-self: center;
+  font-size: 0.5rem;
+  font-weight: 800;
+  color: var(--white);
+  background: var(--accent-gold);
+  padding: 0.05rem 0.25rem;
+  border-radius: 99px;
+  text-transform: uppercase;
+  margin-top: 0.2vh;
+}
+
+.card-done-label {
+  align-self: center;
+  font-size: 0.58rem;
+  font-weight: 900;
+  color: var(--accent-green);
+  margin-top: 0.2vh;
+}
+
+/* Zigzag Positions: Up or Down */
+.pos-up .timeline-h-card {
+  position: absolute;
+  bottom: calc(50% + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  --hover-translate: -4px;
+}
+
+.pos-up .timeline-h-connector {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 22px;
+  background: linear-gradient(180deg, var(--brand-300), rgba(255, 255, 255, 0.2));
+  z-index: 2;
+}
+
+.pos-down .timeline-h-card {
+  position: absolute;
+  top: calc(50% + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  --hover-translate: 4px;
+}
+
+.pos-down .timeline-h-connector {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 22px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), var(--brand-300));
+  z-index: 2;
+}
+
+/* Timeline Step Node and Card Status Classes */
+/* Done Status */
+.timeline-h-step.done .timeline-h-node {
+  border-color: var(--accent-green);
+  background: var(--accent-green);
+}
+
+.timeline-h-step.done .node-dot {
+  background: var(--white);
+}
+
+.timeline-h-step.done .timeline-h-card {
+  border-color: rgba(16, 185, 129, 0.35);
+  background: rgba(240, 253, 250, 0.95);
+}
+
+.timeline-h-step.done .timeline-h-connector {
+  background: var(--accent-green);
+  opacity: 0.7;
+}
+
+/* Active Status */
+.timeline-h-step.active .timeline-h-node {
+  border-color: var(--accent-gold);
+  background: var(--accent-gold);
+  transform: translate(-50%, -50%) scale(1.2);
+  box-shadow: 0 0 12px var(--accent-gold);
+}
+
+.timeline-h-step.active .node-dot {
+  background: var(--white);
+}
+
+.timeline-h-step.active .timeline-h-card {
+  border-color: var(--accent-gold);
+  background: var(--white);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.2);
+}
+
+.timeline-h-step.active .timeline-h-connector {
+  background: var(--accent-gold);
+  width: 3px;
+}
+
+/* Animations */
+@keyframes nodePulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.3); opacity: 0; }
+  100% { transform: scale(1); opacity: 0.9; }
+}
+
+/* Responsive / Portrait Slider Adaptations for Mobile */
+@media (max-width: 1024px) {
+  .schedule-dashboard-layout {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow-y: visible;
+  }
+  
+  .schedule-col-left, .schedule-col-right {
+    height: auto;
+  }
+  
+  /* Render horizontal timeline as a vertical line on mobile screen sizes */
+  .horizontal-timeline-container {
+    height: auto;
+    padding-left: 20px;
+    align-items: flex-start;
+  }
+  
+  .timeline-axis-line {
+    left: 20px;
+    width: 4px;
+    height: calc(100% - 40px);
+    top: 20px;
+    transform: none;
+  }
+  
+  .timeline-horizontal-steps {
+    flex-direction: column;
+    padding: 0;
+    gap: 30px;
+    height: auto;
+  }
+  
+  .timeline-h-step {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding-left: 40px;
+  }
+  
+  .timeline-h-node {
+    left: 20px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .timeline-h-step.active .timeline-h-node {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  
+  .pos-up .timeline-h-card, .pos-down .timeline-h-card {
+    position: relative;
+    top: auto; bottom: auto; left: auto;
+    transform: none;
+    width: calc(100% - 20px);
+    text-align: left;
+  }
+  
+  .card-header-row {
+    justify-content: flex-start;
+  }
+  
+  .pos-up .timeline-h-connector, .pos-down .timeline-h-connector {
+    display: none;
+  }
+}
+
 
 
