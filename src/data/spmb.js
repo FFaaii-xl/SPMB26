@@ -258,10 +258,11 @@ const rawJadwalSeleksi = [
     detail: "Pengumuman resmi di website spmb.jatengprov.go.id, medsos, & mading sekolah.",
     icon: "🏆",
     panduanLengkap: [
-      "Hasil akhir seleksi kelulusan diumumkan secara daring di portal PPDB mulai pukul 23:59 WIB.",
-      "Penayangan daftar nama siswa yang diterima utama di mading luring dan website resmi SMKN 4 Surakarta.",
-      "Seleksi kelulusan didasarkan pada perbandingan Nilai Akhir (NA).",
-      "Apabila ada Nilai Akhir yang sama di batas akhir kuota (Tie-Breaker), prioritas kelulusan ditentukan berdasarkan domisili terdekat, lalu usia yang lebih tua."
+      "Pengumuman hasil seleksi didasarkan pada hasil akhir masing-masing jalur SPMB SMA dan hasil akhir Seleksi SMK.",
+      "Pengumuman hasil seleksi mencantumkan daftar nama calon murid yang lolos dan tidak lolos seleksi pada masing-masing jalur yang tersedia dan daftar nama satuan pendidikan pilihan.",
+      "Calon murid tidak lolos seleksi dinyatakan sebagai calon murid cadangan yang akan mengisi kekosongan daya tampung satuan pendidikan pilihannya apabila ada calon murid lolos yang tidak daftar ulang.",
+      "Penetapan pengumuman daftar nama calon murid yang dinyatakan tidak lolos seleksi disusun berdasarkan peringkat.",
+      "Pengumuman resmi dapat diakses secara daring di portal PPDB serta ditayangkan di mading fisik SMKN 4 Surakarta."
     ]
   },
   {
