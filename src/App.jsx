@@ -7,6 +7,7 @@ import SpecialRules from "./components/SpecialRules";
 import WarningBanner from "./components/WarningBanner";
 import Footer from "./components/Footer";
 import SchoolInfo from "./components/SchoolInfo";
+import ScheduleView from "./components/ScheduleView";
 
 export default function App() {
   const [activeView, setActiveView] = useState("sekolah"); // "sekolah" or "spmb"
@@ -49,6 +50,12 @@ export default function App() {
             >
               ⚡ Informasi SPMB 2026
             </button>
+            <button
+              onClick={() => handleViewChange("jadwal")}
+              className={`tab-btn ${activeView === "jadwal" ? "active" : ""}`}
+            >
+              📅 Jadwal PPDB 2026
+            </button>
             
             <button
               onClick={() => setIsSettingsOpen(true)}
@@ -83,6 +90,10 @@ export default function App() {
                 <SpecialRules />
               </div>
             </>
+          )}
+
+          {activeView === "jadwal" && (
+            <ScheduleView activeSlide={activeSlide} />
           )}
         </div>
 
