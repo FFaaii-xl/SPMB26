@@ -2240,17 +2240,27 @@ body {
   }
   
   .hero-content {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 
+      "logo title"
+      "logo subtitle"
+      "portal portal"
+      "dasar dasar"
+      "divider divider";
+    gap: 0.4vh 3vw;
     align-items: center;
-    justify-content: center;
-    gap: 0.4vh;
-    text-align: center;
+    justify-content: start;
+    text-align: left;
+    width: 100%;
   }
 
   .hero-logo {
-    width: 45px;
-    height: 45px;
-    margin-bottom: 0.2vh;
+    grid-area: logo;
+    width: 48px;
+    height: 48px;
+    margin: 0;
+    align-self: center;
   }
 
   .hero-badge {
@@ -2258,19 +2268,40 @@ body {
   }
 
   .hero-title {
-    font-size: 1.25rem;
+    grid-area: title;
+    font-size: 1.15rem;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    line-height: 1.2;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    line-height: 1.1;
+    margin: 0;
   }
   
   .hero-subtitle {
-    font-size: 0.8rem;
+    grid-area: subtitle;
+    font-size: 0.82rem;
     color: var(--brand-100);
     opacity: 0.9;
+    line-height: 1.1;
+    margin: 0;
+    text-align: left;
+  }
+
+  .hero-portal-link {
+    grid-area: portal;
+    width: 100%;
+  }
+
+  .hero-dasar {
+    grid-area: dasar;
+    width: 100%;
+  }
+
+  .hero-divider {
+    grid-area: divider;
+    width: 100%;
   }
 
   .hero-stats {
