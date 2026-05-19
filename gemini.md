@@ -55,7 +55,8 @@
 - [x] Publikasi Repositori: Rekonsiliasi & Penggabungan (*Safe Merge*) Cabang Integrasi Vercel (PR #1 & PR #2) dengan Strategi 'Ours' guna menjaga konsistensi desain premium
 - [x] Migrasi Arsitektur: Migrasi penuh dari Vite + React ke Next.js (App Router) dengan optimalisasi halaman statis dan Client Components
 - [x] Optimisasi Performa: Pemisahan kode dinamis (Dynamic Import) pada page.jsx dan Loading UI Kustom untuk mencegah masalah hidrasi
-- [x] Integrasi Fitur: Pemasangan Vercel Analytics (`@vercel/analytics/react`) ke dalam RootLayout untuk pelacakan trafik pengunjung langsung
+- [x] Integrasi Fitur: Pemasangan Vercel Analytics & Vercel Speed Insights (`@vercel/analytics/next` & `@vercel/speed-insights/next`) ke dalam RootLayout untuk pelacakan trafik pengunjung & diagnostik metrik Core Web Vitals
+
 
 
 
