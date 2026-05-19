@@ -56,6 +56,8 @@
 - [x] Migrasi Arsitektur: Migrasi penuh dari Vite + React ke Next.js (App Router) dengan optimalisasi halaman statis dan Client Components
 - [x] Optimisasi Performa: Pemisahan kode dinamis (Dynamic Import) pada page.jsx dan Loading UI Kustom untuk mencegah masalah hidrasi
 - [x] Integrasi Fitur: Pemasangan Vercel Analytics & Vercel Speed Insights (`@vercel/analytics/next` & `@vercel/speed-insights/next`) ke dalam RootLayout untuk pelacakan trafik pengunjung & diagnostik metrik Core Web Vitals
+- [x] Perbaikan UI & UX: Pemolesan Komponen Visual Interaktif (Penambahan *Glassmorphism Blur 16px-20px* pada *Modal Overlays*, Transisi *Hover Elevate* pada Kartu Utama, dan *Colored Box-Shadows* berkedalaman tinggi)
+
 
 
 

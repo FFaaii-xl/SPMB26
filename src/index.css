@@ -446,6 +446,13 @@ body {
   flex-direction: column;
   gap: 0.4vh;
   overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.seleksi-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  border-left-width: 6px;
 }
 
 /* Subtle gradient glow behind seleksi cards */
@@ -645,7 +652,8 @@ body {
 .quota-card:hover {
   background: rgba(255,255,255,0.08);
   border-color: var(--quota-color);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  transform: translateY(-2px) scale(1.01);
 }
 
 .quota-header-row {
@@ -747,6 +755,13 @@ body {
   gap: 0.75vw;
   position: relative;
   overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rule-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  transform: translateY(-2px);
+  border-color: var(--brand-300);
 }
 
 /* Alternating card shapes for visual variety */
@@ -797,6 +812,7 @@ body {
   align-items: center;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(220, 38, 38, 0.2);
 }
 
 .warning-content {
@@ -1617,8 +1633,9 @@ body {
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(15, 12, 38, 0.75);
-  backdrop-filter: blur(8px);
+  background: rgba(15, 12, 38, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   z-index: 10000;
   display: flex;
   align-items: center;
@@ -1627,12 +1644,12 @@ body {
 }
 
 .comparison-modal {
-  background: linear-gradient(135deg, #1e1b4b 0%, #311062 100%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(135deg, rgba(30, 27, 75, 0.95) 0%, rgba(49, 16, 98, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-xl);
   width: 90%;
   max-width: 950px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), var(--shadow-glow);
+  box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.7), 0 0 30px rgba(168, 85, 247, 0.3);
   color: var(--white);
   overflow: hidden;
   display: flex;
@@ -3869,8 +3886,9 @@ input:checked + .slider:before {
 .tata-cara-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(15, 2, 28, 0.75);
-  backdrop-filter: blur(12px);
+  background: rgba(15, 2, 28, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   z-index: 1100;
   display: flex;
   align-items: center;
@@ -3884,9 +3902,11 @@ input:checked + .slider:before {
   max-width: 900px;
   max-height: 85vh;
   background: rgba(25, 10, 48, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6), 0 0 25px rgba(245, 158, 11, 0.15);
   display: flex;
   flex-direction: column;
   overflow: hidden;
