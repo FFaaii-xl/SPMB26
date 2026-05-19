@@ -209,51 +209,97 @@ const rawJadwalSeleksi = [
     tanggal: "18 Mei 2026",
     kegiatan: "Pengumuman SPMB 2026",
     detail: "Informasi resmi kuota & syarat di website dan mading sekolah.",
-    icon: "📢"
+    icon: "📢",
+    panduanLengkap: [
+      "Publikasi resmi mengenai daya tampung / kuota berjenjang per kompetensi keahlian / jurusan (Busana, Kuliner, Perhotelan, Kecantikan).",
+      "Pemasangan brosur pendaftaran fisik serta materi infografis digital di Kiosk Display TV Sekolah.",
+      "Pengumuman jaminan bebas biaya pendaftaran dan bebas segala bentuk pungutan liar (sekolah negeri 100% gratis)."
+    ]
   },
   {
     tanggal: "03 - 12 Juni 2026",
     kegiatan: "Pengajuan Akun",
     detail: "Calon murid baru mengajukan akun pendaftaran daring di spmb.jatengprov.go.id.",
-    icon: "💻"
+    icon: "💻",
+    panduanLengkap: [
+      "Mengakses portal resmi daring Provinsi Jawa Tengah di alamat: https://ppdb.jatengprov.go.id.",
+      "Menginput nomor induk kependudukan (NIK), nomor induk siswa nasional (NISN), sekolah asal, serta rata-rata nilai rapor semester 1-5.",
+      "Mengunggah (upload) scan berkas Kartu Keluarga (KK) asli, rapor asli, piagam kejuaraan (bila ada), dan Surat Pernyataan Kebenaran Dokumen bermaterai Rp10.000.",
+      "Mencetak tanda bukti Pengajuan Akun mandiri dari rumah untuk dibawa ke sekolah saat verifikasi."
+    ]
   },
   {
     tanggal: "04 - 13 Juni 2026",
     kegiatan: "Verifikasi Dokumen & Aktivasi",
     detail: "Verifikasi berkas fisik & aktivasi akun mandiri daring di spmb.jatengprov.go.id.",
-    icon: "🛡️"
+    icon: "🛡️",
+    panduanLengkap: [
+      "WAJIB LURING: Calon murid datang secara fisik ke SMKN 4 Surakarta atau SMA/SMK Negeri terdekat membawa berkas fisik asli & fotokopi lembar verifikasi.",
+      "Panitia sekolah memvalidasi kecocokan berkas asli dengan data isian daring di sistem.",
+      "Menerima lembar Tanda Bukti Verifikasi berkas resmi yang berisi Token Aktivasi Akun.",
+      "Calon murid melakukan aktivasi akun secara mandiri di website PPDB menggunakan token agar akun siap digunakan memilih jurusan."
+    ]
   },
   {
     tanggal: "15 - 18 Juni 2026",
     kegiatan: "Pendaftaran & Pilihan",
     detail: "Pemilihan jurusan daring di spmb.jatengprov.go.id & perubahan pilihan jika ada.",
-    icon: "📝"
+    icon: "📝",
+    panduanLengkap: [
+      "Login menggunakan akun teraktivasi di portal https://ppdb.jatengprov.go.id.",
+      "Memilih kompetensi keahlian / jurusan tujuan di SMKN 4 Surakarta (maksimal memilih 3 pilihan jurusan).",
+      "Memantau pergerakan posisi peringkat jurnal pendaftaran harian secara berkala.",
+      "Bebas mengubah pilihan sekolah atau jurusan selama rentang masa pendaftaran masih dibuka."
+    ]
   },
   {
     tanggal: "21 Juni 2026",
     kegiatan: "Pengumuman Kelulusan",
     detail: "Pengumuman resmi di website spmb.jatengprov.go.id, medsos, & mading sekolah.",
-    icon: "🏆"
+    icon: "🏆",
+    panduanLengkap: [
+      "Hasil akhir seleksi kelulusan diumumkan secara daring di portal PPDB mulai pukul 23:59 WIB.",
+      "Penayangan daftar nama siswa yang diterima utama di mading luring dan website resmi SMKN 4 Surakarta.",
+      "Seleksi kelulusan didasarkan pada perbandingan Nilai Akhir (NA).",
+      "Apabila ada Nilai Akhir yang sama di batas akhir kuota (Tie-Breaker), prioritas kelulusan ditentukan berdasarkan domisili terdekat, lalu usia yang lebih tua."
+    ]
   },
   {
     tanggal: "22 - 25 Juni 2026",
     kegiatan: "Daftar Ulang (Utama)",
     detail: "Melakukan registrasi ulang luring/fisik di sekolah bagi yang diterima utama.",
-    icon: "✍️"
+    icon: "✍️",
+    panduanLengkap: [
+      "Calon murid yang diterima utama WAJIB datang ke SMKN 4 Surakarta membawa berkas persyaratan pendaftaran lengkap.",
+      "Melakukan registrasi buku induk sekolah secara luring.",
+      "PENTING: Peserta yang lolos utama tetapi tidak melakukan daftar ulang hingga batas waktu 25 Juni pukul 15:30 WIB dinyatakan GUGUR / MENGUNDURKAN DIRI."
+    ]
   },
   {
     tanggal: "26 Juni 2026",
     kegiatan: "Pengumuman Cadangan",
     detail: "Pengisian daya tampung kosong berdasarkan peringkat cadangan yang tidak daftar ulang.",
-    icon: "🔄"
+    icon: "🔄",
+    panduanLengkap: [
+      "Panitia mendata kursi kosong akibat adanya peserta lolos utama yang gugur/tidak mendaftar ulang.",
+      "Mengumumkan daftar nama calon murid baru cadangan di website sekolah.",
+      "Peserta cadangan dipanggil luring ke sekolah sesuai urutan peringkat untuk mengisi daya tampung kosong dan langsung melakukan daftar ulang di hari yang sama."
+    ]
   },
   {
     tanggal: "13 Juli 2026",
     kegiatan: "Awal Tahun Ajaran Baru",
     detail: "Hari pertama masuk sekolah dan dimulainya kegiatan pembelajaran (MPLS).",
-    icon: "🎓"
+    icon: "🎓",
+    panduanLengkap: [
+      "Hari pertama masuk sekolah resmi bagi seluruh siswa baru SMKN 4 Surakarta.",
+      "Pembagian seragam atribut kelengkapan sekolah dan buku panduan tata tertib.",
+      "Pembukaan Masa Pengenalan Lingkungan Sekolah (MPLS) untuk mengenal fasilitas, budaya, dan visi misi sekolah.",
+      "Pembagian kelas reguler dan perkenalan dengan wali kelas serta guru kompetensi keahlian masing-masing."
+    ]
   }
 ];
+
 
 // Definisikan rentang tanggal absolut untuk masing-masing 8 tahapan SPMB di tahun 2026
 const ranges = [

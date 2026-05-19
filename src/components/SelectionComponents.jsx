@@ -69,6 +69,12 @@ export default function SelectionComponents() {
   const [juara, setJuara] = useState("juara1");
   const [kurasi, setKurasi] = useState("bintang5");
 
+  // State Simulasi Nilai Akhir (NA)
+  const [nrVal, setNrVal] = useState(85.0);
+  const [ntkaVal, setNtkaVal] = useState(80.0);
+  const [nkVal, setNkVal] = useState(0.0);
+  const [noVal, setNoVal] = useState(0.0);
+
   // Fungsi hitung bobot nilai
   const getCalculatedWeight = () => {
     if (jenis === "berjenjang") {
@@ -79,6 +85,25 @@ export default function SelectionComponents() {
   };
 
   const calculatedWeight = getCalculatedWeight();
+
+  // Fungsi menyalin bobot piagam ke kalkulator simulasi NA
+  const handleCopyWeight = () => {
+    const weight = getCalculatedWeight();
+    if (weight === "Langsung Diterima") {
+      setNkVal(999);
+    } else {
+      setNkVal(parseFloat(weight));
+    }
+    setActiveTab("simulasi_na");
+  };
+
+  // Nilai Akhir (NA) math
+  const nrScaled = 0.5 * parseFloat(nrVal);
+  const ntkaScaled = 0.5 * parseFloat(ntkaVal);
+  const isDirectAccept = nkVal === 999;
+  const computedNA = isDirectAccept 
+    ? "LANGSUNG DITERIMA" 
+    : (nrScaled + ntkaScaled + parseFloat(nkVal) + parseFloat(noVal)).toFixed(2);
 
   return (
     <section className="section">
@@ -213,18 +238,24 @@ export default function SelectionComponents() {
                   className={`lookup-tab-btn ${activeTab === "kalkulator" ? "active" : ""}`}
                   onClick={() => setActiveTab("kalkulator")}
                 >
-                  ⚖️ Kalkulator Bobot Nilai
+                  🏆 Bobot Piagam (NK)
+                </button>
+                <button
+                  className={`lookup-tab-btn ${activeTab === "simulasi_na" ? "active" : ""}`}
+                  onClick={() => setActiveTab("simulasi_na")}
+                >
+                  ⚖️ Simulasi Nilai Akhir (NA)
                 </button>
                 <button
                   className={`lookup-tab-btn ${activeTab === "kejuaraan" ? "active" : ""}`}
                   onClick={() => setActiveTab("kejuaraan")}
                 >
-                  🏆 Jenis Kejuaraan Resmi
+                  📚 Jenis Kejuaraan Resmi
                 </button>
               </div>
 
               <div className="lookup-body">
-                {activeTab === "kalkulator" ? (
+                {activeTab === "kalkulator" && (
                   <div className="calc-grid">
                     {/* Left: Controls */}
                     <div className="calc-controls">
@@ -324,12 +355,291 @@ export default function SelectionComponents() {
                           : `Prestasi Tidak Berjenjang tingkat ${tingkat === "kab_kota" ? "Kab/Kota" : tingkat} Juara ${juara === "juara1" ? "1" : juara === "juara2" ? "2" : "3"} dengan status ${kurasi === "non_kurasi" ? "Tanpa Kurasi" : "Kurasi " + kurasi.replace("bintang", "Bintang ")}.`
                         }
                       </p>
-                      <div className="result-note">
+                      
+                      {calculatedWeight !== "0.0" && (
+                        <button
+                          onClick={handleCopyWeight}
+                          style={{
+                            marginTop: "1.2vh",
+                            background: "rgba(168, 85, 247, 0.2)",
+                            border: "1px solid rgba(168, 85, 247, 0.4)",
+                            color: "var(--white)",
+                            fontSize: "0.62rem",
+                            fontWeight: 800,
+                            padding: "0.4rem 0.8rem",
+                            borderRadius: "20px",
+                            cursor: "pointer",
+                            transition: "all 0.2s ease"
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = "var(--brand-500)";
+                            e.currentTarget.style.borderColor = "var(--white)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = "rgba(168, 85, 247, 0.2)";
+                            e.currentTarget.style.borderColor = "rgba(168, 85, 247, 0.4)";
+                          }}
+                        >
+                          👉 Gunakan Nilai Ini untuk Simulasi Nilai Akhir (NA)
+                        </button>
+                      )}
+
+                      <div className="result-note" style={{ marginTop: "1.5vh" }}>
                         💡 <strong>Catatan Regulasi:</strong> Piagam tidak berjenjang yang dikurasi memiliki bobot nilai lebih tinggi dibanding piagam tidak berjenjang yang tidak dikurasi.
                       </div>
                     </div>
                   </div>
-                ) : (
+                )}
+
+                {activeTab === "simulasi_na" && (
+                  <div className="calc-grid">
+                    {/* Left: Input Controls */}
+                    <div className="calc-controls">
+                      {/* 1. Nilai Rapor */}
+                      <div className="calc-group">
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                          <span className="calc-label">Rata-rata Rapor (NR)</span>
+                          <span style={{ fontSize: "0.85rem", fontWeight: 800, color: "var(--accent-gold)" }}>{nrVal}</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="50"
+                          max="100"
+                          step="0.1"
+                          value={nrVal}
+                          onChange={(e) => setNrVal(parseFloat(e.target.value))}
+                          style={{ width: "100%", accentColor: "var(--brand-500)", margin: "0.5vh 0" }}
+                        />
+                        <span style={{ fontSize: "0.58rem", color: "rgba(255,255,255,0.5)" }}>
+                          Rata-rata Nilai Rapor Semester 1 s.d. 5 dari SMP/MTs asal.
+                        </span>
+                      </div>
+
+                      {/* 2. Nilai TKA */}
+                      <div className="calc-group">
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                          <span className="calc-label">Nilai Tes Kemampuan Akademik (NTKA)</span>
+                          <span style={{ fontSize: "0.85rem", fontWeight: 800, color: "var(--accent-gold)" }}>{ntkaVal}</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0"
+                          max="100"
+                          step="0.1"
+                          value={ntkaVal}
+                          onChange={(e) => setNtkaVal(parseFloat(e.target.value))}
+                          style={{ width: "100%", accentColor: "var(--brand-500)", margin: "0.5vh 0" }}
+                        />
+                        <span style={{ fontSize: "0.58rem", color: "rgba(255,255,255,0.5)" }}>
+                          Hasil Nilai Ujian TKA PPDB Jateng tertulis (24-26 Juni).
+                        </span>
+                      </div>
+
+                      {/* 3. Nilai Piagam */}
+                      <div className="calc-group">
+                        <span className="calc-label">Nilai Piagam Kejuaraan (NK)</span>
+                        <div style={{ display: "flex", gap: "0.4vw", marginTop: "0.3vh" }}>
+                          <select
+                            value={nkVal}
+                            onChange={(e) => setNkVal(parseFloat(e.target.value))}
+                            style={{
+                              flex: 1,
+                              background: "rgba(0,0,0,0.3)",
+                              border: "1.2px solid rgba(255,255,255,0.15)",
+                              color: "var(--white)",
+                              borderRadius: "8px",
+                              padding: "0.4rem 0.6rem",
+                              fontSize: "0.68rem",
+                              fontWeight: 700,
+                              outline: "none"
+                            }}
+                          >
+                            <option value="0">Tanpa Piagam (0.0)</option>
+                            <option value="1.75">Juara 3 Kab/Kota Berjenjang (+1.75)</option>
+                            <option value="2.0">Juara 2 Kab/Kota Berjenjang (+2.0)</option>
+                            <option value="2.22">Juara 1 Kab/Kota Berjenjang (+2.22)</option>
+                            <option value="2.5">Juara 3 Provinsi Berjenjang (+2.5)</option>
+                            <option value="2.75">Juara 2 Provinsi Berjenjang (+2.75)</option>
+                            <option value="3.0">Juara 1 Provinsi Berjenjang (+3.0)</option>
+                            <option value="4.0">Juara 3 Nasional Berjenjang (+4.0)</option>
+                            <option value="5.0">Juara 2 Nasional Berjenjang (+5.0)</option>
+                            <option value="999">Juara 1 Nasional / Internasional (Direct / Langsung Diterima)</option>
+                          </select>
+                          
+                          <input
+                            type="number"
+                            min="0"
+                            max="10"
+                            step="0.01"
+                            value={isDirectAccept ? 0 : nkVal}
+                            disabled={isDirectAccept}
+                            onChange={(e) => setNkVal(parseFloat(e.target.value) || 0)}
+                            style={{
+                              width: "70px",
+                              background: "rgba(0,0,0,0.3)",
+                              border: "1.2px solid rgba(255,255,255,0.15)",
+                              color: "var(--white)",
+                              borderRadius: "8px",
+                              padding: "0.4rem 0.6rem",
+                              fontSize: "0.68rem",
+                              fontWeight: 700,
+                              textAlign: "center",
+                              outline: "none"
+                            }}
+                          />
+                        </div>
+                        <span style={{ fontSize: "0.58rem", color: "rgba(255,255,255,0.5)" }}>
+                          Gunakan dropdown preset atau ketik manual nilai piagam Anda.
+                        </span>
+                      </div>
+
+                      {/* 4. Nilai Organisasi */}
+                      <div className="calc-group">
+                        <span className="calc-label">Nilai Kepengurusan Organisasi (NO)</span>
+                        <select
+                          value={noVal}
+                          onChange={(e) => setNoVal(parseFloat(e.target.value))}
+                          style={{
+                            background: "rgba(0,0,0,0.3)",
+                            border: "1.2px solid rgba(255,255,255,0.15)",
+                            color: "var(--white)",
+                            borderRadius: "8px",
+                            padding: "0.4rem 0.6rem",
+                            fontSize: "0.68rem",
+                            fontWeight: 700,
+                            outline: "none",
+                            marginTop: "0.3vh"
+                          }}
+                        >
+                          <option value="0">Bukan Pengurus / Tidak Ada (0.0)</option>
+                          <option value="1.0">Ketua OSIS tingkat Sekolah (+1.0)</option>
+                          <option value="0.75">Ketua Pramuka Garuda Penggalang (+0.75)</option>
+                          <option value="0.5">Ketua Organisasi Kelas / Ekstrakurikuler (+0.5)</option>
+                          <option value="0.25">Ketua Organisasi Luar Sekolah (+0.25)</option>
+                        </select>
+                        <span style={{ fontSize: "0.58rem", color: "rgba(255,255,255,0.5)" }}>
+                          Bobot tambahan kepengurusan ketua organisasi resmi yang diakui satuan pendidikan.
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Right: Results Dashboard */}
+                    <div className="calc-result-box" style={{ padding: "1.2rem", minHeight: "280px" }}>
+                      <div className="calc-result-decor">⚖️</div>
+                      <span className="result-title">Estimasi Nilai Akhir (NA)</span>
+                      
+                      <div className="result-value-wrap" style={{ margin: "0.5vh 0" }}>
+                        {isDirectAccept ? (
+                          <div className="result-badge-direct" style={{ fontSize: "1.1rem", padding: "0.6rem 1.2rem" }}>
+                            Langsung Diterima! ✅
+                          </div>
+                        ) : (
+                          <span className="result-points" style={{ fontSize: "2.8rem" }}>
+                            {computedNA}
+                            <span style={{ fontSize: "1.0rem", marginLeft: "4px", color: "rgba(255,255,255,0.7)" }}>Poin</span>
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Visual Contribution Bar */}
+                      {!isDirectAccept && (
+                        <div style={{ width: "100%", margin: "1vh 0" }}>
+                          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.58rem", color: "rgba(255,255,255,0.6)", marginBottom: "3px" }}>
+                            <span>Komposisi Nilai:</span>
+                            <span>Total 100%</span>
+                          </div>
+                          
+                          {/* Segmented bar */}
+                          <div style={{
+                            display: "flex",
+                            height: "12px",
+                            width: "100%",
+                            background: "rgba(255,255,255,0.05)",
+                            borderRadius: "6px",
+                            overflow: "hidden",
+                            border: "1px solid rgba(255,255,255,0.1)"
+                          }}>
+                            {/* Rapor portion */}
+                            <div 
+                              title={`Rapor (50% NR): ${nrScaled} Poin`}
+                              style={{
+                                width: `${(nrScaled / parseFloat(computedNA)) * 100}%`,
+                                background: "var(--brand-500)",
+                                transition: "width 0.3s ease"
+                              }}
+                            />
+                            {/* TKA portion */}
+                            <div 
+                              title={`TKA (50% NTKA): ${ntkaScaled} Poin`}
+                              style={{
+                                width: `${(ntkaScaled / parseFloat(computedNA)) * 100}%`,
+                                background: "#3B82F6",
+                                transition: "width 0.3s ease"
+                              }}
+                            />
+                            {/* Piagam portion */}
+                            {nkVal > 0 && (
+                              <div 
+                                title={`Piagam Kejuaraan (NK): ${nkVal} Poin`}
+                                style={{
+                                  width: `${(nkVal / parseFloat(computedNA)) * 100}%`,
+                                  background: "var(--accent-gold)",
+                                  transition: "width 0.3s ease"
+                                }}
+                              />
+                            )}
+                            {/* Organisasi portion */}
+                            {noVal > 0 && (
+                              <div 
+                                title={`Kepemimpinan (NO): ${noVal} Poin`}
+                                style={{
+                                  width: `${(noVal / parseFloat(computedNA)) * 100}%`,
+                                  background: "#10B981",
+                                  transition: "width 0.3s ease"
+                                }}
+                              />
+                            )}
+                          </div>
+
+                          {/* Legend markers */}
+                          <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 8px", justifyContent: "center", marginTop: "8px" }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: "3px", fontSize: "0.55rem" }}>
+                              <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "var(--brand-500)" }} />
+                              <span>50% Rapor ({nrScaled.toFixed(2)})</span>
+                            </div>
+                            <div style={{ display: "flex", alignItems: "center", gap: "3px", fontSize: "0.55rem" }}>
+                              <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#3B82F6" }} />
+                              <span>50% TKA ({ntkaScaled.toFixed(2)})</span>
+                            </div>
+                            {nkVal > 0 && (
+                              <div style={{ display: "flex", alignItems: "center", gap: "3px", fontSize: "0.55rem" }}>
+                                <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "var(--accent-gold)" }} />
+                                <span>Piagam (+{nkVal.toFixed(2)})</span>
+                              </div>
+                            )}
+                            {noVal > 0 && (
+                              <div style={{ display: "flex", alignItems: "center", gap: "3px", fontSize: "0.55rem" }}>
+                                <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#10B981" }} />
+                                <span>Organisasi (+{noVal.toFixed(2)})</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="result-note" style={{ fontSize: "0.58rem", padding: "0.5vh 0.6vw", width: "100%", margin: "0.8vh 0 0 0" }}>
+                        ⚖️ <strong>Metode Rumus Resmi:</strong><br />
+                        <code>NA = (50% × {nrVal}) + (50% × {ntkaVal}) {nkVal > 0 ? `+ ${nkVal}` : ""} {noVal > 0 ? `+ ${noVal}` : ""} = {computedNA} Poin</code>
+                      </div>
+                      
+                      <div style={{ fontSize: "0.52rem", color: "rgba(255,255,255,0.45)", lineHeight: "1.3", marginTop: "4px" }}>
+                        ⚠️ *Hasil simulasi ini bersifat estimasi panduan pendaftaran dan tidak menjamin kelulusan mutlak di jurnal akhir.*
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === "kejuaraan" && (
                   <div className="directory-grid">
                     {/* Column 1: Berjenjang Nasional */}
                     <div className="directory-column">

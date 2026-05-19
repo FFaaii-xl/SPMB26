@@ -17,6 +17,7 @@ const itemVariants = {
 
 export default function ScheduleView({ activeSlide }) {
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [selectedTimelineItem, setSelectedTimelineItem] = useState(null);
 
   // Berkas yang harus dipersiapkan
   const berkasWajib = [
@@ -25,7 +26,7 @@ export default function ScheduleView({ activeSlide }) {
     { nama: "Surat Keterangan Lulus", detail: "Asli & fotokopi SKL resmi asal", icon: "🎓" },
     { nama: "Kebenaran Dokumen", detail: "Surat pernyataan bermaterai Rp10k", icon: "✍️" },
     { nama: "Piagam Kejuaraan", detail: "Asli & fotokopi (jika memiliki / prestasi)", icon: "🏆" },
-    { nama: "DTKS / DTSEN (Afirmasi)", detail: "Terdeteksi otomatis oleh sistem (bebas bukti fisik)", icon: "🤝" },
+    { nama: "DTKS / DTSEN (Afirmasi)", detail: "Terdeteksi otomatis oleh sistem", icon: "🤝" },
   ];
 
   // Alur Pendaftaran Kronologis Sekuensial (Daring + Luring Terintegrasi)
@@ -148,7 +149,7 @@ export default function ScheduleView({ activeSlide }) {
             <h3 className="section-title">Alur Pengajuan Akun & Verifikasi</h3>
           </div>
 
-          <div className="alur-grid-compact" style={{ gridTemplateColumns: "1fr 1fr", gap: "0.6vh 0.5vw" }}>
+          <div className="alur-grid-compact" style={{ gap: "0.5vh 0.4vw" }}>
             {alurPendaftaran.map((alur, i) => (
               <div 
                 key={i} 
@@ -277,20 +278,40 @@ export default function ScheduleView({ activeSlide }) {
                   </div>
 
                   {/* Step Content Card */}
-                  <div className="timeline-h-card">
+                  <div 
+                    className="timeline-h-card"
+                    onClick={() => setSelectedTimelineItem(item)}
+                    style={{ cursor: "pointer" }}
+                  >
                     <div className="card-header-row">
                       <span className="card-icon">{item.icon}</span>
                       <span className="card-date">{item.tanggal}</span>
                     </div>
-                    <h4 className="card-title">{item.kegiatan}</h4>
-                    <p className="card-detail">{item.detail}</p>
+                    <h4 className="card-title" style={{ margin: "0.2vh 0" }}>{item.kegiatan}</h4>
+                    <p className="card-detail" style={{ margin: 0 }}>{item.detail}</p>
                     
-                    {item.status === "active" && (
-                      <span className="card-active-label">Aktif</span>
-                    )}
-                    {item.status === "done" && (
-                      <span className="card-done-label">✓</span>
-                    )}
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", borderTop: "1px dashed rgba(0,0,0,0.06)", paddingTop: "0.4vh", width: "100%" }}>
+                      {item.status === "active" && (
+                        <span className="card-active-label" style={{ margin: 0 }}>Aktif</span>
+                      )}
+                      {item.status === "done" && (
+                        <span className="card-done-label" style={{ margin: 0 }}>✓ Selesai</span>
+                      )}
+                      {item.status === "next" && (
+                        <span style={{ fontSize: "0.5rem", color: "var(--text-muted)", fontStyle: "italic" }}>Mendatang</span>
+                      )}
+                      <span 
+                        style={{ 
+                          fontSize: "0.52rem", 
+                          color: "var(--brand-600)", 
+                          fontWeight: "800",
+                          textTransform: "uppercase",
+                          letterSpacing: "0.2px"
+                        }}
+                      >
+                        Detail ➡️
+                      </span>
+                    </div>
                   </div>
                 </div>
               );
@@ -334,6 +355,137 @@ export default function ScheduleView({ activeSlide }) {
             
             <div className="tata-cara-footer">
               <button className="tata-cara-close-btn" onClick={() => setIsDetailModalOpen(false)}>
+                Tutup Panduan
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* DETAILED TIMELINE STAGE GUIDE MODAL */}
+      {selectedTimelineItem && (
+        <div className="tata-cara-overlay" onClick={() => setSelectedTimelineItem(null)}>
+          <div 
+            className="tata-cara-modal" 
+            onClick={(e) => e.stopPropagation()}
+            style={{ maxWidth: "600px", width: "90%" }}
+          >
+            <div className="tata-cara-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.8rem", textAlign: "left" }}>
+                <span style={{ fontSize: "2rem", filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.2))" }}>{selectedTimelineItem.icon}</span>
+                <div>
+                  <h3 className="tata-cara-title" style={{ margin: 0, fontSize: "1.15rem", fontWeight: 800 }}>
+                    {selectedTimelineItem.kegiatan}
+                  </h3>
+                  <span style={{ fontSize: "0.78rem", color: "var(--accent-gold)", fontWeight: 800, display: "flex", alignItems: "center", gap: "4px", marginTop: "2px" }}>
+                    📅 Jadwal Resmi: {selectedTimelineItem.tanggal}
+                  </span>
+                </div>
+              </div>
+              <button className="tata-cara-close-x" onClick={() => setSelectedTimelineItem(null)}>×</button>
+            </div>
+            
+            <div className="tata-cara-content" style={{ padding: "1.2rem 1.8rem" }}>
+              {/* Status Badge */}
+              <div style={{ display: "flex", gap: "0.4rem", alignItems: "center", marginBottom: "1rem" }}>
+                <span style={{ fontSize: "0.68rem", fontWeight: 800, textTransform: "uppercase", color: "rgba(255, 255, 255, 0.5)", letterSpacing: "0.5px" }}>Status Tahap:</span>
+                <span 
+                  style={{
+                    fontSize: "0.65rem",
+                    fontWeight: 900,
+                    padding: "0.15rem 0.5rem",
+                    borderRadius: "20px",
+                    textTransform: "uppercase",
+                    background: selectedTimelineItem.status === "active" 
+                      ? "rgba(168, 85, 247, 0.15)" 
+                      : selectedTimelineItem.status === "done" 
+                      ? "rgba(16, 185, 129, 0.12)" 
+                      : "rgba(255, 255, 255, 0.05)",
+                    color: selectedTimelineItem.status === "active" 
+                      ? "var(--accent-gold)" 
+                      : selectedTimelineItem.status === "done" 
+                      ? "#10B981" 
+                      : "rgba(255, 255, 255, 0.4)",
+                    border: selectedTimelineItem.status === "active" 
+                      ? "1px solid rgba(245, 158, 11, 0.25)" 
+                      : selectedTimelineItem.status === "done" 
+                      ? "1px solid rgba(16, 185, 129, 0.15)" 
+                      : "1px solid rgba(255, 255, 255, 0.08)"
+                  }}
+                >
+                  {selectedTimelineItem.status === "active" 
+                    ? "⚡ Sedang Aktif / Berlangsung" 
+                    : selectedTimelineItem.status === "done" 
+                    ? "✅ Sudah Selesai" 
+                    : "⏳ Belum Dimulai"}
+                </span>
+              </div>
+
+              {/* Rangkuman */}
+              <div 
+                className="tata-cara-subtitle"
+                style={{
+                  background: "rgba(255, 255, 255, 0.03)",
+                  border: "1px solid rgba(255, 255, 255, 0.06)",
+                  color: "#e9d5ff",
+                  padding: "0.8rem 1rem",
+                  borderRadius: "8px",
+                  fontSize: "0.72rem",
+                  lineHeight: "1.45",
+                  marginBottom: "1.2rem",
+                  textAlign: "left"
+                }}
+              >
+                💡 <strong>Keterangan Resmi Juknis:</strong><br />
+                {selectedTimelineItem.detail}
+              </div>
+              
+              <h4 style={{ fontSize: "0.75rem", color: "var(--brand-300)", marginBottom: "0.6rem", textTransform: "uppercase", letterSpacing: "0.5px", textAlign: "left", fontWeight: 800 }}>
+                📋 Panduan Alur Pelaksanaan:
+              </h4>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}>
+                {selectedTimelineItem.panduanLengkap && selectedTimelineItem.panduanLengkap.map((panduan, idx) => (
+                  <div 
+                    key={idx}
+                    style={{
+                      display: "flex",
+                      gap: "0.6rem",
+                      alignItems: "flex-start",
+                      background: "rgba(0, 0, 0, 0.12)",
+                      border: "1px solid rgba(255, 255, 255, 0.04)",
+                      padding: "0.6rem 0.8rem",
+                      borderRadius: "8px"
+                    }}
+                  >
+                    <span 
+                      style={{
+                        background: "var(--brand-600)",
+                        color: "var(--white)",
+                        fontSize: "0.65rem",
+                        fontWeight: "bold",
+                        width: "18px",
+                        height: "18px",
+                        borderRadius: "50%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0,
+                        marginTop: "1px"
+                      }}
+                    >
+                      {idx + 1}
+                    </span>
+                    <p style={{ margin: 0, fontSize: "0.72rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.4, textAlign: "left" }}>
+                      {panduan}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="tata-cara-footer" style={{ padding: "0.8rem 1.8rem" }}>
+              <button className="tata-cara-close-btn" onClick={() => setSelectedTimelineItem(null)}>
                 Tutup Panduan
               </button>
             </div>
