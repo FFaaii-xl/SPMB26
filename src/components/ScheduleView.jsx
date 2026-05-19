@@ -21,7 +21,7 @@ export default function ScheduleView({ activeSlide }) {
     { nama: "Rapor SMP/MTs", detail: "Asli & fotokopi nilai rapor semester 1 s.d. 5.", icon: "📘" },
     { nama: "Surat Keterangan Lulus (SKL)", detail: "Asli & fotokopi dari pihak SMP/sederajat asal.", icon: "🎓" },
     { nama: "Surat Kebenaran Dokumen", detail: "Surat pernyataan keabsahan dokumen bermaterai Rp10.000.", icon: "✍️" },
-    { nama: "Piagam Prestasi / Kejuaraan", detail: "Asli & fotokopi (khusus pendaftar jalur Prestasi).", icon: "🏆" },
+    { nama: "Piagam Prestasi / Kejuaraan (Jika Memiliki)", detail: "Asli & fotokopi, dilampirkan jika memiliki (khusus pendaftar jalur Prestasi).", icon: "🏆" },
     { nama: "Keterangan DTKS / DTSEN", detail: "Bukti cetak terdata di DTKS (khusus pendaftar jalur Afirmasi).", icon: "🤝" },
   ];
 
