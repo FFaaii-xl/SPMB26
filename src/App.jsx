@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { MotionConfig } from "framer-motion";
 import HeroSection from "./components/HeroSection";
 import SelectionComponents from "./components/SelectionComponents";
@@ -261,6 +262,7 @@ export default function App() {
         
         {/* Vercel Web Analytics */}
         <Analytics />
+        <SpeedInsights />
       </div>
     </MotionConfig>
   );
