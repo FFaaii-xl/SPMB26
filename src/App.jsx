@@ -38,12 +38,6 @@ export default function App() {
     setActiveSlide(0); // Reset slide on view change
   };
 
-  const handlePrint = () => {
-    setIsSettingsOpen(false);
-    setTimeout(() => {
-      window.print();
-    }, 150); // Short delay to let settings overlay close smoothly
-  };
 
   return (
     <MotionConfig transition={animationsEnabled ? undefined : { duration: 0 }}>
@@ -239,21 +233,7 @@ export default function App() {
                   )}
                 </div>
 
-                {/* Section 2: Print Action (Moved here) */}
-                <div className="settings-option" style={{ flexDirection: "column", alignItems: "stretch", gap: "0.8rem" }}>
-                  <div className="option-info" style={{ maxWidth: "100%" }}>
-                    <span className="option-label">🖨️ Cetak Spanduk MMT</span>
-                    <span className="option-desc">
-                      Layout horizontal bersisian otomatis, siap dikirim ke tempat percetakan banner digital.
-                    </span>
-                  </div>
-                  <button 
-                    onClick={handlePrint}
-                    className="settings-print-btn"
-                  >
-                    🖨️ Cetak MMT Banner
-                  </button>
-                </div>
+
               </div>
             </div>
           </div>
