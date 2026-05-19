@@ -55,6 +55,25 @@ export default function HeroSection() {
           {sekolah.nama}
         </motion.h2>
 
+        <motion.div
+          className="hero-portal-link"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+        >
+          <a 
+            href="https://spmb.jatengprov.go.id" 
+            target="_blank" 
+            rel="noreferrer" 
+            className="portal-link-btn"
+          >
+            <span className="portal-icon">🌐</span>
+            <span className="portal-text-light">Portal Utama SPMB Jateng:</span>
+            <span className="portal-text-bold">spmb.jatengprov.go.id</span>
+            <span className="portal-arrow">↗</span>
+          </a>
+        </motion.div>
+
         <motion.p
           className="hero-dasar"
           initial={{ opacity: 0 }}

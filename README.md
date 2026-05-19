@@ -14,7 +14,11 @@ Aplikasi ini didesain khusus untuk tampilan **Kiosk Display (Mading Digital/TV S
 *   **🖨️ Sistem Cetak MMT Otomatis:** Format spanduk MMT landscape khusus yang siap cetak, bersih dari tombol navigasi.
 *   **📱 Portrait Slideshow Navigator:** Navigasi slideshow khusus perangkat mobile agar bebas dari scrollbar horizontal/vertikal.
 *   **⚖️ Integrasi Regulasi Resmi SK Gubernur Jateng 2026:** Validasi otomatis syarat DTSEN Desil 1-4, Tie-Breaker nilai, syarat ATS (Anak Tidak Sekolah), serta jaminan bebas pungutan.
-
+*   **📅 Timeline Interaktif Juknis Resmi:** Timeline pendaftaran sekuensial yang dapat diklik (clickable) untuk memunculkan modal glassmorphism berisi panduan teknis resmi langkah-demi-langkah, termasuk aturan daftar ulang dan cadangan.
+*   **🧮 Kalkulator Simulasi Nilai Akhir (NA):** Simulasi interaktif kalkulator NA PPDB dengan slider visual untuk meramalkan total skor berdasarkan Rapor, Tes Akademik, Prestasi, dan Organisasi.
+*   **🏆 Kalkulator Bobot Piagam Prestasi:** Panduan jenis kejuaraan resmi untuk mengetahui bobot skor (NK) berjenjang dan tidak berjenjang.
+*   **✨ Tata Letak Fluid Responsif:** Komponen left-column menggunakan fluid layout (kombinasi `vw`, `vh`, dan `clamp()`) sehingga secara otomatis beralih dari 2-kolom (layar lebar Kiosk) ke 1-kolom bersisian (layar Mobile) tanpa terpotong (clipping).
+*   **🌐 Integrasi Portal Daring:** Tombol pintas berdesain interaktif menuju situs portal resmi PPDB Provinsi Jawa Tengah di header hero section.
 ---
 
 ## 🛠️ Persyaratan Sistem (Requirements)

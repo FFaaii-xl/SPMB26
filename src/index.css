@@ -264,6 +264,49 @@ body {
   color: var(--brand-100);
 }
 
+.portal-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5vw;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5vh 1.2vw;
+  border-radius: 30px;
+  color: var(--white);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.5vh;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.portal-link-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transform: translateY(-1px);
+}
+
+.portal-icon {
+  font-size: 1.1rem;
+}
+
+.portal-text-light {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.portal-text-bold {
+  color: var(--accent-gold);
+  letter-spacing: 0.5px;
+}
+
+.portal-arrow {
+  font-size: 0.7rem;
+  opacity: 0.8;
+  margin-left: 0.3vw;
+}
+
 .hero-dasar { display: none; } /* Hide in compact mode */
 .hero-divider { display: none; }
 
@@ -2170,21 +2213,23 @@ body {
   }
 
   .quota-chart-row {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 0.5vh;
-    margin-bottom: 0;
+    justify-content: space-between;
+    gap: 2vw;
+    margin-bottom: 0.5vh;
   }
 
   .quota-title-side {
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
+    flex: 1;
   }
 
   .chart-wrap {
-    width: 140px;
-    height: 140px;
-    min-height: 140px;
+    width: 165px;
+    height: 145px;
+    min-height: 145px;
     flex-shrink: 0;
   }
   
