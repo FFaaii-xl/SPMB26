@@ -2368,44 +2368,67 @@ body {
   .footer::before { display: none; }
 
   .footer-content {
-    grid-template-columns: 1fr;
-    gap: 0.8vh;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 1vh 3vw;
   }
 
-  /* Brand row — compact horizontal */
-  .footer-col-brand { gap: 0.4vh; }
+  /* Brand row — spans full width */
+  .footer-col-brand {
+    grid-column: 1 / -1;
+    gap: 0.4vh;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: 0.8vh;
+  }
   .footer-brand-row { gap: 2.5vw; }
-  .footer-logo-img { height: 24px; }
-  .footer-school { font-size: 0.75rem; }
-  .footer-slogan { font-size: 0.5rem; }
+  .footer-logo-img { height: 26px; }
+  .footer-school { font-size: 0.8rem; }
+  .footer-slogan { font-size: 0.52rem; }
   .footer-copy { display: none; }
 
-  /* Contact — show as compact chips */
+  /* Contact — Left Column, stack chips vertically */
   .footer-col-center {
-    align-items: flex-start;
+    grid-column: 1 / 2;
+    align-items: stretch;
     gap: 0.4vh;
   }
-  .footer-col-label { font-size: 0.48rem; letter-spacing: 1px; }
-  .footer-contact-row { gap: 1.5vw; }
-  .footer-contact-chip {
-    padding: 0.3vh 2.5vw;
-    gap: 1.5vw;
+  .footer-col-label { font-size: 0.52rem; letter-spacing: 0.8px; margin-bottom: 0.2vh; }
+  .footer-contact-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+    align-items: stretch;
   }
-  .chip-icon { font-size: 0.7rem; }
-  .chip-label { font-size: 0.48rem; }
-  .chip-value { font-size: 0.62rem; }
+  .footer-contact-chip {
+    padding: 0.4vh 3vw;
+    gap: 2vw;
+    justify-content: flex-start;
+  }
+  .chip-icon { font-size: 0.75rem; }
+  .chip-label { font-size: 0.5rem; }
+  .chip-value { font-size: 0.65rem; }
   .footer-socmed-row { display: none; }
 
-  /* Links — compact horizontal row */
+  /* Links — Right Column, stack cards vertically */
   .footer-col-links {
+    grid-column: 2 / 3;
     align-items: stretch;
-    gap: 0.3vh;
+    gap: 0.4vh;
   }
-  .footer-links-stack { flex-direction: row; gap: 1.5vw; }
-  .footer-link-card { padding: 0.4vh 2.5vw; }
+  .footer-links-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+    align-items: stretch;
+  }
+  .footer-link-card {
+    padding: 0.4vh 3vw;
+    justify-content: flex-start;
+    gap: 2vw;
+  }
   .link-icon { font-size: 0.85rem; }
-  .link-title { font-size: 0.48rem; }
-  .link-url { font-size: 0.58rem; }
+  .link-title { font-size: 0.5rem; }
+  .link-url { font-size: 0.6rem; }
   .link-arrow { display: none; }
 
   /* ==========================================================================
