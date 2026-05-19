@@ -2173,6 +2173,7 @@ input:checked + .slider:before {
    ========================================================================== */
 
 .schedule-dashboard-layout {
+  grid-column: 1 / -1;
   display: grid;
   grid-template-columns: 1.15fr 2.35fr;
   gap: 1.2vw;
