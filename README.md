@@ -62,6 +62,16 @@ npm run build
 ```
 Hasil kompilasi akan tersimpan di dalam folder `/dist` yang siap untuk diunggah ke hosting (seperti Vercel, Netlify, cPanel, dll).
 
+### 5. Panduan Instalasi di Web Hosting (Shared Hosting / cPanel)
+Karena aplikasi ini adalah *Single Page Application* (SPA), hasil kompilasinya berupa file statis murni yang sangat ringan dan dapat di-host di server mana saja:
+1. Jalankan perintah `npm run build` di terminal lokal Anda.
+2. Buka direktori proyek dan masuk ke dalam folder `dist/`.
+3. Blok/pilih seluruh **isi file dan folder di dalam `dist/`**, klik kanan, lalu jadikan satu file arsip (`.zip`).
+4. Login ke panel kontrol web hosting Anda (misalnya cPanel), buka **File Manager**, dan arahkan ke direktori `public_html` (atau folder tujuan domain Anda).
+5. Klik **Upload** dan unggah file `.zip` yang sudah Anda buat.
+6. Setelah proses unggah selesai, klik kanan pada file `.zip` tersebut di File Manager dan pilih **Extract**. Pastikan semua file terekstrak langsung di direktori utama (bukan di dalam sub-folder).
+7. Selesai! 🎉 Web Infografis SPMB Anda sudah mengudara secara online.
+> **💡 Catatan:** Pastikan Anda hanya mengunggah file hasil build di dalam folder `dist`, bukan mengunggah source code mentah (seperti `src` atau `node_modules`).
 ---
 
 ## 📁 Struktur Data Statis
