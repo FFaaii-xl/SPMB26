@@ -3737,13 +3737,17 @@ input:checked + .slider:before {
 
 .tata-cara-subtitle {
   font-size: 0.78rem;
-  color: var(--brand-200);
+  color: #e9d5ff !important;
   line-height: 1.4;
   margin-bottom: 1vh;
-  background: rgba(168, 85, 247, 0.08);
-  border: 1px solid rgba(168, 85, 247, 0.15);
+  background: rgba(168, 85, 247, 0.12) !important;
+  border: 1px solid rgba(168, 85, 247, 0.3) !important;
   padding: 1.2vh 1.2vw;
   border-radius: var(--radius-sm);
+}
+
+.tata-cara-subtitle strong {
+  color: var(--white) !important;
 }
 
 .tata-cara-grid {
