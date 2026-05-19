@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import { MotionConfig } from "framer-motion";
 import HeroSection from "./components/HeroSection";
 import SelectionComponents from "./components/SelectionComponents";
@@ -257,6 +258,9 @@ export default function App() {
             </div>
           </div>
         )}
+        
+        {/* Vercel Web Analytics */}
+        <Analytics />
       </div>
     </MotionConfig>
   );
