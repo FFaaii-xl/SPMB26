@@ -36,9 +36,10 @@
 - [x] Fitur Premium: Tab Utama Khusus Terintegrasi untuk Timeline & Jadwal PPDB 2026 (3-Kolom Kiosk & Mobile Slideshow)
 - [x] Fitur Premium: Komponen Timeline Kronologis Jadwal Seleksi 2026
 - [x] Fitur Premium: Visualisasi Rumus Nilai Akhir (NA) PPDB Resmi Terintegrasi (50% NR + 50% NTKA + NK + NO)
-
-
-
+- [x] Integrasi Nomor Kontak Resmi SPMB 2026 (WhatsApp Klik Langsung) di Footer Kiosk & Mobile
+- [x] Refactor UI: Tata Letak Bersisian (Row Layout) Kiri-Kanan untuk Judul & Donut Chart Kuota di Layar Lebar
+- [x] Fitur Premium: Panel Perbandingan Perbedaan Regulasi Resmi SPMB (2025 vs 2026) Berbasis Modal Kaca Interaktif
+- [x] Fitur Premium: Kalkulator Bobot Nilai Piagam Prestasi Interaktif & Panduan Jenis Kejuaraan Resmi (Berjenjang & Tidak Berjenjang)
 
 ## 3. Catatan Teknis / Konfigurasi
 - **Struktur Data:** Data konfigurasi teks, warna, persentase kuota, dan aturan dipisah di `src/data/spmb.js`. Ini bertujuan agar administrator tidak perlu membuka *source code component* jika ada perubahan kecil.

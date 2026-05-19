@@ -25,12 +25,14 @@ export default function ScheduleView({ activeSlide }) {
     { nama: "DTKS / DTSEN", detail: "Bukti terdata DTKS (khusus Afirmasi)", icon: "🤝" },
   ];
 
-  // Alur verifikasi luring di SMKN 4 Surakarta
-  const alurVerifikasi = [
-    { step: "01", judul: "Ambil Antrean", ket: "Ambil nomor antrean di loket masuk aula", icon: "🎫" },
-    { step: "02", judul: "Pemeriksaan Berkas", ket: "Pra-verifikasi fisik dokumen di ruang tunggu", icon: "📋" },
-    { step: "03", judul: "Validasi Sistem", ket: "Panitia memasukkan data berkas ke sistem Jateng", icon: "💻" },
-    { step: "04", judul: "Cetak Bukti Akun", ket: "Menerima lembar bukti cetak akun & token", icon: "🖨️" },
+  // Alur Pendaftaran Kronologis Sekuensial (Daring + Luring Terintegrasi)
+  const alurPendaftaran = [
+    { step: "01", tipe: "daring", judul: "Input Data Mandiri", ket: "Isi data diri & rapor di web PPDB Jateng", icon: "📝" },
+    { step: "02", tipe: "daring", judul: "Unggah Berkas", ket: "Unggah scan KK, Rapor & Surat Pernyataan", icon: "📤" },
+    { step: "03", tipe: "daring", judul: "Cetak Pengajuan", ket: "Cetak Bukti Pengajuan Akun dari rumah", icon: "📄" },
+    { step: "04", tipe: "luring", judul: "Verifikasi Fisik", ket: "Bawa berkas asli ke SMAN/SMKN terdekat untuk melakukan verifikasi", icon: "🏢" },
+    { step: "05", tipe: "luring", judul: "Cetak Bukti Token", ket: "Terima cetak token teraktivasi dari panitia", icon: "🖨️" },
+    { step: "06", tipe: "daring", judul: "Pilihan Jurusan", ket: "Login web dengan token & pilih jurusan SMKN 4", icon: "🔑" },
   ];
 
   return (
@@ -69,27 +71,79 @@ export default function ScheduleView({ activeSlide }) {
           </div>
         </div>
 
-        {/* Alur Verifikasi Fisik */}
+        {/* Alur Urutan Pendaftaran Terintegrasi */}
         <div className="sched-section sched-alur">
           <div className="section-header mini">
-            <span className="section-pill">Alur Luring</span>
-            <h3 className="section-title">Prosedur Verifikasi Fisik</h3>
+            <span className="section-pill">Urutan Pendaftaran</span>
+            <h3 className="section-title">Alur Pengajuan Akun & Verifikasi</h3>
           </div>
 
-          <div className="alur-grid-compact">
-            {alurVerifikasi.map((alur, i) => (
-              <div key={i} className="alur-card-compact">
-                <span className="alur-badge-compact">{alur.step}</span>
-                <div className="alur-text-compact">
-                  <span className="alur-icon-compact">{alur.icon}</span>
-                  <span className="alur-title-compact">{alur.judul}</span>
+          <div className="alur-grid-compact" style={{ gridTemplateColumns: "1fr 1fr", gap: "0.6vh 0.5vw" }}>
+            {alurPendaftaran.map((alur, i) => (
+              <div 
+                key={i} 
+                className={`alur-card-compact seq-step-${alur.tipe}`}
+                title={alur.ket}
+                style={{ position: "relative", padding: "0.5vh 0.5vw" }}
+              >
+                {/* Step badge */}
+                <span 
+                  className="alur-badge-compact"
+                  style={{
+                    background: alur.tipe === "daring" ? "var(--brand-600)" : "var(--accent-gold)",
+                    color: alur.tipe === "daring" ? "var(--white)" : "#1e1b4b"
+                  }}
+                >
+                  {alur.step}
+                </span>
+
+                <div className="alur-text-compact" style={{ width: "100%", justifyContent: "space-between" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.3vw", minWidth: 0 }}>
+                    <span className="alur-icon-compact">{alur.icon}</span>
+                    <span 
+                      className="alur-title-compact"
+                      style={{ 
+                        whiteSpace: "nowrap", 
+                        overflow: "hidden", 
+                        textOverflow: "ellipsis" 
+                      }}
+                    >
+                      {alur.judul}
+                    </span>
+                  </div>
+                  
+                  {/* Daring/Luring Badge */}
+                  <span 
+                    style={{
+                      fontSize: "0.6rem",
+                      fontWeight: 900,
+                      padding: "0.1rem 0.4rem",
+                      borderRadius: "10px",
+                      background: alur.tipe === "daring" ? "rgba(124, 58, 237, 0.1)" : "rgba(245, 158, 11, 0.15)",
+                      color: alur.tipe === "daring" ? "var(--brand-700)" : "var(--accent-gold)",
+                      textTransform: "uppercase",
+                      marginLeft: "auto",
+                      flexShrink: 0
+                    }}
+                  >
+                    {alur.tipe}
+                  </span>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="kiosk-note-compact">
-            ⚠️ <strong>Siswa Wajib Datang Fisik:</strong> Memakai seragam SMP rapi & bersepatu untuk verifikasi berkas & pengambilan token.
+          <div 
+            className="kiosk-note-compact" 
+            style={{ 
+              fontSize: "0.72rem", 
+              padding: "0.8vh 0.8vw",
+              lineHeight: 1.35,
+              marginTop: "0.3vh",
+              background: "rgba(124, 58, 237, 0.04)"
+            }}
+          >
+            💡 <strong>Info Penting:</strong> Langkah <strong>01-03</strong> dilakukan daring dari rumah. Langkah <strong>04-05</strong> wajib datang ke SMAN/SMKN terdekat untuk melakukan verifikasi membawa berkas asli. Langkah <strong>06</strong> dilanjutkan daring kembali.
           </div>
         </div>
       </motion.div>
@@ -113,8 +167,6 @@ export default function ScheduleView({ activeSlide }) {
           <div className="timeline-horizontal-steps">
             {jadwalSeleksi.map((item, i) => {
               // Menghitung status urutan ganjil-genap untuk zigzag atas-bawah
-              // Indeks genap (0, 2, 4, 6) -> pos-down (Bawah Axis)
-              // Indeks ganjil (1, 3, 5, 7) -> pos-up (Atas Axis)
               const isEven = i % 2 === 0;
               const positionClass = isEven ? "pos-down" : "pos-up";
 

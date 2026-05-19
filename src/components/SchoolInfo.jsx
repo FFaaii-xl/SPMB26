@@ -83,13 +83,52 @@ export default function SchoolInfo({ activeSlide }) {
               <div className="jurusan-badge">
                 <span className="jurusan-icon">{jur.icon}</span>
               </div>
-              <div className="jurusan-body">
-                <h3 className="jurusan-title">{jur.nama}</h3>
-                <p className="jurusan-desc">{jur.deskripsi}</p>
+              <div className="jurusan-body" style={{ width: "100%" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <h3 className="jurusan-title">{jur.nama}</h3>
+                  <div className="jurusan-badge-total" style={{ 
+                    background: "rgba(255, 255, 255, 0.08)", 
+                    border: "1px solid rgba(255, 255, 255, 0.15)",
+                    color: "var(--white)",
+                    fontSize: "0.68rem",
+                    fontWeight: 800,
+                    padding: "0.15rem 0.5rem",
+                    borderRadius: "12px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.2rem"
+                  }}>
+                    <span>📊 Total Kuota:</span>
+                    <strong style={{ color: "var(--accent-gold)" }}>{jur.total}</strong>
+                  </div>
+                </div>
+                <p className="jurusan-desc" style={{ marginTop: "0.25vh", marginBottom: "0.6vh" }}>{jur.deskripsi}</p>
+                
+                {/* Quota Details Row */}
+                <div className="jurusan-quota-row">
+                  <div className="jurusan-quota-pill">
+                    <span className="label">Rombel:</span>
+                    <strong className="value">{jur.rombel} Rombongan Belajar (Kelas)</strong>
+                  </div>
+                  <div className="jurusan-quota-pill">
+                    <span className="label">Kapasitas:</span>
+                    <strong className="value">{jur.perKelas} Siswa / Rombel</strong>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
         </div>
+        <p className="jurusan-note" style={{
+          fontSize: "0.62rem",
+          color: "rgba(255, 255, 255, 0.6)",
+          textAlign: "center",
+          fontStyle: "italic",
+          marginTop: "1.2vh",
+          lineHeight: 1.3
+        }}>
+          💡 <strong>Catatan:</strong> Jumlah kuota di atas merupakan daya tampung murni sebelum dikurangi pendaftar jalur inklusi / anak Pendidik & Tendik.
+        </p>
       </motion.div>
 
       {/* Kolom Kanan: Fasilitas & Unit Produksi */}

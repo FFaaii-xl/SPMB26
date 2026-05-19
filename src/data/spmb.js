@@ -50,6 +50,9 @@ export const programKeahlian = [
     icon: "👗",
     deskripsi: "Menguasai desain busana, pembuatan pola, teknik menjahit, dan pengelolaan bisnis butik mandiri.",
     warna: "#EC4899", // Pink
+    rombel: 4,
+    perKelas: 36,
+    total: 144,
   },
   {
     id: "kuliner",
@@ -57,6 +60,9 @@ export const programKeahlian = [
     icon: "🍳",
     deskripsi: "Teknik memasak nusantara/internasional, pastry & bakery, katering, serta operasional bisnis kuliner.",
     warna: "#F59E0B", // Amber
+    rombel: 4,
+    perKelas: 36,
+    total: 144,
   },
   {
     id: "perhotelan",
@@ -64,6 +70,9 @@ export const programKeahlian = [
     icon: "🏨",
     deskripsi: "Kompetensi front office, tata graha (housekeeping), pelayanan restoran, hingga manajemen perhotelan.",
     warna: "#3B82F6", // Blue
+    rombel: 3,
+    perKelas: 36,
+    total: 108,
   },
   {
     id: "kecantikan",
@@ -71,6 +80,9 @@ export const programKeahlian = [
     icon: "💇",
     deskripsi: "Perawatan kulit/rambut, tata rias wajah (MUA), hair styling, serta pengelolaan salon kecantikan.",
     warna: "#10B981", // Emerald
+    rombel: 2,
+    perKelas: 36,
+    total: 72,
   },
 ];
 
