@@ -269,38 +269,17 @@ const ranges = [
 
 const now = new Date();
 
-// Cari apakah ada tahapan yang rentang tanggalnya sedang aktif hari ini
-let activeIndices = [];
-ranges.forEach((range, idx) => {
-  if (now >= range.start && now <= range.end) {
-    activeIndices.push(idx);
-  }
-});
-
-// Jika tidak ada tahapan yang sedang aktif hari ini (berada di masa transisi jeda),
-// maka cari tahapan mendatang terdekat untuk ditandai sebagai aktif.
-let firstUpcomingIndex = -1;
-if (activeIndices.length === 0) {
-  for (let i = 0; i < ranges.length; i++) {
-    if (now < ranges[i].start) {
-      firstUpcomingIndex = i;
-      break;
-    }
-  }
-}
-
 export const jadwalSeleksi = rawJadwalSeleksi.map((item, idx) => {
   let status = "next";
   const range = ranges[idx];
+  const nextRange = ranges[idx + 1];
 
-  if (now > range.end) {
-    status = "done";
-  } else if (now >= range.start && now <= range.end) {
-    status = "active";
-  } else if (activeIndices.length === 0 && idx === firstUpcomingIndex) {
-    status = "active";
-  } else {
+  if (now < range.start) {
     status = "next";
+  } else if (nextRange && now >= nextRange.start) {
+    status = "done";
+  } else {
+    status = "active";
   }
 
   return {
