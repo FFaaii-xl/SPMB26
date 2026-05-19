@@ -64,7 +64,45 @@ export default function SelectionComponents() {
             <div className="card-accent-bar" />
           </motion.div>
         ))}
+
+        {/* Rumus Nilai Akhir Card */}
+        <motion.div
+          className="formula-card"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.45, duration: 0.5 }}
+          whileHover={{ y: -5 }}
+        >
+          <div className="formula-accent-line" />
+          <div className="formula-header">
+            <span className="formula-icon-circle">⚖️</span>
+            <h3 className="formula-title">Rumus Penilaian Nilai Akhir (NA)</h3>
+          </div>
+          <div className="formula-math-box">
+            <code className="formula-code">NA = (50% × NR) + (50% × NTKA) + NK + NO</code>
+          </div>
+          <div className="formula-legend-grid">
+            <div className="formula-legend-item">
+              <span className="legend-label">NR</span>
+              <span className="legend-desc">Rerata Rapor Smt 1-5</span>
+            </div>
+            <div className="formula-legend-item">
+              <span className="legend-label">NTKA</span>
+              <span className="legend-desc">Rerata Tes Akademik</span>
+            </div>
+            <div className="formula-legend-item">
+              <span className="legend-label">NK</span>
+              <span className="legend-desc">Nilai Piagam Kejuaraan</span>
+            </div>
+            <div className="formula-legend-item">
+              <span className="legend-label">NO</span>
+              <span className="legend-desc">Nilai Ketua Organisasi</span>
+            </div>
+          </div>
+        </motion.div>
       </div>
+
     </section>
   );
 }

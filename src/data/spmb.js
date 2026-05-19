@@ -188,3 +188,63 @@ export const ketentuanKhusus = [
     icon: "🔄",
   },
 ];
+
+export const jadwalSeleksi = [
+  {
+    tanggal: "18 Mei 2026",
+    kegiatan: "Pengumuman SPMB 2026",
+    detail: "Informasi resmi kuota & syarat di website dan mading sekolah.",
+    status: "done",
+    icon: "📢"
+  },
+  {
+    tanggal: "03 - 12 Juni 2026",
+    kegiatan: "Pengajuan Akun",
+    detail: "Calon murid baru mengajukan akun pendaftaran secara daring.",
+    status: "active",
+    icon: "💻"
+  },
+  {
+    tanggal: "04 - 13 Juni 2026",
+    kegiatan: "Verifikasi Dokumen & Aktivasi",
+    detail: "Verifikasi berkas fisik di sekolah & aktivasi akun mandiri secara daring.",
+    status: "next",
+    icon: "🛡️"
+  },
+  {
+    tanggal: "15 - 18 Juni 2026",
+    kegiatan: "Pendaftaran & Pilihan",
+    detail: "Pemilihan jurusan di SMKN 4 Surakarta secara daring & perubahan pilihan jika ada.",
+    status: "next",
+    icon: "📝"
+  },
+  {
+    tanggal: "21 Juni 2026",
+    kegiatan: "Pengumuman Kelulusan",
+    detail: "Pengumuman resmi di website SPMB, media sosial, dan mading sekolah.",
+    status: "next",
+    icon: "🏆"
+  },
+  {
+    tanggal: "22 - 25 Juni 2026",
+    kegiatan: "Daftar Ulang (Utama)",
+    detail: "Melakukan registrasi ulang luring/fisik di sekolah bagi yang diterima utama.",
+    status: "next",
+    icon: "✍️"
+  },
+  {
+    tanggal: "26 Juni 2026",
+    kegiatan: "Pengumuman Cadangan",
+    detail: "Pengisian daya tampung kosong berdasarkan peringkat cadangan yang tidak daftar ulang.",
+    status: "next",
+    icon: "🔄"
+  },
+  {
+    tanggal: "13 Juli 2026",
+    kegiatan: "Awal Tahun Ajaran Baru",
+    detail: "Hari pertama masuk sekolah dan dimulainya kegiatan pembelajaran (MPLS).",
+    status: "next",
+    icon: "🎓"
+  }
+];
+
