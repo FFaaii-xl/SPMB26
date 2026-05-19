@@ -31,6 +31,8 @@
 - [x] Perbaikan Kontras & Keterbacaan Visual (Desain Khusus Latar Terang & Gelap)
 - [x] Ekstraksi & Analisis Otomatis Dokumen PDF Juknis 2026 (Python pypdf)
 - [x] Integrasi Regulasi Resmi SK Gubernur Jateng No. 100.3.3.1/117 Tahun 2026 (DTSEN Desil 1-4, Tie-Breaker, Syarat ATS, Bebas Pungutan)
+- [x] Publikasi Repositori GitHub Resmi (https://github.com/FFaaii-xl/SPMB26)
+
 
 ## 3. Catatan Teknis / Konfigurasi
 - **Struktur Data:** Data konfigurasi teks, warna, persentase kuota, dan aturan dipisah di `src/data/spmb.js`. Ini bertujuan agar administrator tidak perlu membuka *source code component* jika ada perubahan kecil.
