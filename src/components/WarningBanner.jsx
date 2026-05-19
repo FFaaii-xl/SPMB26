@@ -15,11 +15,20 @@ export default function WarningBanner() {
 
         <div className="warning-content">
           <motion.div
-            className="warning-icon"
-            animate={{ rotate: [0, -10, 10, -10, 0] }}
-            transition={{ repeat: Infinity, repeatDelay: 3, duration: 0.5 }}
+            className="warning-icon-wrapper"
+            animate={{ scale: [1, 1.05, 1], rotate: [0, -2, 2, -2, 0] }}
+            transition={{ repeat: Infinity, repeatDelay: 4, duration: 0.8 }}
+            style={{ display: "flex", alignItems: "center" }}
           >
-            ⚠️
+            <img 
+              src="/slogan.png" 
+              alt="Slogan No Titip No Jastip" 
+              style={{ 
+                height: "65px", 
+                objectFit: "contain", 
+                filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.2))" 
+              }} 
+            />
           </motion.div>
 
           <div className="warning-text">

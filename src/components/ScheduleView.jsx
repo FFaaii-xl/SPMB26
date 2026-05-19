@@ -143,7 +143,7 @@ export default function ScheduleView({ activeSlide }) {
         </div>
 
         {/* Alur Urutan Pendaftaran Terintegrasi */}
-        <div className="sched-section sched-alur">
+        <div className="sched-section sched-alur" style={{ marginTop: "2.5vh" }}>
           <div className="section-header mini">
             <span className="section-pill">Urutan Pendaftaran</span>
             <h3 className="section-title">Alur Pengajuan Akun & Verifikasi</h3>
