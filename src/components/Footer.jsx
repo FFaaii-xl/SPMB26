@@ -102,19 +102,6 @@ export default function Footer() {
           <span className="footer-col-label">Portal & Tautan Resmi</span>
           <div className="footer-links-stack">
             <a
-              href="https://spmb.jatengprov.go.id"
-              target="_blank"
-              rel="noreferrer"
-              className="footer-link-card portal"
-            >
-              <span className="link-icon">🌐</span>
-              <div className="link-text">
-                <span className="link-title">Portal SPMB Jateng</span>
-                <span className="link-url">spmb.jatengprov.go.id</span>
-              </div>
-              <span className="link-arrow">→</span>
-            </a>
-            <a
               href={`https://${sekolah.website}`}
               target="_blank"
               rel="noreferrer"
