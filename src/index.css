@@ -3121,6 +3121,7 @@ input:checked + .slider:before {
   border-radius: var(--radius-lg);
   padding: 1.5vh 1.2vw;
   box-shadow: var(--shadow-sm);
+  overflow-x: hidden;
 }
 
 .sched-section {
@@ -3161,6 +3162,7 @@ input:checked + .slider:before {
   grid-template-columns: 1fr 1fr;
   gap: 0.8vh 0.6vw;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .berkas-card-compact {
