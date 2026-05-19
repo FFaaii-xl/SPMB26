@@ -240,7 +240,7 @@ const rawJadwalSeleksi = [
   }
 ];
 
-// Definisikan rentang tanggal absolut untuk masing-masing 8 tahapan PPDB di tahun 2026
+// Definisikan rentang tanggal absolut untuk masing-masing 8 tahapan SPMB di tahun 2026
 const ranges = [
   { start: new Date("2026-05-18T00:00:00"), end: new Date("2026-05-18T23:59:59") }, // 18 Mei
   { start: new Date("2026-06-03T00:00:00"), end: new Date("2026-06-12T23:59:59") }, // 03-12 Juni

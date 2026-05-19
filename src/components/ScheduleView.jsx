@@ -100,8 +100,8 @@ export default function ScheduleView({ activeSlide }) {
         variants={itemVariants}
       >
         <div className="section-header center-align">
-          <span className="section-pill">Timeline PPDB 2026</span>
-          <h2 className="section-title">Garis Waktu Resmi PPDB SMK Negeri</h2>
+          <span className="section-pill">Timeline SPMB 2026</span>
+          <h2 className="section-title">Garis Waktu Resmi SPMB SMK Negeri</h2>
           <p className="section-desc">Jadwal resmi pelaksanaan berdasarkan Juknis & Jukop Dinas Pendidikan Provinsi Jawa Tengah</p>
         </div>
 

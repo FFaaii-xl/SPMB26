@@ -42,19 +42,19 @@ export default function App() {
               onClick={() => handleViewChange("sekolah")}
               className={`tab-btn ${activeView === "sekolah" ? "active" : ""}`}
             >
-              🏫 Info SMKN 4 Surakarta
+              🏫 Info SMKN4 Surakarta
             </button>
             <button
               onClick={() => handleViewChange("spmb")}
               className={`tab-btn ${activeView === "spmb" ? "active" : ""}`}
             >
-              ⚡ Informasi SPMB 2026
+              ⚡ Info SPMB 2026
             </button>
             <button
               onClick={() => handleViewChange("jadwal")}
               className={`tab-btn ${activeView === "jadwal" ? "active" : ""}`}
             >
-              📅 Jadwal PPDB 2026
+              📅 Jadwal SPMB 2026
             </button>
             
             <button
