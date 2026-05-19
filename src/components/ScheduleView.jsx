@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { jadwalSeleksi } from "../data/spmb";
 
@@ -15,6 +16,8 @@ const itemVariants = {
 };
 
 export default function ScheduleView({ activeSlide }) {
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+
   // Berkas yang harus dipersiapkan
   const berkasWajib = [
     { nama: "Kartu Keluarga (KK)", detail: "Asli & fotokopi (min. terbit 1 tahun)", icon: "🏠" },
@@ -33,6 +36,73 @@ export default function ScheduleView({ activeSlide }) {
     { step: "04", tipe: "luring", judul: "Verifikasi Fisik", ket: "Bawa berkas asli ke SMAN/SMKN terdekat untuk melakukan verifikasi", icon: "🏢" },
     { step: "05", tipe: "luring", judul: "Cetak Bukti Token", ket: "Terima cetak token teraktivasi dari panitia", icon: "🖨️" },
     { step: "06", tipe: "daring", judul: "Pilihan Jurusan", ket: "Login web dengan token & pilih jurusan SMKN 4", icon: "🔑" },
+  ];
+
+  // Official detailed 9 steps from Disdik Jateng Infographic
+  const official9Steps = [
+    { 
+      step: "01", 
+      tipe: "luring", 
+      judul: "Persiapan Berkas", 
+      desc: "Calon Murid menyiapkan berkas persyaratan pendaftaran fisik asli sesuai ketentuan jalur yang akan diikuti.", 
+      icon: "📁" 
+    },
+    { 
+      step: "02", 
+      tipe: "daring", 
+      judul: "Akses Situs Resmi", 
+      desc: "Membuka situs portal resmi SPMB Daring Jawa Tengah dengan alamat https://ppdb.jatengprov.go.id.", 
+      icon: "🌐" 
+    },
+    { 
+      step: "03", 
+      tipe: "daring", 
+      judul: "Input Data Pribadi", 
+      desc: "Calon murid menginput data pribadi serta nilai rapor secara mandiri sesuai alur dalam sistem aplikasi SPMB.", 
+      icon: "✍️" 
+    },
+    { 
+      step: "04", 
+      tipe: "daring", 
+      judul: "Unggah Dokumen", 
+      desc: "Calon murid mengunggah (upload) semua scan dokumen persyaratan ke sistem dan akan mendapatkan bukti ajuan akun.", 
+      icon: "📤" 
+    },
+    { 
+      step: "05", 
+      tipe: "luring", 
+      judul: "Pengajuan Verifikasi", 
+      desc: "Mengajukan verifikasi secara luring ke SMA/SMK Negeri terdekat membawa berkas fisik asli & fotokopi berkas.", 
+      icon: "🏢" 
+    },
+    { 
+      step: "06", 
+      tipe: "luring", 
+      judul: "Verifikasi & Dapat Token", 
+      desc: "Sekolah memverifikasi berkas fisik. Jika semua berkas sesuai ketentuan, calon murid diberikan Token untuk aktivasi akun.", 
+      icon: "🔑" 
+    },
+    { 
+      step: "07", 
+      tipe: "luring", 
+      judul: "Kesempatan Perbaikan", 
+      desc: "Apabila berkas belum lengkap, calon murid diberi kesempatan memenuhinya sebelum nantinya diserahkan token aktivasi.", 
+      icon: "🔄" 
+    },
+    { 
+      step: "08", 
+      tipe: "daring", 
+      judul: "Aktivasi Akun & Pilih Jurusan", 
+      desc: "Melakukan aktivasi akun dengan token yang didapat, lalu memilih satuan pendidikan / kompetensi keahlian sesuai jadwal.", 
+      icon: "🎓" 
+    },
+    { 
+      step: "09", 
+      tipe: "daring", 
+      judul: "Pantau Jurnal Harian", 
+      desc: "Calon murid dapat memantau pergerakan peringkat dan jurnal pendaftaran harian pada sistem aplikasi SPMB Jateng.", 
+      icon: "📊" 
+    }
   ];
 
   return (
@@ -145,6 +215,31 @@ export default function ScheduleView({ activeSlide }) {
           >
             💡 <strong>Info Penting:</strong> Langkah <strong>01-03</strong> dilakukan daring dari rumah. Langkah <strong>04-05</strong> wajib datang ke SMAN/SMKN terdekat untuk melakukan verifikasi membawa berkas asli. Langkah <strong>06</strong> dilanjutkan daring kembali.
           </div>
+
+          {/* Button to open Official Detailed 9 Steps Modal */}
+          <button 
+            className="detail-tata-cara-btn"
+            onClick={() => setIsDetailModalOpen(true)}
+            style={{
+              width: "100%",
+              marginTop: "0.8vh",
+              background: "rgba(245, 158, 11, 0.08)",
+              border: "1px dashed var(--accent-gold)",
+              color: "var(--accent-gold)",
+              borderRadius: "6px",
+              padding: "0.6vh 0.8vw",
+              fontSize: "0.68rem",
+              fontWeight: "bold",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.4vw",
+              transition: "all 0.2s ease"
+            }}
+          >
+            📋 Detail Resmi 9 Tata Cara Pendaftaran Disdik Jateng ➡️
+          </button>
         </div>
       </motion.div>
 
@@ -203,6 +298,48 @@ export default function ScheduleView({ activeSlide }) {
           </div>
         </div>
       </motion.div>
+
+      {/* DETAILED TATA CARA PENDAFTARAN MODAL */}
+      {isDetailModalOpen && (
+        <div className="tata-cara-overlay" onClick={() => setIsDetailModalOpen(false)}>
+          <div className="tata-cara-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="tata-cara-header">
+              <h3 className="tata-cara-title">📋 Alur Tata Cara Pendaftaran PPDB Resmi 2026</h3>
+              <button className="tata-cara-close-x" onClick={() => setIsDetailModalOpen(false)}>×</button>
+            </div>
+            
+            <div className="tata-cara-content">
+              <p className="tata-cara-subtitle">
+                💡 <strong>Informasi Resmi Disdik Jateng:</strong> Berikut adalah detail 9 langkah kronologis tata cara pendaftaran akun dan verifikasi fisik PPDB Sekolah Menengah Kejuruan (SMK) Negeri Tahun Ajaran 2026/2027 berdasarkan diagram alur petunjuk teknis resmi.
+              </p>
+              
+              <div className="tata-cara-grid">
+                {official9Steps.map((stepItem, index) => (
+                  <div 
+                    key={index} 
+                    className={`tata-cara-card ${stepItem.tipe === "luring" ? "luring-step" : "daring-step"}`}
+                  >
+                    <span className="tata-cara-badge-num">{stepItem.step}</span>
+                    <div className="tata-cara-details">
+                      <div className="tata-cara-step-header">
+                        <span className="tata-cara-step-title">{stepItem.icon} {stepItem.judul}</span>
+                        <span className={`tata-cara-type-badge ${stepItem.tipe}`}>{stepItem.tipe}</span>
+                      </div>
+                      <p className="tata-cara-step-desc">{stepItem.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="tata-cara-footer">
+              <button className="tata-cara-close-btn" onClick={() => setIsDetailModalOpen(false)}>
+                Tutup Panduan
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </motion.div>
   );
 }

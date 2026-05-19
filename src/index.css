@@ -3665,5 +3665,206 @@ input:checked + .slider:before {
   }
 }
 
+/* Tata Cara Pendaftaran Modal */
+.tata-cara-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 2, 28, 0.75);
+  backdrop-filter: blur(12px);
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2vh 2vw;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.tata-cara-modal {
+  width: 90%;
+  max-width: 900px;
+  max-height: 85vh;
+  background: rgba(25, 10, 48, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.tata-cara-header {
+  padding: 2.2vh 2vw;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tata-cara-title {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+}
+
+.tata-cara-close-x {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.8rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.tata-cara-close-x:hover {
+  color: var(--white);
+}
+
+.tata-cara-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2.5vh 2vw;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.tata-cara-subtitle {
+  font-size: 0.78rem;
+  color: var(--brand-200);
+  line-height: 1.4;
+  margin-bottom: 1vh;
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.15);
+  padding: 1.2vh 1.2vw;
+  border-radius: var(--radius-sm);
+}
+
+.tata-cara-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5vh 1.2vw;
+}
+
+@media (max-width: 768px) {
+  .tata-cara-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2vh;
+  }
+}
+
+.tata-cara-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+  padding: 1.5vh 1.2vw;
+  display: flex;
+  gap: 1vw;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tata-cara-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(168, 85, 247, 0.3);
+  transform: translateY(-2px);
+}
+
+.tata-cara-badge-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--brand-600);
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.4);
+}
+
+.tata-cara-card.luring-step .tata-cara-badge-num {
+  background: var(--accent-gold);
+  color: #1e1b4b;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+}
+
+.tata-cara-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4vh;
+  min-width: 0;
+}
+
+.tata-cara-step-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+  flex-wrap: wrap;
+}
+
+.tata-cara-step-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--white);
+}
+
+.tata-cara-type-badge {
+  font-size: 0.58rem;
+  font-weight: 900;
+  padding: 0.08rem 0.35rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.tata-cara-type-badge.daring {
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  color: #c084fc;
+}
+
+.tata-cara-type-badge.luring {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  color: #fcd34d;
+}
+
+.tata-cara-step-desc {
+  font-size: 0.7rem;
+  color: var(--brand-100);
+  line-height: 1.35;
+}
+
+.tata-cara-footer {
+  padding: 1.5vh 2vw;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tata-cara-close-btn {
+  background: var(--brand-600);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  padding: 0.8vh 1.5vw;
+  font-size: 0.72rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tata-cara-close-btn:hover {
+  background: var(--brand-500);
+  transform: translateY(-1px);
+}
+
 
 
