@@ -2,7 +2,7 @@
 
 ## 1. Arsitektur Proyek
 - **Tipe Proyek:** Single Page Application (SPA)
-- **Framework Utama:** React (versi terbaru) + Vite
+- **Framework Utama:** Next.js (versi terbaru - App Router) + React
 - **Styling:** Vanilla CSS (Modern CSS dengan Custom Properties & Container Queries)
 - **Animasi:** `framer-motion` (untuk scroll reveal, micro-interactions, dan layout animations)
 - **Visualisasi Data:** `recharts` (untuk SVG Donut Chart interaktif)
@@ -53,6 +53,8 @@
 - [x] Perbaikan UI & UX: Kompresi Spasi, Padding, dan Gap Komponen Kiosk (Menghilangkan seluruh scrollbar dan masalah legend Nilai Akhir/NA yang terpotong pada resolusi tetap)
 - [x] Perbaikan UI & UX: Optimisasi Ketebalan Tinggi Footer (Mengurangi padding vertikal dan tinggi logo secara global agar layout semakin ramping dan proporsional)
 - [x] Publikasi Repositori: Rekonsiliasi & Penggabungan (*Safe Merge*) Cabang Integrasi Vercel (PR #1 & PR #2) dengan Strategi 'Ours' guna menjaga konsistensi desain premium
+- [x] Migrasi Arsitektur: Migrasi penuh dari Vite + React ke Next.js (App Router) dengan optimalisasi halaman statis dan Client Components
+
 
 
 ## 3. Catatan Teknis / Konfigurasi

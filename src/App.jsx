@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { MotionConfig } from "framer-motion";

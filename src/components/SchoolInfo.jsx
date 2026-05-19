@@ -1,3 +1,4 @@
+"use client";
 import { motion } from "framer-motion";
 import { sekolah, identitasStatus, sejarahSingkat, programKeahlian, fasilitasUnit } from "../data/spmb";
 
