@@ -24,8 +24,8 @@
 - [x] Implementasi Dual Dashboard Switcher (Profil Sekolah & Informasi SPMB)
 - [x] Refactor UI: Portrait Slideshow Navigator (Bebas Scrollbar di Perangkat Mobile)
 - [x] Refactor UI: Desain Universal & Fleksibel (Natural Scroll & Stacked Layout di Mobile)
-- [x] Fitur Premium: Sistem Cetak MMT Otomatis (Format Landscape Spanduk & Bebas Tombol Navigasi)
-- [x] Fitur Premium: Panel Pengaturan Kiosk (Modal Glassmorphism, Toggle Animasi iOS, Integrasi Cetak MMT, & Tombol Ikon Roda Gigi Putar Modern)
+- [x] Fitur Premium: Panel Pengaturan Kiosk (Modal Glassmorphism, Toggle Animasi iOS, & Tombol Ikon Roda Gigi Putar Modern)
+
 - [x] Fitur Premium: Animasi Latar Belakang & Footer Dinamis (Efek bgGradient & linkPulse Emas Berdenyut)
 - [x] Fitur Premium: Rincian Jalur Seleksi Komprehensif (SK Gubernur Jateng 2026)
 - [x] Perbaikan Kontras & Keterbacaan Visual (Desain Khusus Latar Terang & Gelap)
