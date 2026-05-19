@@ -108,11 +108,11 @@ export default function SchoolInfo({ activeSlide }) {
                 <div className="jurusan-quota-row">
                   <div className="jurusan-quota-pill">
                     <span className="label">Rombel:</span>
-                    <strong className="value">{jur.rombel} Rombongan Belajar (Kelas)</strong>
+                    <strong className="value">{jur.rombel} Kelas</strong>
                   </div>
                   <div className="jurusan-quota-pill">
                     <span className="label">Kapasitas:</span>
-                    <strong className="value">{jur.perKelas} Siswa / Rombel</strong>
+                    <strong className="value">{jur.perKelas} Siswa/Kelas</strong>
                   </div>
                 </div>
               </div>
