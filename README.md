@@ -10,15 +10,16 @@ Aplikasi ini didesain khusus untuk tampilan **Kiosk Display (Mading Digital/TV S
 
 *   **⚡ Dual Dashboard Switcher:** Beralih dengan mudah antara Profil Sekolah dan Dashboard Informasi SPMB.
 *   **📊 Donut Chart Kuota Interaktif:** Visualisasi data kuota jalur seleksi yang dinamis menggunakan *Recharts*.
-*   **⚙️ Panel Pengaturan Kiosk Premium:** Modal Glassmorphism dengan toggle animasi iOS, integrasi mode cetak spanduk MMT, dan tombol gigi putar modern.
+*   **⚙️ Panel Pengaturan Kiosk Premium:** Modal Glassmorphism dengan toggle/switch animasi iOS, integrasi mode cetak spanduk MMT, dan tombol roda gigi putar modern.
 *   **🖨️ Sistem Cetak MMT Otomatis:** Format spanduk MMT landscape khusus yang siap cetak, bersih dari tombol navigasi.
 *   **📱 Portrait Slideshow Navigator:** Navigasi slideshow khusus perangkat mobile agar bebas dari scrollbar horizontal/vertikal.
 *   **⚖️ Integrasi Regulasi Resmi SK Gubernur Jateng 2026:** Validasi otomatis syarat DTSEN Desil 1-4, Tie-Breaker nilai, syarat ATS (Anak Tidak Sekolah), serta jaminan bebas pungutan.
 *   **📅 Timeline Interaktif Juknis Resmi:** Timeline pendaftaran sekuensial yang dapat diklik (clickable) untuk memunculkan modal glassmorphism berisi panduan teknis resmi langkah-demi-langkah, termasuk aturan daftar ulang dan cadangan.
-*   **🧮 Kalkulator Simulasi Nilai Akhir (NA):** Simulasi interaktif kalkulator NA PPDB dengan slider visual untuk meramalkan total skor berdasarkan Rapor, Tes Akademik, Prestasi, dan Organisasi.
-*   **🏆 Kalkulator Bobot Piagam Prestasi:** Panduan jenis kejuaraan resmi untuk mengetahui bobot skor (NK) berjenjang dan tidak berjenjang.
+*   **🧮 Kalkulator Simulasi Nilai Akhir (NA) Terpadu:** Simulasi interaktif kalkulator NA PPDB dengan slider visual untuk meramalkan total skor berdasarkan Rapor, Tes Akademik, Piagam Prestasi, dan Organisasi.
+*   **🏆 Kalkulator Piagam Otomatis (NK):** Kalkulator Piagam Kejuaraan (NK) terintegrasi langsung di dalam form simulasi nilai akhir dengan toggle iOS-Style cerdas. Menghitung bobot skor berjenjang dan tidak berjenjang secara otomatis sesuai dengan kriteria resmi juknis.
 *   **✨ Tata Letak Fluid Responsif:** Komponen left-column menggunakan fluid layout (kombinasi `vw`, `vh`, dan `clamp()`) sehingga secara otomatis beralih dari 2-kolom (layar lebar Kiosk) ke 1-kolom bersisian (layar Mobile) tanpa terpotong (clipping).
 *   **🌐 Integrasi Portal Daring:** Tombol pintas berdesain interaktif menuju situs portal resmi PPDB Provinsi Jawa Tengah di header hero section.
+
 ---
 
 ## 🛠️ Persyaratan Sistem (Requirements)
@@ -26,12 +27,12 @@ Aplikasi ini didesain khusus untuk tampilan **Kiosk Display (Mading Digital/TV S
 Sebelum menjalankan atau membangun proyek ini, pastikan sistem Anda memenuhi persyaratan berikut:
 
 1.  **Node.js**: Versi **18.x** atau **20.x** ke atas (sangat disarankan versi LTS).
-2.  **Package Manager**: `npm` (bawaan Node.js) atau `yarn` / `pnpm`.
+2.  **Package Manager**: `npm` (bawaan Node.js).
 3.  **Modern Browser**: Google Chrome, Mozilla Firefox, Microsoft Edge, atau Safari dengan dukungan modern CSS (CSS Grid, Variables, Container Queries).
 
 ---
 
-## 🚀 Panduan Instalasi & Penggunaan
+## 🚀 Panduan Instalasi & Penggunaan Lokal
 
 Ikuti langkah-langkah di bawah ini untuk menjalankan proyek secara lokal di komputer Anda.
 
@@ -49,29 +50,68 @@ npm install
 ```
 
 ### 3. Jalankan Mode Pengembangan (Local Dev Server)
-Jalankan aplikasi di server lokal untuk pengujian dan pengembangan real-time:
+Jalankan Next.js dalam server lokal untuk pengujian dan pengembangan real-time:
 ```bash
 npm run dev
 ```
-Setelah berhasil dijalankan, buka peramban (browser) dan akses URL lokal yang tertera di terminal (biasanya `http://localhost:5173`).
+Setelah berhasil dijalankan, buka peramban (browser) dan akses URL lokal di `http://localhost:3000`.
 
 ### 4. Bangun Aplikasi untuk Produksi (Production Build)
-Untuk melakukan kompilasi proyek menjadi file statis siap sebar (deployment):
+Untuk melakukan kompilasi proyek menjadi versi produksi yang dioptimalkan:
 ```bash
 npm run build
 ```
-Hasil kompilasi akan tersimpan di dalam folder `/dist` yang siap untuk diunggah ke hosting (seperti Vercel, Netlify, cPanel, dll).
 
-### 5. Panduan Instalasi di Web Hosting (Shared Hosting / cPanel)
-Karena aplikasi ini adalah *Single Page Application* (SPA), hasil kompilasinya berupa file statis murni yang sangat ringan dan dapat di-host di server mana saja:
-1. Jalankan perintah `npm run build` di terminal lokal Anda.
-2. Buka direktori proyek dan masuk ke dalam folder `dist/`.
-3. Blok/pilih seluruh **isi file dan folder di dalam `dist/`**, klik kanan, lalu jadikan satu file arsip (`.zip`).
-4. Login ke panel kontrol web hosting Anda (misalnya cPanel), buka **File Manager**, dan arahkan ke direktori `public_html` (atau folder tujuan domain Anda).
-5. Klik **Upload** dan unggah file `.zip` yang sudah Anda buat.
-6. Setelah proses unggah selesai, klik kanan pada file `.zip` tersebut di File Manager dan pilih **Extract**. Pastikan semua file terekstrak langsung di direktori utama (bukan di dalam sub-folder).
-7. Selesai! 🎉 Web Infografis SPMB Anda sudah mengudara secara online.
-> **💡 Catatan:** Pastikan Anda hanya mengunggah file hasil build di dalam folder `dist`, bukan mengunggah source code mentah (seperti `src` atau `node_modules`).
+---
+
+## 🌐 Panduan Instalasi di Web Hosting (Next.js Deployment)
+
+Karena proyek ini menggunakan arsitektur **Next.js (App Router)**, Anda memiliki beberapa opsi web hosting yang fleksibel:
+
+### Opsi A: Menggunakan Layanan Serverless (Sangat Direkomendasikan 🚀)
+Sangat disarankan menggunakan platform cloud modern seperti **Vercel** atau **Netlify** karena integrasi penuh, performa tinggi, dan penanganan optimalisasi gambar otomatis bawaan Next.js:
+1. Hubungkan akun GitHub Anda ke [Vercel](https://vercel.com).
+2. Klik **Add New Project** lalu pilih repositori `SPMB26`.
+3. Vercel akan mendeteksi framework **Next.js** secara otomatis.
+4. Klik **Deploy** dan web Anda akan online dalam waktu kurang dari 1 menit!
+
+### Opsi B: Shared Hosting (cPanel Node.js Application Manager)
+Jika Anda menggunakan hosting cPanel tradisional yang mendukung aplikasi Node.js:
+1. Jalankan perintah `npm run build` secara lokal untuk memastikan tidak ada error.
+2. Unggah seluruh isi file proyek Anda (termasuk folder `.next`, `public`, `src`, `package.json`, dan `node_modules`) ke folder direktori cPanel Anda (bukan ke `public_html`).
+3. Masuk ke cPanel dan cari menu **Setup Node.js App**.
+4. Klik **Create Application** dan konfigurasikan:
+   * **Node.js version:** Pilih 18.x atau 20.x ke atas.
+   * **Application Mode:** Pilih `Production`.
+   * **Application root:** Isi dengan nama folder proyek Anda.
+   * **Application URL:** Arahkan ke domain/subdomain tujuan Anda.
+   * **Application startup file:** Isi dengan `node_modules/next/dist/bin/next` dengan parameter `start` atau gunakan script custom runner `server.js` jika diperlukan.
+5. Klik **Run JS Install** lalu klik **Start Application**.
+
+### Opsi C: Static Export (Untuk Hosting Statis / cPanel tanpa Node.js 📄)
+Jika hosting Anda **tidak memiliki fitur Node.js** dan hanya mendukung file HTML/CSS/JS statis biasa, Anda bisa mengubah konfigurasi Next.js menjadi Static Export:
+
+1. Buat file bernama `next.config.js` di direktori utama proyek Anda (jika belum ada), lalu tambahkan baris berikut:
+   ```javascript
+   /** @type {import('next').NextConfig} */
+   const nextConfig = {
+     output: 'export', // Mengaktifkan ekspor statis murni
+     images: {
+       unoptimized: true, // Menonaktifkan optimasi gambar dinamis server-side
+     },
+   };
+
+   module.exports = nextConfig;
+   ```
+2. Jalankan perintah kompilasi:
+   ```bash
+   npm run build
+   ```
+3. Hasil build statis akan tersimpan di dalam folder baru bernama **`/out`** (menggantikan folder `/dist` pada Vite).
+4. Blok seluruh isi di dalam folder `/out`, kompres menjadi file `.zip`.
+5. Unggah file `.zip` tersebut ke folder `public_html` di cPanel File Manager Anda, lalu ekstrak langsung di direktori utama tersebut.
+6. Web Anda sudah mengudara secara online menggunakan hosting statis biasa!
+
 ---
 
 ## 📁 Struktur Data Statis
