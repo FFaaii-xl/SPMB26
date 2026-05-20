@@ -35,7 +35,7 @@ export const metadata = {
   openGraph: {
     title: "SPMB 2026 SMKN 4 Surakarta — Web Infografis & Kalkulator NA",
     description: "Kalkulasi Nilai Akhir PPDB & Informasi Regulasi Resmi SPMB SMKN 4 Surakarta 2026/2027.",
-    url: "https://spmb26.vercel.app",
+    url: "https://spmb2026-swart.vercel.app",
     siteName: "SPMB SMKN 4 Surakarta 2026",
     locale: "id_ID",
     type: "website",

@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap link
-Sitemap: https://spmb26.vercel.app/sitemap.xml
+Sitemap: https://spmb2026-swart.vercel.app/sitemap.xml
