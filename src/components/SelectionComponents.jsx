@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { komponenSeleksi } from "../data/spmb";
 
@@ -62,9 +62,10 @@ const tidakBerjenjangData = {
 
 export default function SelectionComponents() {
   const [isLookupOpen, setIsLookupOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("kalkulator");
+  const [activeTab, setActiveTab] = useState("simulasi_na");
 
-  // State Calculator
+  // State Calculator Piagam
+  const [hasPiagam, setHasPiagam] = useState(false); // Default: Tanpa Piagam (0.0)
   const [jenis, setJenis] = useState("berjenjang");
   const [tingkat, setTingkat] = useState("nasional");
   const [juara, setJuara] = useState("juara1");
@@ -73,8 +74,9 @@ export default function SelectionComponents() {
   // State Simulasi Nilai Akhir (NA)
   const [nrVal, setNrVal] = useState(85.0);
   const [ntkaVal, setNtkaVal] = useState(80.0);
-  const [nkVal, setNkVal] = useState(0.0);
-  const [noVal, setNoVal] = useState(0.0);
+  const [nkVal, setNkVal] = useState("0");
+  const [noKey, setNoKey] = useState("none");
+  const noVal = noKey === "none" ? 0.0 : 0.75;
 
   // Fungsi hitung bobot nilai
   const getCalculatedWeight = () => {
@@ -87,13 +89,27 @@ export default function SelectionComponents() {
 
   const calculatedWeight = getCalculatedWeight();
 
-  // Fungsi menyalin bobot piagam ke kalkulator simulasi NA
+  // Sinkronisasi otomatis dari kriteria kalkulator piagam ke nkVal
+  useEffect(() => {
+    if (!hasPiagam) {
+      setNkVal("0");
+    } else {
+      const weight = getCalculatedWeight();
+      if (weight === "Langsung Diterima") {
+        setNkVal("999");
+      } else {
+        setNkVal(String(weight));
+      }
+    }
+  }, [hasPiagam, jenis, tingkat, juara, kurasi]);
+
+  // Fungsi menyalin bobot piagam ke kalkulator simulasi NA (dipertahankan untuk backward compatibility)
   const handleCopyWeight = () => {
     const weight = getCalculatedWeight();
     if (weight === "Langsung Diterima") {
-      setNkVal(999);
+      setNkVal("999");
     } else {
-      setNkVal(parseFloat(weight));
+      setNkVal(String(weight));
     }
     setActiveTab("simulasi_na");
   };
@@ -101,7 +117,7 @@ export default function SelectionComponents() {
   // Nilai Akhir (NA) math
   const nrScaled = 0.5 * parseFloat(nrVal);
   const ntkaScaled = 0.5 * parseFloat(ntkaVal);
-  const isDirectAccept = nkVal === 999;
+  const isDirectAccept = parseFloat(nkVal) === 999;
   const computedNA = isDirectAccept 
     ? "LANGSUNG DITERIMA" 
     : (nrScaled + ntkaScaled + parseFloat(nkVal) + parseFloat(noVal)).toFixed(2);
@@ -236,161 +252,22 @@ export default function SelectionComponents() {
 
               <div className="lookup-tabs">
                 <button
-                  className={`lookup-tab-btn ${activeTab === "kalkulator" ? "active" : ""}`}
-                  onClick={() => setActiveTab("kalkulator")}
-                >
-                  🏆 Bobot Piagam (NK)
-                </button>
-                <button
                   className={`lookup-tab-btn ${activeTab === "simulasi_na" ? "active" : ""}`}
                   onClick={() => setActiveTab("simulasi_na")}
+                  style={{ flex: 1 }}
                 >
-                  ⚖️ Simulasi Nilai Akhir (NA)
+                  ⚖️ Simulasi Nilai Akhir & Kalkulator Piagam Terpadu
                 </button>
                 <button
                   className={`lookup-tab-btn ${activeTab === "kejuaraan" ? "active" : ""}`}
                   onClick={() => setActiveTab("kejuaraan")}
+                  style={{ flex: 1 }}
                 >
-                  📚 Jenis Kejuaraan Resmi
+                  📚 Kriteria & Jenis Kejuaraan Resmi
                 </button>
               </div>
 
               <div className="lookup-body">
-                {activeTab === "kalkulator" && (
-                  <div className="calc-grid">
-                    {/* Left: Controls */}
-                    <div className="calc-controls">
-                      {/* 1. Kategori Prestasi */}
-                      <div className="calc-group">
-                        <span className="calc-label">Jenis Prestasi</span>
-                        <div className="calc-options-grid">
-                          <button
-                            className={`calc-option-btn ${jenis === "berjenjang" ? "active" : ""}`}
-                            onClick={() => setJenis("berjenjang")}
-                          >
-                            🏅 Berjenjang
-                          </button>
-                          <button
-                            className={`calc-option-btn ${jenis === "tidak_berjenjang" ? "active" : ""}`}
-                            onClick={() => setJenis("tidak_berjenjang")}
-                          >
-                            🏵️ Tidak Berjenjang
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* 2. Tingkat Event */}
-                      <div className="calc-group">
-                        <span className="calc-label">Tingkat Event</span>
-                        <div className="calc-options-grid">
-                          {["internasional", "nasional", "provinsi", "kab_kota"].map((t) => (
-                            <button
-                              key={t}
-                              className={`calc-option-btn ${tingkat === t ? "active" : ""}`}
-                              onClick={() => setTingkat(t)}
-                              style={{ textTransform: "capitalize" }}
-                            >
-                              {t === "kab_kota" ? "Kab/Kota" : t}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* 3. Peringkat / Juara */}
-                      <div className="calc-group">
-                        <span className="calc-label">Peringkat Juara</span>
-                        <div className="calc-options-grid">
-                          {["juara1", "juara2", "juara3"].map((j, idx) => (
-                            <button
-                              key={j}
-                              className={`calc-option-btn ${juara === j ? "active" : ""}`}
-                              onClick={() => setJuara(j)}
-                            >
-                              Juara {idx + 1}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* 4. Kurasi Curation Quality (Hanya jika Tidak Berjenjang) */}
-                      {jenis === "tidak_berjenjang" && (
-                        <div className="calc-group">
-                          <span className="calc-label">Tingkat Kurasi Piagam</span>
-                          <div className="calc-options-row">
-                            {[
-                              { id: "bintang5", text: "⭐5" },
-                              { id: "bintang4", text: "⭐4" },
-                              { id: "bintang3", text: "⭐3" },
-                              { id: "bintang2", text: "⭐2" },
-                              { id: "bintang1", text: "⭐1" },
-                              { id: "non_kurasi", text: "❌ Tanpa Kurasi" }
-                            ].map((k) => (
-                              <button
-                                key={k.id}
-                                className={`calc-option-btn ${kurasi === k.id ? "active-gold" : ""}`}
-                                onClick={() => setKurasi(k.id)}
-                                style={{ flex: "1 1 auto", minWidth: "60px", fontSize: "0.68rem" }}
-                              >
-                                {k.text}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Right: Results Box */}
-                    <div className="calc-result-box">
-                      <div className="calc-result-decor">🏆</div>
-                      <span className="result-title">Hasil Bobot Nilai Piagam</span>
-                      <div className="result-value-wrap">
-                        {calculatedWeight === "Langsung Diterima" ? (
-                          <div className="result-badge-direct"> Langsung Diterima! ✅</div>
-                        ) : (
-                          <span className="result-points">+{calculatedWeight} <span style={{ fontSize: "1.1rem" }}>Poin</span></span>
-                        )}
-                      </div>
-                      <p className="result-desc">
-                        {jenis === "berjenjang" 
-                          ? `Prestasi Berjenjang tingkat ${tingkat === "kab_kota" ? "Kab/Kota" : tingkat} Juara ${juara === "juara1" ? "1" : juara === "juara2" ? "2" : "3"} tidak memerlukan proses kurasi.`
-                          : `Prestasi Tidak Berjenjang tingkat ${tingkat === "kab_kota" ? "Kab/Kota" : tingkat} Juara ${juara === "juara1" ? "1" : juara === "juara2" ? "2" : "3"} dengan status ${kurasi === "non_kurasi" ? "Tanpa Kurasi" : "Kurasi " + kurasi.replace("bintang", "Bintang ")}.`
-                        }
-                      </p>
-                      
-                      {calculatedWeight !== "0.0" && (
-                        <button
-                          onClick={handleCopyWeight}
-                          style={{
-                            marginTop: "1.2vh",
-                            background: "rgba(168, 85, 247, 0.2)",
-                            border: "1px solid rgba(168, 85, 247, 0.4)",
-                            color: "var(--white)",
-                            fontSize: "0.62rem",
-                            fontWeight: 800,
-                            padding: "0.4rem 0.8rem",
-                            borderRadius: "20px",
-                            cursor: "pointer",
-                            transition: "all 0.2s ease"
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.background = "var(--brand-500)";
-                            e.currentTarget.style.borderColor = "var(--white)";
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.background = "rgba(168, 85, 247, 0.2)";
-                            e.currentTarget.style.borderColor = "rgba(168, 85, 247, 0.4)";
-                          }}
-                        >
-                          👉 Gunakan Nilai Ini untuk Simulasi Nilai Akhir (NA)
-                        </button>
-                      )}
-
-                      <div className="result-note" style={{ marginTop: "1.5vh" }}>
-                        💡 <strong>Catatan Regulasi:</strong> Piagam tidak berjenjang yang dikurasi memiliki bobot nilai lebih tinggi dibanding piagam tidak berjenjang yang tidak dikurasi.
-                      </div>
-                    </div>
-                  </div>
-                )}
 
                 {activeTab === "simulasi_na" && (
                   <div className="calc-grid">
@@ -438,59 +315,184 @@ export default function SelectionComponents() {
 
                       {/* 3. Nilai Piagam */}
                       <div className="calc-group">
-                        <span className="calc-label">Nilai Piagam Kejuaraan (NK)</span>
-                        <div style={{ display: "flex", gap: "0.4vw", marginTop: "0.3vh" }}>
-                          <select
-                            value={nkVal}
-                            onChange={(e) => setNkVal(parseFloat(e.target.value))}
-                            style={{
-                              flex: 1,
-                              background: "rgba(0,0,0,0.3)",
-                              border: "1.2px solid rgba(255,255,255,0.15)",
-                              color: "var(--white)",
-                              borderRadius: "8px",
-                              padding: "0.4rem 0.6rem",
-                              fontSize: "0.68rem",
-                              fontWeight: 700,
-                              outline: "none"
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "4px" }}>
+                          <span className="calc-label">Nilai Piagam Kejuaraan (NK)</span>
+                          {/* iOS-style toggle for piagam status */}
+                          <label style={{ display: "flex", alignItems: "center", gap: "6px", cursor: "pointer" }}>
+                            <span style={{ fontSize: "0.58rem", fontWeight: 800, color: hasPiagam ? "var(--brand-500)" : "rgba(255,255,255,0.4)" }}>
+                              {hasPiagam ? "🏆 Piagam Aktif" : "❌ Tanpa Piagam"}
+                            </span>
+                            <div 
+                              onClick={() => setHasPiagam(!hasPiagam)}
+                              style={{
+                                width: "36px",
+                                height: "20px",
+                                borderRadius: "10px",
+                                background: hasPiagam ? "var(--brand-500)" : "rgba(255,255,255,0.15)",
+                                position: "relative",
+                                transition: "all 0.3s ease",
+                                border: "1px solid rgba(255,255,255,0.1)"
+                              }}
+                            >
+                              <div 
+                                style={{
+                                  width: "14px",
+                                  height: "14px",
+                                  borderRadius: "50%",
+                                  background: "var(--white)",
+                                  position: "absolute",
+                                  top: "2px",
+                                  left: hasPiagam ? "18px" : "2px",
+                                  transition: "all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55)"
+                                }}
+                              />
+                            </div>
+                          </label>
+                        </div>
+
+                        {hasPiagam ? (
+                          // Mode Hitung Otomatis yang Terpadu & Indah!
+                          <div 
+                            style={{ 
+                              background: "rgba(255,255,255,0.03)", 
+                              border: "1px dashed rgba(168, 85, 247, 0.2)", 
+                              borderRadius: "10px", 
+                              padding: "0.8rem", 
+                              marginTop: "0.8vh",
+                              display: "flex",
+                              flexDirection: "column",
+                              gap: "8px"
                             }}
                           >
-                            <option value="0">Tanpa Piagam (0.0)</option>
-                            <option value="1.75">Juara 3 Kab/Kota Berjenjang (+1.75)</option>
-                            <option value="2.0">Juara 2 Kab/Kota Berjenjang (+2.0)</option>
-                            <option value="2.22">Juara 1 Kab/Kota Berjenjang (+2.22)</option>
-                            <option value="2.5">Juara 3 Provinsi Berjenjang (+2.5)</option>
-                            <option value="2.75">Juara 2 Provinsi Berjenjang (+2.75)</option>
-                            <option value="3.0">Juara 1 Provinsi Berjenjang (+3.0)</option>
-                            <option value="4.0">Juara 3 Nasional Berjenjang (+4.0)</option>
-                            <option value="5.0">Juara 2 Nasional Berjenjang (+5.0)</option>
-                            <option value="999">Juara 1 Nasional / Internasional (Direct / Langsung Diterima)</option>
-                          </select>
-                          
-                          <input
-                            type="number"
-                            min="0"
-                            max="10"
-                            step="0.01"
-                            value={isDirectAccept ? 0 : nkVal}
-                            disabled={isDirectAccept}
-                            onChange={(e) => setNkVal(parseFloat(e.target.value) || 0)}
+                            {/* A. Kategori */}
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                              <span style={{ fontSize: "0.62rem", color: "rgba(255,255,255,0.6)" }}>Kategori Kejuaraan</span>
+                              <div style={{ display: "flex", gap: "4px" }}>
+                                <button
+                                  type="button"
+                                  className={`calc-option-btn ${jenis === "berjenjang" ? "active" : ""}`}
+                                  onClick={() => setJenis("berjenjang")}
+                                  style={{ padding: "2px 8px", fontSize: "0.55rem" }}
+                                >
+                                  🏅 Berjenjang
+                                </button>
+                                <button
+                                  type="button"
+                                  className={`calc-option-btn ${jenis === "tidak_berjenjang" ? "active" : ""}`}
+                                  onClick={() => setJenis("tidak_berjenjang")}
+                                  style={{ padding: "2px 8px", fontSize: "0.55rem" }}
+                                >
+                                  🏵️ Tidak Berjenjang
+                                </button>
+                              </div>
+                            </div>
+
+                            {/* B. Tingkat Event */}
+                            <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
+                              <span style={{ fontSize: "0.62rem", color: "rgba(255,255,255,0.6)" }}>Tingkat Event</span>
+                              <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "4px" }}>
+                                {["kab_kota", "provinsi", "nasional", "internasional"].map((t) => (
+                                  <button
+                                    key={t}
+                                    type="button"
+                                    className={`calc-option-btn ${tingkat === t ? "active" : ""}`}
+                                    onClick={() => setTingkat(t)}
+                                    style={{ padding: "2px 0", fontSize: "0.55rem", textTransform: "capitalize" }}
+                                  >
+                                    {t === "kab_kota" ? "Kab/Kota" : t}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* C. Peringkat Juara */}
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                              <span style={{ fontSize: "0.62rem", color: "rgba(255,255,255,0.6)" }}>Peringkat Juara</span>
+                              <div style={{ display: "flex", gap: "4px" }}>
+                                {["juara1", "juara2", "juara3"].map((j, idx) => (
+                                  <button
+                                    key={j}
+                                    type="button"
+                                    className={`calc-option-btn ${juara === j ? "active" : ""}`}
+                                    onClick={() => setJuara(j)}
+                                    style={{ padding: "2px 8px", fontSize: "0.55rem" }}
+                                  >
+                                    Juara {idx + 1}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* D. Kurasi (jika tidak berjenjang) */}
+                            {jenis === "tidak_berjenjang" && (
+                              <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
+                                <span style={{ fontSize: "0.62rem", color: "rgba(255,255,255,0.6)" }}>Tingkat Kurasi Piagam</span>
+                                <select
+                                  value={kurasi}
+                                  onChange={(e) => setKurasi(e.target.value)}
+                                  style={{
+                                    background: "rgba(0,0,0,0.3)",
+                                    border: "1.2px solid rgba(255,255,255,0.15)",
+                                    color: "var(--white)",
+                                    borderRadius: "6px",
+                                    padding: "0.2rem 0.4rem",
+                                    fontSize: "0.62rem",
+                                    fontWeight: 700,
+                                    outline: "none"
+                                  }}
+                                >
+                                  <option value="bintang5">⭐ 5 - Sangat Direkomendasikan</option>
+                                  <option value="bintang4">⭐ 4 - Direkomendasikan Tinggi</option>
+                                  <option value="bintang3">⭐ 3 - Direkomendasikan</option>
+                                  <option value="bintang2">⭐ 2 - Cukup Direkomendasikan</option>
+                                  <option value="bintang1">⭐ 1 - Kurang Direkomendasikan</option>
+                                  <option value="non_kurasi">❌ Tanpa Kurasi (Bobot Dasar)</option>
+                                </select>
+                              </div>
+                            )}
+
+                            {/* Info Bobot Terhitung */}
+                            <div 
+                              style={{ 
+                                display: "flex", 
+                                justifyContent: "space-between", 
+                                alignItems: "center",
+                                background: "rgba(168, 85, 247, 0.1)",
+                                border: "1px solid rgba(168, 85, 247, 0.2)",
+                                borderRadius: "6px",
+                                padding: "6px 10px",
+                                marginTop: "2px"
+                              }}
+                            >
+                              <span style={{ fontSize: "0.58rem", fontWeight: 700, color: "rgba(255,255,255,0.8)" }}>
+                                Hasil Bobot Piagam:
+                              </span>
+                              <span style={{ fontSize: "0.68rem", fontWeight: 900, color: "var(--accent-gold)" }}>
+                                {isDirectAccept ? "Langsung Diterima! ✅" : `+${parseFloat(nkVal).toFixed(2)} Poin`}
+                              </span>
+                            </div>
+                          </div>
+                        ) : (
+                          // Jika tidak memiliki piagam, tampilkan info sederhana yang indah
+                          <div 
                             style={{
-                              width: "70px",
-                              background: "rgba(0,0,0,0.3)",
-                              border: "1.2px solid rgba(255,255,255,0.15)",
-                              color: "var(--white)",
-                              borderRadius: "8px",
-                              padding: "0.4rem 0.6rem",
-                              fontSize: "0.68rem",
-                              fontWeight: 700,
-                              textAlign: "center",
-                              outline: "none"
+                              background: "rgba(255,255,255,0.01)",
+                              border: "1px dashed rgba(255,255,255,0.05)",
+                              borderRadius: "10px",
+                              padding: "0.6rem 0.8rem",
+                              marginTop: "0.8vh",
+                              display: "flex",
+                              justifyContent: "space-between",
+                              alignItems: "center"
                             }}
-                          />
-                        </div>
-                        <span style={{ fontSize: "0.58rem", color: "rgba(255,255,255,0.5)" }}>
-                          Gunakan dropdown preset atau ketik manual nilai piagam Anda.
+                          >
+                            <span style={{ fontSize: "0.62rem", color: "rgba(255,255,255,0.4)" }}>Nilai Piagam Kejuaraan (NK):</span>
+                            <span style={{ fontSize: "0.68rem", fontWeight: 800, color: "rgba(255,255,255,0.6)" }}>0.0 Poin (Tidak Ada)</span>
+                          </div>
+                        )}
+                        
+                        <span style={{ fontSize: "0.58rem", color: "rgba(255,255,255,0.5)", marginTop: "4px", display: "block" }}>
+                          Bobot nilai dihitung secara otomatis dan akurat berdasarkan kriteria piagam kejuaraan resmi Anda.
                         </span>
                       </div>
 
@@ -498,8 +500,8 @@ export default function SelectionComponents() {
                       <div className="calc-group">
                         <span className="calc-label">Nilai Kepengurusan Organisasi (NO)</span>
                         <select
-                          value={noVal}
-                          onChange={(e) => setNoVal(parseFloat(e.target.value))}
+                          value={noKey}
+                          onChange={(e) => setNoKey(e.target.value)}
                           style={{
                             background: "rgba(0,0,0,0.3)",
                             border: "1.2px solid rgba(255,255,255,0.15)",
@@ -512,11 +514,10 @@ export default function SelectionComponents() {
                             marginTop: "0.3vh"
                           }}
                         >
-                          <option value="0">Bukan Pengurus / Tidak Ada (0.0)</option>
-                          <option value="1.0">Ketua OSIS tingkat Sekolah (+1.0)</option>
-                          <option value="0.75">Ketua Pramuka Garuda Penggalang (+0.75)</option>
-                          <option value="0.5">Ketua Organisasi Kelas / Ekstrakurikuler (+0.5)</option>
-                          <option value="0.25">Ketua Organisasi Luar Sekolah (+0.25)</option>
+                          <option value="none">Bukan Pengurus / Tidak Ada (0.0)</option>
+                          <option value="osis">Ketua OSIS tingkat Sekolah (+0.75)</option>
+                          <option value="pramuka">Ketua Pramuka Garuda Penggalang (+0.75)</option>
+                          <option value="kelas_ekskul">Ketua Organisasi Kelas / Ekstrakurikuler (+0.75)</option>
                         </select>
                         <span style={{ fontSize: "0.58rem", color: "rgba(255,255,255,0.5)" }}>
                           Bobot tambahan kepengurusan ketua organisasi resmi yang diakui satuan pendidikan.
@@ -579,11 +580,11 @@ export default function SelectionComponents() {
                               }}
                             />
                             {/* Piagam portion */}
-                            {nkVal > 0 && (
+                            {parseFloat(nkVal) > 0 && (
                               <div 
-                                title={`Piagam Kejuaraan (NK): ${nkVal} Poin`}
+                                title={`Piagam Kejuaraan (NK): ${parseFloat(nkVal)} Poin`}
                                 style={{
-                                  width: `${(nkVal / parseFloat(computedNA)) * 100}%`,
+                                  width: `${(parseFloat(nkVal) / parseFloat(computedNA)) * 100}%`,
                                   background: "var(--accent-gold)",
                                   transition: "width 0.3s ease"
                                 }}
@@ -612,10 +613,10 @@ export default function SelectionComponents() {
                               <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#3B82F6" }} />
                               <span>50% TKA ({ntkaScaled.toFixed(2)})</span>
                             </div>
-                            {nkVal > 0 && (
+                            {parseFloat(nkVal) > 0 && (
                               <div style={{ display: "flex", alignItems: "center", gap: "3px", fontSize: "0.55rem" }}>
                                 <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "var(--accent-gold)" }} />
-                                <span>Piagam (+{nkVal.toFixed(2)})</span>
+                                <span>Piagam (+{parseFloat(nkVal).toFixed(2)})</span>
                               </div>
                             )}
                             {noVal > 0 && (
@@ -630,7 +631,7 @@ export default function SelectionComponents() {
 
                       <div className="result-note" style={{ fontSize: "0.58rem", padding: "0.5vh 0.6vw", width: "100%", margin: "0.8vh 0 0 0" }}>
                         ⚖️ <strong>Metode Rumus Resmi:</strong><br />
-                        <code>NA = (50% × {nrVal}) + (50% × {ntkaVal}) {nkVal > 0 ? `+ ${nkVal}` : ""} {noVal > 0 ? `+ ${noVal}` : ""} = {computedNA} Poin</code>
+                        <code>NA = (50% × {nrVal}) + (50% × {ntkaVal}) {parseFloat(nkVal) > 0 ? `+ ${parseFloat(nkVal)}` : ""} {noVal > 0 ? `+ ${noVal}` : ""} = {computedNA} Poin</code>
                       </div>
                       
                       <div style={{ fontSize: "0.52rem", color: "rgba(255,255,255,0.45)", lineHeight: "1.3", marginTop: "4px" }}>

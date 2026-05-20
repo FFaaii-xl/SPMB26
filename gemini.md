@@ -57,6 +57,11 @@
 - [x] Optimisasi Performa: Pemisahan kode dinamis (Dynamic Import) pada page.jsx dan Loading UI Kustom untuk mencegah masalah hidrasi
 - [x] Integrasi Fitur: Pemasangan Vercel Analytics & Vercel Speed Insights (`@vercel/analytics/next` & `@vercel/speed-insights/next`) ke dalam RootLayout untuk pelacakan trafik pengunjung & diagnostik metrik Core Web Vitals
 - [x] Perbaikan UI & UX: Pemolesan Komponen Visual Interaktif (Penambahan *Glassmorphism Blur 16px-20px* pada *Modal Overlays*, Transisi *Hover Elevate* pada Kartu Utama, dan *Colored Box-Shadows* berkedalaman tinggi)
+- [x] Integrasi Fitur: Visualisasi Keterangan Total Kuota Seluruh Jurusan (468 Siswa) di Header Program Keahlian
+- [x] Refactor UI & Simulasi NA: Penyesuaian poin kepengurusan organisasi menjadi rata (+0.75) untuk seluruh ketua, serta penghapusan opsi organisasi luar sekolah dengan integrasi State berbasis key string.
+- [x] Integrasi Fitur: Tab Baru "Regulasi & Juknis" untuk mengintegrasikan data teks dari slide lokal (Slide 2, 3, 15, 16, 17, 18, 19) berisi 6 Prinsip SPMB, Dasar Hukum Lengkap, Aturan Daftar Ulang/Cadangan, Larangan Penjualan Seragam, serta Lembaga Pendukung secara terstruktur dan interaktif.
+- [x] Fitur Premium: Penggabungan Kalkulator Kriteria Piagam Resmi (NK) ke dalam Simulasi Nilai Akhir (NA) secara terpadu.
+- [x] Refactor UI & UX: Penerapan Sistem iOS-Style Toggle Switch Cerdas untuk mengaktifkan/menonaktifkan Piagam Kejuaraan secara 100% otomatis tanpa input manual yang membingungkan.
 
 
 

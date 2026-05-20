@@ -69,9 +69,28 @@ export default function SchoolInfo({ activeSlide }) {
         className={`grid-col-center ${activeSlide === 1 ? "slide-active" : "slide-inactive"}`}
         variants={itemVariants}
       >
-        <div className="section-header">
+        <div className="section-header" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           <span className="section-pill">Program Keahlian</span>
           <h2 className="section-title">4 Jurusan Utama</h2>
+          <div style={{ 
+            display: "inline-flex", 
+            alignItems: "center", 
+            gap: "0.3rem",
+            background: "rgba(255, 255, 255, 0.08)",
+            border: "1px solid rgba(255, 255, 255, 0.15)",
+            padding: "0.2rem 0.6rem",
+            borderRadius: "12px",
+            fontSize: "0.68rem",
+            fontWeight: 800,
+            marginTop: "0.5vh",
+            color: "var(--white)",
+            width: "fit-content"
+          }}>
+            <span>📊 Total Kuota Seluruh Jurusan:</span>
+            <strong style={{ color: "var(--accent-gold)" }}>
+              {programKeahlian.reduce((acc, curr) => acc + curr.total, 0)} Siswa
+            </strong>
+          </div>
         </div>
 
         <div className="jurusan-list">

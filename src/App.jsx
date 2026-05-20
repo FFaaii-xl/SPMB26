@@ -10,6 +10,7 @@ import WarningBanner from "./components/WarningBanner";
 import Footer from "./components/Footer";
 import SchoolInfo from "./components/SchoolInfo";
 import ScheduleView from "./components/ScheduleView";
+import RegulasiJuknis from "./components/RegulasiJuknis";
 
 export default function App() {
   const [activeView, setActiveView] = useState("sekolah"); // "sekolah" or "spmb"
@@ -25,7 +26,14 @@ export default function App() {
 
     const interval = setInterval(() => {
       setActiveView((currentView) => {
-        const nextView = currentView === "sekolah" ? "spmb" : currentView === "spmb" ? "jadwal" : "sekolah";
+        const nextView = 
+          currentView === "sekolah" 
+            ? "spmb" 
+            : currentView === "spmb" 
+            ? "jadwal" 
+            : currentView === "jadwal"
+            ? "regulasi"
+            : "sekolah";
         setActiveSlide(0); // Reset inner slide on view rotation
         return nextView;
       });
@@ -69,6 +77,12 @@ export default function App() {
             >
               📅 Jadwal SPMB 2026
             </button>
+            <button
+              onClick={() => handleViewChange("regulasi")}
+              className={`tab-btn ${activeView === "regulasi" ? "active" : ""}`}
+            >
+              📜 Regulasi & Juknis
+            </button>
             
             <button
               onClick={() => setIsSettingsOpen(true)}
@@ -108,34 +122,40 @@ export default function App() {
           {activeView === "jadwal" && (
             <ScheduleView activeSlide={activeSlide} />
           )}
+
+          {activeView === "regulasi" && (
+            <RegulasiJuknis />
+          )}
         </div>
 
         {/* SLIDE NAVIGATION (Only visible on Portrait/Mobile) */}
-        <div className="slide-navigation">
-          <button 
-            onClick={() => setActiveSlide(prev => Math.max(0, prev - 1))} 
-            disabled={activeSlide === 0} 
-            className="slide-nav-btn prev"
-          >
-            ‹
-          </button>
-          <div className="slide-nav-dots">
-            {[0, 1, 2].map((idx) => (
-              <span 
-                key={idx} 
-                className={`slide-nav-dot ${activeSlide === idx ? "active" : ""}`}
-                onClick={() => setActiveSlide(idx)}
-              />
-            ))}
+        {activeView !== "regulasi" && (
+          <div className="slide-navigation">
+            <button 
+              onClick={() => setActiveSlide(prev => Math.max(0, prev - 1))} 
+              disabled={activeSlide === 0} 
+              className="slide-nav-btn prev"
+            >
+              ‹
+            </button>
+            <div className="slide-nav-dots">
+              {[0, 1, 2].map((idx) => (
+                <span 
+                  key={idx} 
+                  className={`slide-nav-dot ${activeSlide === idx ? "active" : ""}`}
+                  onClick={() => setActiveSlide(idx)}
+                />
+              ))}
+            </div>
+            <button 
+              onClick={() => setActiveSlide(prev => Math.min(2, prev + 1))} 
+              disabled={activeSlide === 2} 
+              className="slide-nav-btn next"
+            >
+              ›
+            </button>
           </div>
-          <button 
-            onClick={() => setActiveSlide(prev => Math.min(2, prev + 1))} 
-            disabled={activeSlide === 2} 
-            className="slide-nav-btn next"
-          >
-            ›
-          </button>
-        </div>
+        )}
 
         {/* FOOTER SECTION */}
         <div className="grid-footer">
