@@ -5,117 +5,307 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timeline SPMB 2026</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff; /* Background putih bersih */
-            display: flex;
-            justify-content: center;
-            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 10px;
             color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
         }
-        .timeline-container {
-            width: 100%;
-            max-width: 500px;
-            border-left: 4px solid #6b21a8; /* Garis vertikal ungu */
-            padding-left: 20px;
-            margin-left: 20px;
+
+        .header {
+            text-align: center;
+            margin-bottom: 10px;
         }
-        .timeline-item {
+
+        .header h1 {
+            margin: 0 0 2px;
+            font-size: 22px;
+            color: #111;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            margin: 0;
+            font-size: 12px;
+            color: #444;
+        }
+
+        .timeline {
             position: relative;
-            margin-bottom: 25px;
+            max-width: 700px; 
+            margin: 0 auto;
+            width: 100%;
         }
-        .timeline-item::before {
+
+        /* Garis vertikal di tengah */
+        .timeline::after {
             content: '';
             position: absolute;
-            left: -30px;
-            top: 5px;
-            width: 16px;
-            height: 16px;
-            background-color: #ffffff;
-            border: 4px solid #6b21a8;
-            border-radius: 50%;
+            width: 2px;
+            background-color: #cbd5e1;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
         }
-        .date {
-            font-size: 0.9em;
-            font-weight: bold;
-            color: #6b21a8;
-            margin-bottom: 5px;
+
+        .container {
+            position: relative;
+            width: 50%;
+            margin-bottom: 0;
+            padding: 0 50px; 
+        }
+
+        /* Margin minus yang AMAN agar tidak nabrak */
+        .container:not(:first-child) {
+            margin-top: -25px; 
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        /* Titik koordinat pada garis */
+        .container::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background-color: white;
+            border: 4px solid #8e8e8e;
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+        }
+
+        .container.left::after {
+            right: -7px;
+        }
+
+        .container.right::after {
+            left: -7px;
+        }
+
+        /* Warna khusus untuk border titik */
+        .dot-orange::after { border-color: #f59e0b; }
+        .dot-blue::after { border-color: #3b82f6; }
+        .dot-purple::after { border-color: #8b5cf6; }
+        .dot-pink::after { border-color: #ec4899; }
+
+        /* Garis penghubung horizontal */
+        .container::before {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 50px; 
+            background-color: #cbd5e1;
+            top: 26px;
+            z-index: 0;
+        }
+
+        .container.left::before {
+            right: 0;
+        }
+
+        .container.right::before {
+            left: 0;
+        }
+
+        /* Padding dalam kotak diperkecil agar kotak lebih pipih */
+        .content {
+            padding: 16px 12px 10px 12px;
+            background-color: white;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Label Tanggal */
+        .date-badge {
+            background-color: #6b21a8;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 8px 0 8px 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 10.5px;
+            font-weight: 600;
+        }
+
+        /* Header Kartu (Ikon & Judul) */
+        .card-header {
             display: flex;
             align-items: center;
-            gap: 8px;
+            margin-bottom: 3px;
+            margin-top: 2px;
         }
-        .title {
-            font-size: 1.1em;
-            font-weight: bold;
-            margin-bottom: 5px;
+
+        .card-icon {
+            font-size: 20px;
+            margin-right: 8px;
+            line-height: 1;
         }
-        .desc {
-            font-size: 0.9em;
+
+        .card-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.1;
+        }
+
+        /* Deskripsi Kartu */
+        .card-desc {
+            font-size: 11px;
             color: #555;
-            line-height: 1.4;
+            margin: 0;
+            line-height: 1.3;
         }
-        .badge {
-            background-color: #f59e0b;
-            color: white;
-            font-size: 0.7em;
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-left: 10px;
+
+        /* Responsif untuk Layar HP */
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 18px;
+            }
+            .container {
+                width: 100%;
+                margin-bottom: 8px; 
+                padding: 0 10px 0 45px; 
+            }
+            /* Matikan margin bertumpuk di HP */
+            .container:not(:first-child) {
+                margin-top: 0;
+            }
+            .container.right {
+                left: 0;
+            }
+            .container.left::after, .container.right::after {
+                left: 11px;
+                right: auto;
+            }
+            .container.left::before, .container.right::before {
+                left: 18px;
+                right: auto;
+                width: 27px; 
+            }
+            body {
+                display: block; 
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="timeline-container">
-        <h2 style="text-align: left; color: #6b21a8; margin-top: 0;">Garis Waktu Resmi SPMB</h2>
-        
-        <div class="timeline-item">
-            <div class="date">📢 18 Mei 2026 <span class="badge">AKTIF</span></div>
-            <div class="title">Pengumuman SPMB 2026</div>
-            <div class="desc">Informasi resmi kuota & syarat di website dan mading sekolah.</div>
+    <div class="header">
+        <h1>TIMELINE SPMB 2026</h1>
+        <p>Garis Waktu Resmi SPMB SMK Negeri</p>
+    </div>
+
+    <div class="timeline">
+
+        <div class="container left dot-orange">
+            <div class="content">
+                <div class="date-badge">18 Mei 2026</div>
+                <div class="card-header">
+                    <div class="card-icon">📢</div>
+                    <div class="card-title">Pengumuman SPMB 2026</div>
+                </div>
+                <div class="card-desc">Informasi resmi kuota & syarat di website dan mading sekolah.</div>
+            </div>
         </div>
 
-        <div class="timeline-item">
-            <div class="date">💻 03 - 12 Juni 2026</div>
-            <div class="title">Pengajuan Akun</div>
-            <div class="desc">Calon murid baru mengajukan akun pendaftaran daring di spmb.jatengprov.go.id.</div>
+        <div class="container right dot-blue">
+            <div class="content">
+                <div class="date-badge">03 - 12 Juni 2026</div>
+                <div class="card-header">
+                    <div class="card-icon">💻</div>
+                    <div class="card-title">Pengajuan Akun</div>
+                </div>
+                <div class="card-desc">Calon murid baru mengajukan akun pendaftaran daring di spmb.jatengprov.go.id.</div>
+            </div>
         </div>
 
-        <div class="timeline-item">
-            <div class="date">🛡️ 04 - 13 Juni 2026</div>
-            <div class="title">Verifikasi Dokumen & Aktivasi</div>
-            <div class="desc">Verifikasi berkas fisik & aktivasi akun mandiri daring di spmb.jatengprov.go.id.</div>
+        <div class="container left dot-purple">
+            <div class="content">
+                <div class="date-badge">04 - 13 Juni 2026</div>
+                <div class="card-header">
+                    <div class="card-icon">🛡️</div>
+                    <div class="card-title">Verifikasi Dokumen & Aktivasi</div>
+                </div>
+                <div class="card-desc">Verifikasi berkas fisik & aktivasi akun mandiri daring di spmb.jatengprov.go.id.</div>
+            </div>
         </div>
 
-        <div class="timeline-item">
-            <div class="date">📝 15 - 18 Juni 2026</div>
-            <div class="title">Pendaftaran & Pilihan</div>
-            <div class="desc">Pemilihan jurusan daring di spmb.jatengprov.go.id & perubahan pilihan jika ada.</div>
+        <div class="container right dot-orange">
+            <div class="content">
+                <div class="date-badge">15 - 18 Juni 2026</div>
+                <div class="card-header">
+                    <div class="card-icon">📝</div>
+                    <div class="card-title">Pendaftaran & Pilihan</div>
+                </div>
+                <div class="card-desc">Pemilihan jurusan daring di spmb.jatengprov.go.id & perubahan pilihan jika ada.</div>
+            </div>
         </div>
 
-        <div class="timeline-item">
-            <div class="date">🏆 21 Juni 2026</div>
-            <div class="title">Pengumuman Kelulusan</div>
-            <div class="desc">Pengumuman resmi di website spmb.jatengprov.go.id, medsos, & mading sekolah.</div>
+        <div class="container left dot-purple">
+            <div class="content">
+                <div class="date-badge">21 Juni 2026</div>
+                <div class="card-header">
+                    <div class="card-icon">🏆</div>
+                    <div class="card-title">Pengumuman Kelulusan</div>
+                </div>
+                <div class="card-desc">Pengumuman resmi di website spmb.jatengprov.go.id, medsos, & mading sekolah.</div>
+            </div>
         </div>
 
-        <div class="timeline-item">
-            <div class="date">✍️ 22 - 25 Juni 2026</div>
-            <div class="title">Daftar Ulang (Utama)</div>
-            <div class="desc">Melakukan registrasi ulang luring/fisik di sekolah bagi yang diterima utama.</div>
+        <div class="container right dot-pink">
+            <div class="content">
+                <div class="date-badge">22 - 25 Juni 2026</div>
+                <div class="card-header">
+                    <div class="card-icon">✍️</div>
+                    <div class="card-title">Daftar Ulang (Utama)</div>
+                </div>
+                <div class="card-desc">Melakukan registrasi ulang luring/fisik di sekolah bagi yang diterima utama.</div>
+            </div>
         </div>
 
-        <div class="timeline-item">
-            <div class="date">🔄 26 Juni 2026</div>
-            <div class="title">Pengumuman Cadangan</div>
-            <div class="desc">Pengisian daya tampung kosong berdasarkan peringkat cadangan yang tidak daftar ulang.</div>
+        <div class="container left dot-blue">
+            <div class="content">
+                <div class="date-badge">26 Juni 2026</div>
+                <div class="card-header">
+                    <div class="card-icon">🔄</div>
+                    <div class="card-title">Pengumuman Cadangan</div>
+                </div>
+                <div class="card-desc">Pengisian daya tampung kosong berdasarkan peringkat cadangan yang tidak daftar ulang.</div>
+            </div>
         </div>
 
-        <div class="timeline-item">
-            <div class="date">🎓 13 Juli 2026</div>
-            <div class="title">Awal Tahun Ajaran Baru</div>
-            <div class="desc">Hari pertama masuk sekolah dan dimulainya kegiatan pembelajaran (MPLS).</div>
+        <div class="container right dot-blue">
+            <div class="content">
+                <div class="date-badge">13 Juli 2026</div>
+                <div class="card-header">
+                    <div class="card-icon">🎓</div>
+                    <div class="card-title">Awal Tahun Ajaran Baru</div>
+                </div>
+                <div class="card-desc">Hari pertama masuk sekolah dan dimulainya kegiatan pembelajaran (MPLS).</div>
+            </div>
         </div>
+
     </div>
 
 </body>

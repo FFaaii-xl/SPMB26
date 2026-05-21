@@ -46,68 +46,68 @@ export default function ScheduleView({ activeSlide }) {
 
   // Official detailed 9 steps from Disdik Jateng Infographic
   const official9Steps = [
-    { 
-      step: "01", 
-      tipe: "luring", 
-      judul: "Persiapan Berkas", 
-      desc: "Calon Murid menyiapkan berkas persyaratan pendaftaran fisik asli sesuai ketentuan jalur yang akan diikuti.", 
-      icon: "📁" 
+    {
+      step: "01",
+      tipe: "luring",
+      judul: "Persiapan Berkas",
+      desc: "Calon Murid menyiapkan berkas persyaratan pendaftaran fisik asli sesuai ketentuan jalur yang akan diikuti.",
+      icon: "📁"
     },
-    { 
-      step: "02", 
-      tipe: "daring", 
-      judul: "Akses Situs Resmi", 
-      desc: "Membuka situs portal resmi SPMB Daring Jawa Tengah dengan alamat https://ppdb.jatengprov.go.id.", 
-      icon: "🌐" 
+    {
+      step: "02",
+      tipe: "daring",
+      judul: "Akses Situs Resmi",
+      desc: "Membuka situs portal resmi SPMB Daring Jawa Tengah dengan alamat https://ppdb.jatengprov.go.id.",
+      icon: "🌐"
     },
-    { 
-      step: "03", 
-      tipe: "daring", 
-      judul: "Input Data Pribadi", 
-      desc: "Calon murid menginput data pribadi serta nilai rapor secara mandiri sesuai alur dalam sistem aplikasi SPMB.", 
-      icon: "✍️" 
+    {
+      step: "03",
+      tipe: "daring",
+      judul: "Input Data Pribadi",
+      desc: "Calon murid menginput data pribadi serta nilai rapor secara mandiri sesuai alur dalam sistem aplikasi SPMB.",
+      icon: "✍️"
     },
-    { 
-      step: "04", 
-      tipe: "daring", 
-      judul: "Unggah Dokumen", 
-      desc: "Calon murid mengunggah (upload) semua scan dokumen persyaratan ke sistem dan akan mendapatkan bukti ajuan akun.", 
-      icon: "📤" 
+    {
+      step: "04",
+      tipe: "daring",
+      judul: "Unggah Dokumen",
+      desc: "Calon murid mengunggah (upload) semua scan dokumen persyaratan ke sistem dan akan mendapatkan bukti ajuan akun.",
+      icon: "📤"
     },
-    { 
-      step: "05", 
-      tipe: "luring", 
-      judul: "Pengajuan Verifikasi", 
-      desc: "Mengajukan verifikasi secara luring ke SMA/SMK Negeri terdekat membawa berkas fisik asli & fotokopi berkas.", 
-      icon: "🏢" 
+    {
+      step: "05",
+      tipe: "luring",
+      judul: "Pengajuan Verifikasi",
+      desc: "Mengajukan verifikasi secara luring ke SMA/SMK Negeri terdekat membawa berkas fisik asli & fotokopi berkas.",
+      icon: "🏢"
     },
-    { 
-      step: "06", 
-      tipe: "luring", 
-      judul: "Verifikasi & Dapat Token", 
-      desc: "Sekolah memverifikasi berkas fisik. Jika semua berkas sesuai ketentuan, calon murid diberikan Token untuk aktivasi akun.", 
-      icon: "🔑" 
+    {
+      step: "06",
+      tipe: "luring",
+      judul: "Verifikasi & Dapat Token",
+      desc: "Sekolah memverifikasi berkas fisik. Jika semua berkas sesuai ketentuan, calon murid diberikan Token untuk aktivasi akun.",
+      icon: "🔑"
     },
-    { 
-      step: "07", 
-      tipe: "luring", 
-      judul: "Kesempatan Perbaikan", 
-      desc: "Apabila berkas belum lengkap, calon murid diberi kesempatan memenuhinya sebelum nantinya diserahkan token aktivasi.", 
-      icon: "🔄" 
+    {
+      step: "07",
+      tipe: "luring",
+      judul: "Kesempatan Perbaikan",
+      desc: "Apabila berkas belum lengkap, calon murid diberi kesempatan memenuhinya sebelum nantinya diserahkan token aktivasi.",
+      icon: "🔄"
     },
-    { 
-      step: "08", 
-      tipe: "daring", 
-      judul: "Aktivasi Akun & Pilih Jurusan", 
-      desc: "Melakukan aktivasi akun dengan token yang didapat, lalu memilih satuan pendidikan / kompetensi keahlian sesuai jadwal.", 
-      icon: "🎓" 
+    {
+      step: "08",
+      tipe: "daring",
+      judul: "Aktivasi Akun & Pilih Jurusan",
+      desc: "Melakukan aktivasi akun dengan token yang didapat, lalu memilih satuan pendidikan / kompetensi keahlian sesuai jadwal.",
+      icon: "🎓"
     },
-    { 
-      step: "09", 
-      tipe: "daring", 
-      judul: "Pantau Jurnal Harian", 
-      desc: "Calon murid dapat memantau pergerakan peringkat dan jurnal pendaftaran harian pada sistem aplikasi SPMB Jateng.", 
-      icon: "📊" 
+    {
+      step: "09",
+      tipe: "daring",
+      judul: "Pantau Jurnal Harian",
+      desc: "Calon murid dapat memantau pergerakan peringkat dan jurnal pendaftaran harian pada sistem aplikasi SPMB Jateng.",
+      icon: "📊"
     }
   ];
 
@@ -129,11 +129,11 @@ export default function ScheduleView({ activeSlide }) {
             <span className="section-pill">Persiapan</span>
             <h3 className="section-title">Dokumen & Berkas Yang Dibawa</h3>
           </div>
-          
+
           <div className="berkas-grid-compact">
             {berkasWajib.map((berkas, i) => (
-              <motion.div 
-                key={i} 
+              <motion.div
+                key={i}
                 className="berkas-card-compact"
                 whileHover={{ x: 3 }}
               >
@@ -156,14 +156,6 @@ export default function ScheduleView({ activeSlide }) {
               <span className="note-bullet">📂</span>
               <p className="note-text"><strong>Pengumpulan dokumen</strong> hanya dilakukan saat daftar ulang (informasi detail menyusul).</p>
             </div>
-            <div className="berkas-note-item">
-              <span className="note-bullet">🏆</span>
-              <p className="note-text"><strong>Sertifikat Ketua:</strong> Wajib Piagam Kurasi Puspresnas.</p>
-            </div>
-            <div className="berkas-note-item">
-              <span className="note-bullet">🎖️</span>
-              <p className="note-text"><strong>Sertifikat Kejuaraan:</strong> Tidak wajib kurasi Puspresnas, tapi yang ada kurasinya akan punya nilai lebih tinggi.</p>
-            </div>
           </div>
         </div>
 
@@ -176,14 +168,14 @@ export default function ScheduleView({ activeSlide }) {
 
           <div className="alur-grid-compact" style={{ gap: "0.5vh 0.4vw" }}>
             {alurPendaftaran.map((alur, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className={`alur-card-compact seq-step-${alur.tipe}`}
                 title={alur.ket}
                 style={{ position: "relative", padding: "0.5vh 0.5vw" }}
               >
                 {/* Step badge */}
-                <span 
+                <span
                   className="alur-badge-compact"
                   style={{
                     background: alur.tipe === "daring" ? "var(--brand-600)" : "var(--accent-gold)",
@@ -196,20 +188,20 @@ export default function ScheduleView({ activeSlide }) {
                 <div className="alur-text-compact" style={{ width: "100%", justifyContent: "space-between" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "0.3vw", minWidth: 0 }}>
                     <span className="alur-icon-compact">{alur.icon}</span>
-                    <span 
+                    <span
                       className="alur-title-compact"
-                      style={{ 
-                        whiteSpace: "nowrap", 
-                        overflow: "hidden", 
-                        textOverflow: "ellipsis" 
+                      style={{
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis"
                       }}
                     >
                       {alur.judul}
                     </span>
                   </div>
-                  
+
                   {/* Daring/Luring Badge */}
-                  <span 
+                  <span
                     style={{
                       fontSize: "0.6rem",
                       fontWeight: 900,
@@ -229,10 +221,10 @@ export default function ScheduleView({ activeSlide }) {
             ))}
           </div>
 
-          <div 
-            className="kiosk-note-compact" 
-            style={{ 
-              fontSize: "0.72rem", 
+          <div
+            className="kiosk-note-compact"
+            style={{
+              fontSize: "0.72rem",
               padding: "0.8vh 0.8vw",
               lineHeight: 1.35,
               marginTop: "0.3vh",
@@ -243,7 +235,7 @@ export default function ScheduleView({ activeSlide }) {
           </div>
 
           {/* Button to open Official Detailed 9 Steps Modal */}
-          <button 
+          <button
             className="detail-tata-cara-btn"
             onClick={() => setIsDetailModalOpen(true)}
             style={{
@@ -303,7 +295,7 @@ export default function ScheduleView({ activeSlide }) {
                   </div>
 
                   {/* Step Content Card */}
-                  <div 
+                  <div
                     className="timeline-h-card"
                     onClick={() => setSelectedTimelineItem(item)}
                     style={{ cursor: "pointer" }}
@@ -314,7 +306,7 @@ export default function ScheduleView({ activeSlide }) {
                     </div>
                     <h4 className="card-title" style={{ margin: "0.2vh 0" }}>{item.kegiatan}</h4>
                     <p className="card-detail" style={{ margin: 0 }}>{item.detail}</p>
-                    
+
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", borderTop: "1px dashed rgba(0,0,0,0.06)", paddingTop: "0.4vh", width: "100%" }}>
                       {item.status === "active" && (
                         <span className="card-active-label" style={{ margin: 0 }}>Aktif</span>
@@ -325,10 +317,10 @@ export default function ScheduleView({ activeSlide }) {
                       {item.status === "next" && (
                         <span style={{ fontSize: "0.5rem", color: "var(--text-muted)", fontStyle: "italic" }}>Mendatang</span>
                       )}
-                      <span 
-                        style={{ 
-                          fontSize: "0.52rem", 
-                          color: "var(--brand-600)", 
+                      <span
+                        style={{
+                          fontSize: "0.52rem",
+                          color: "var(--brand-600)",
                           fontWeight: "800",
                           textTransform: "uppercase",
                           letterSpacing: "0.2px"
@@ -353,16 +345,16 @@ export default function ScheduleView({ activeSlide }) {
               <h3 className="tata-cara-title">📋 Alur Tata Cara Pendaftaran PPDB Resmi 2026</h3>
               <button className="tata-cara-close-x" onClick={() => setIsDetailModalOpen(false)}>×</button>
             </div>
-            
+
             <div className="tata-cara-content">
               <p className="tata-cara-subtitle">
                 💡 <strong>Informasi Resmi Disdik Jateng:</strong> Berikut adalah detail 9 langkah kronologis tata cara pendaftaran akun dan verifikasi fisik PPDB Sekolah Menengah Kejuruan (SMK) Negeri Tahun Ajaran 2026/2027 berdasarkan diagram alur petunjuk teknis resmi.
               </p>
-              
+
               <div className="tata-cara-grid">
                 {official9Steps.map((stepItem, index) => (
-                  <div 
-                    key={index} 
+                  <div
+                    key={index}
                     className={`tata-cara-card ${stepItem.tipe === "luring" ? "luring-step" : "daring-step"}`}
                   >
                     <span className="tata-cara-badge-num">{stepItem.step}</span>
@@ -377,7 +369,7 @@ export default function ScheduleView({ activeSlide }) {
                 ))}
               </div>
             </div>
-            
+
             <div className="tata-cara-footer">
               <button className="tata-cara-close-btn" onClick={() => setIsDetailModalOpen(false)}>
                 Tutup Panduan
@@ -390,8 +382,8 @@ export default function ScheduleView({ activeSlide }) {
       {/* DETAILED TIMELINE STAGE GUIDE MODAL */}
       {selectedTimelineItem && (
         <div className="tata-cara-overlay" onClick={() => setSelectedTimelineItem(null)}>
-          <div 
-            className="tata-cara-modal" 
+          <div
+            className="tata-cara-modal"
             onClick={(e) => e.stopPropagation()}
             style={{ maxWidth: "600px", width: "90%" }}
           >
@@ -409,45 +401,45 @@ export default function ScheduleView({ activeSlide }) {
               </div>
               <button className="tata-cara-close-x" onClick={() => setSelectedTimelineItem(null)}>×</button>
             </div>
-            
+
             <div className="tata-cara-content" style={{ padding: "1.2rem 1.8rem" }}>
               {/* Status Badge */}
               <div style={{ display: "flex", gap: "0.4rem", alignItems: "center", marginBottom: "1rem" }}>
                 <span style={{ fontSize: "0.68rem", fontWeight: 800, textTransform: "uppercase", color: "rgba(255, 255, 255, 0.5)", letterSpacing: "0.5px" }}>Status Tahap:</span>
-                <span 
+                <span
                   style={{
                     fontSize: "0.65rem",
                     fontWeight: 900,
                     padding: "0.15rem 0.5rem",
                     borderRadius: "20px",
                     textTransform: "uppercase",
-                    background: selectedTimelineItem.status === "active" 
-                      ? "rgba(168, 85, 247, 0.15)" 
-                      : selectedTimelineItem.status === "done" 
-                      ? "rgba(16, 185, 129, 0.12)" 
-                      : "rgba(255, 255, 255, 0.05)",
-                    color: selectedTimelineItem.status === "active" 
-                      ? "var(--accent-gold)" 
-                      : selectedTimelineItem.status === "done" 
-                      ? "#10B981" 
-                      : "rgba(255, 255, 255, 0.4)",
-                    border: selectedTimelineItem.status === "active" 
-                      ? "1px solid rgba(245, 158, 11, 0.25)" 
-                      : selectedTimelineItem.status === "done" 
-                      ? "1px solid rgba(16, 185, 129, 0.15)" 
-                      : "1px solid rgba(255, 255, 255, 0.08)"
+                    background: selectedTimelineItem.status === "active"
+                      ? "rgba(168, 85, 247, 0.15)"
+                      : selectedTimelineItem.status === "done"
+                        ? "rgba(16, 185, 129, 0.12)"
+                        : "rgba(255, 255, 255, 0.05)",
+                    color: selectedTimelineItem.status === "active"
+                      ? "var(--accent-gold)"
+                      : selectedTimelineItem.status === "done"
+                        ? "#10B981"
+                        : "rgba(255, 255, 255, 0.4)",
+                    border: selectedTimelineItem.status === "active"
+                      ? "1px solid rgba(245, 158, 11, 0.25)"
+                      : selectedTimelineItem.status === "done"
+                        ? "1px solid rgba(16, 185, 129, 0.15)"
+                        : "1px solid rgba(255, 255, 255, 0.08)"
                   }}
                 >
-                  {selectedTimelineItem.status === "active" 
-                    ? "⚡ Sedang Aktif / Berlangsung" 
-                    : selectedTimelineItem.status === "done" 
-                    ? "✅ Sudah Selesai" 
-                    : "⏳ Belum Dimulai"}
+                  {selectedTimelineItem.status === "active"
+                    ? "⚡ Sedang Aktif / Berlangsung"
+                    : selectedTimelineItem.status === "done"
+                      ? "✅ Sudah Selesai"
+                      : "⏳ Belum Dimulai"}
                 </span>
               </div>
 
               {/* Rangkuman */}
-              <div 
+              <div
                 className="tata-cara-subtitle"
                 style={{
                   background: "rgba(255, 255, 255, 0.03)",
@@ -464,14 +456,14 @@ export default function ScheduleView({ activeSlide }) {
                 💡 <strong>Keterangan Resmi Juknis:</strong><br />
                 {selectedTimelineItem.detail}
               </div>
-              
+
               <h4 style={{ fontSize: "0.75rem", color: "var(--brand-300)", marginBottom: "0.6rem", textTransform: "uppercase", letterSpacing: "0.5px", textAlign: "left", fontWeight: 800 }}>
                 📋 Panduan Alur Pelaksanaan:
               </h4>
 
               <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}>
                 {selectedTimelineItem.panduanLengkap && selectedTimelineItem.panduanLengkap.map((panduan, idx) => (
-                  <div 
+                  <div
                     key={idx}
                     style={{
                       display: "flex",
@@ -483,7 +475,7 @@ export default function ScheduleView({ activeSlide }) {
                       borderRadius: "8px"
                     }}
                   >
-                    <span 
+                    <span
                       style={{
                         background: "var(--brand-600)",
                         color: "var(--white)",
@@ -508,7 +500,7 @@ export default function ScheduleView({ activeSlide }) {
                 ))}
               </div>
             </div>
-            
+
             <div className="tata-cara-footer" style={{ padding: "0.8rem 1.8rem" }}>
               <button className="tata-cara-close-btn" onClick={() => setSelectedTimelineItem(null)}>
                 Tutup Panduan
