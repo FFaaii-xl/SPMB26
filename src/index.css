@@ -9,6 +9,22 @@ html {
   }
 }
 
+/* Laptop & smaller desktop screens / high scaling adjustments */
+@media (max-width: 1440px), (max-height: 860px) {
+  @media (min-width: 1024px) {
+    html {
+      font-size: 15px !important; /* Scale down slightly on typical laptops */
+    }
+  }
+}
+@media (max-width: 1280px), (max-height: 720px) {
+  @media (min-width: 1024px) {
+    html {
+      font-size: 13px !important; /* Scale down more for small laptops / low resolution */
+    }
+  }
+}
+
 :root {
   /* Core Colors */
   --bg-primary: #f8fafc;
@@ -20,6 +36,7 @@ html {
   /* Brand Theme (Purple scale) */
   --brand-50: #faf5ff;
   --brand-100: #f3e8ff;
+  --brand-200: #e9d5ff;
   --brand-300: #d8b4fe;
   --brand-500: #a855f7;
   --brand-600: #9333ea;
@@ -3317,11 +3334,27 @@ input:checked + .slider:before {
   min-height: 0;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(243, 232, 255, 0.3) 100%);
   backdrop-filter: blur(10px);
-  border: 1px solid var(--brand-100);
+  border: 2px solid var(--brand-300);
   border-radius: var(--radius-lg);
   padding: 1.2vh 1vw;
   box-shadow: var(--shadow-sm);
   overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.schedule-col-left::-webkit-scrollbar {
+  width: 5px;
+}
+.schedule-col-left::-webkit-scrollbar-track {
+  background: transparent;
+}
+.schedule-col-left::-webkit-scrollbar-thumb {
+  background: var(--brand-200);
+  border-radius: 4px;
+}
+.schedule-col-left::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-300);
 }
 
 .sched-section {
@@ -3361,26 +3394,26 @@ input:checked + .slider:before {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 0.5vh 0.4vw;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: visible;
 }
 
 .berkas-card-compact {
   background: var(--white);
-  border: 1px solid var(--brand-100);
+  border: 2.5px solid var(--brand-300); /* Delicate, visible border that balances Canva extraction and visual elegance */
   border-radius: 20px;
-  padding: 0.6vh 0.7vw 0.6vh 0.5vw;
+  padding: 0.8vh 0.8vw 0.8vh 0.6vw; /* Premium pill padding for high-end kiosk & mobile display */
   display: flex;
   align-items: center;
-  gap: 0.4vw;
+  gap: 0.5vw;
+  box-shadow: 0 4px 12px rgba(147, 51, 234, 0.06); /* Soft purple shadow to define card edges beautifully */
   transition: all 0.2s ease;
 }
 
 .berkas-card-compact:hover {
   background: var(--brand-50);
-  border-color: var(--brand-300);
-  transform: translateX(3px);
-  box-shadow: 0 2px 8px rgba(168, 85, 247, 0.08);
+  border-color: var(--brand-500);
+  transform: translateX(3px) translateY(-1px);
+  box-shadow: 0 6px 16px rgba(147, 51, 234, 0.15);
 }
 
 .berkas-icon-compact {
@@ -3406,18 +3439,55 @@ input:checked + .slider:before {
   font-weight: 800;
   color: var(--brand-900);
   line-height: 1.2;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .berkas-detail-compact {
   font-size: clamp(0.55rem, 0.38vw + 0.38vh, 0.68rem);
   color: var(--text-muted);
   line-height: 1.2;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: normal;
+}
+
+/* Berkas Notes Box and Bullet Points */
+.berkas-notes-box {
+  background: rgba(147, 51, 234, 0.04);
+  border: 2px dashed rgba(147, 51, 234, 0.35);
+  border-radius: 12px;
+  padding: 0.8vh 0.8vw;
+  margin-top: 0.8vh;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4vh;
+}
+
+.berkas-note-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4vw;
+}
+
+.note-bullet {
+  font-size: 0.72rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.note-text {
+  font-size: clamp(0.6rem, 0.4vw + 0.4vh, 0.7rem);
+  color: var(--brand-950);
+  line-height: 1.35;
+  margin: 0;
 }
 
 /* Compact Offline Queue Step Cards */
@@ -3429,14 +3499,14 @@ input:checked + .slider:before {
 
 .alur-card-compact {
   background: var(--white);
-  border: 1px solid var(--brand-100);
+  border: 2px solid var(--brand-200);
   border-radius: 14px;
   padding: 0.6vh 0.6vw;
   display: flex;
   align-items: center;
   gap: 0.4vw;
   transition: all 0.2s ease;
-  border-left: 3px solid var(--brand-500);
+  border-left: 4px solid var(--brand-500);
 }
 
 .alur-card-compact.seq-step-daring {
@@ -3530,7 +3600,7 @@ input:checked + .slider:before {
   background: linear-gradient(135deg, var(--brand-900) 0%, #3b0764 100%);
   border-radius: var(--radius-lg);
   padding: 2.2vh 1.6vw;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.18);
   box-shadow: var(--shadow-glow);
   position: relative;
   overflow: hidden;
@@ -3646,7 +3716,7 @@ input:checked + .slider:before {
   width: clamp(120px, 9.8vw, 155px);
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border: 1px solid var(--brand-200);
+  border: 2px solid var(--brand-300);
   border-radius: var(--radius-md);
   padding: 0.7vh 0.5vw;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -3765,7 +3835,7 @@ input:checked + .slider:before {
 }
 
 .timeline-h-step.done .timeline-h-card {
-  border-color: rgba(16, 185, 129, 0.35);
+  border-color: rgba(16, 185, 129, 0.5);
   background: rgba(240, 253, 250, 0.95);
 }
 

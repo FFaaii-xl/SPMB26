@@ -22,12 +22,16 @@ export default function ScheduleView({ activeSlide }) {
 
   // Berkas yang harus dipersiapkan
   const berkasWajib = [
-    { nama: "Kartu Keluarga (KK)", detail: "Asli & fotokopi (min. terbit 1 tahun)", icon: "🏠" },
-    { nama: "Rapor SMP/MTs", detail: "Asli & fotokopi rapor Smt 1-5", icon: "📘" },
-    { nama: "Surat Keterangan Lulus", detail: "Asli & fotokopi SKL resmi asal", icon: "🎓" },
-    { nama: "Kebenaran Dokumen", detail: "Surat pernyataan bermaterai Rp10k", icon: "✍️" },
-    { nama: "Piagam Kejuaraan", detail: "Asli & fotokopi (jika memiliki / prestasi)", icon: "🏆" },
-    { nama: "DTKS / DTSEN (Afirmasi)", detail: "Terdeteksi otomatis oleh sistem", icon: "🤝" },
+    { nama: "Buku Rapor SMP/Sederajat", detail: "Buku Rapor SMP/Sederajat (Asli & fotokopi)", icon: "📖" },
+    { nama: "Surat Keterangan Nilai Rapor smt.1-5", detail: "Yang diterbitkan oleh sekolah asal", icon: "📄" },
+    { nama: "Ijazah / Surat Keterangan Lulus", detail: "Asli & fotokopi", icon: "🎓" },
+    { nama: "Akta Kelahiran", detail: "Asli & fotokopi", icon: "👶" },
+    { nama: "Kartu Keluarga", detail: "Asli & fotokopi", icon: "🏠" },
+    { nama: "Sertifikat Tes Kemampuan Akademik", detail: "Sertifikat hasil tes akademik", icon: "🧠" },
+    { nama: "Surat Keterangan Sehat", detail: "Surat Keterangan Sehat dari dokter Pemerintah atau Surat Pernyataan Sehat dari Calon Murid yang diketahui Orang Tua", icon: "🏥" },
+    { nama: "Surat Pernyataan Kebenaran Dokumen (bermaterai)", detail: "Surat pernyataan kebenaran dokumen resmi", icon: "✍️" },
+    { nama: "Piagam Kejuaraan / Sertifikat Ketua", detail: "OSIS / OSIM, MPK, Badan Eksekutif Siswa, Pramuka / Hizbul Wathan (bagi yang memiliki dan harus melampirkan surat keterangan kebenaran prestasi)", icon: "🏆" },
+    { nama: "Titik Koordinat (Share Location) rumah", detail: "Mohon persiapkan Share Location rumah untuk mempermudah pencocokan data lokasi", icon: "📍" },
   ];
 
   // Alur Pendaftaran Kronologis Sekuensial (Daring + Luring Terintegrasi)
@@ -37,7 +41,7 @@ export default function ScheduleView({ activeSlide }) {
     { step: "03", tipe: "daring", judul: "Cetak Pengajuan", ket: "Cetak Bukti Pengajuan Akun dari rumah", icon: "📄" },
     { step: "04", tipe: "luring", judul: "Verifikasi Fisik", ket: "Bawa berkas asli ke SMAN/SMKN terdekat untuk melakukan verifikasi", icon: "🏢" },
     { step: "05", tipe: "luring", judul: "Cetak Bukti Token", ket: "Terima cetak token teraktivasi dari panitia", icon: "🖨️" },
-    { step: "06", tipe: "daring", judul: "Pilihan Jurusan", ket: "Login web dengan token & pilih jurusan SMKN 4", icon: "🔑" },
+    { step: "06", tipe: "daring", judul: "Daftar / Pilih Jurusan", ket: "Login web dengan token & pilih jurusan SMKN 4", icon: "🔑" },
   ];
 
   // Official detailed 9 steps from Disdik Jateng Infographic
@@ -123,7 +127,7 @@ export default function ScheduleView({ activeSlide }) {
         <div className="sched-section sched-berkas">
           <div className="section-header mini">
             <span className="section-pill">Persiapan</span>
-            <h3 className="section-title">Dokumen & Berkas Wajib</h3>
+            <h3 className="section-title">Dokumen & Berkas Yang Dibawa</h3>
           </div>
           
           <div className="berkas-grid-compact">
@@ -140,6 +144,26 @@ export default function ScheduleView({ activeSlide }) {
                 </div>
               </motion.div>
             ))}
+          </div>
+
+          {/* Simple Direct Notes as requested */}
+          <div className="berkas-notes-box">
+            <div className="berkas-note-item">
+              <span className="note-bullet">⚠️</span>
+              <p className="note-text"><strong>Wajib membawa dokumen ASLI</strong> untuk verifikasi data fisik.</p>
+            </div>
+            <div className="berkas-note-item">
+              <span className="note-bullet">📂</span>
+              <p className="note-text"><strong>Pengumpulan dokumen</strong> hanya dilakukan saat daftar ulang (informasi detail menyusul).</p>
+            </div>
+            <div className="berkas-note-item">
+              <span className="note-bullet">🏆</span>
+              <p className="note-text"><strong>Sertifikat Ketua:</strong> Wajib Piagam Kurasi Puspresnas.</p>
+            </div>
+            <div className="berkas-note-item">
+              <span className="note-bullet">🎖️</span>
+              <p className="note-text"><strong>Sertifikat Kejuaraan:</strong> Tidak wajib kurasi Puspresnas, tapi yang ada kurasinya akan punya nilai lebih tinggi.</p>
+            </div>
           </div>
         </div>
 

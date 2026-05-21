@@ -62,11 +62,9 @@
 - [x] Integrasi Fitur: Tab Baru "Regulasi & Juknis" untuk mengintegrasikan data teks dari slide lokal (Slide 2, 3, 15, 16, 17, 18, 19) berisi 6 Prinsip SPMB, Dasar Hukum Lengkap, Aturan Daftar Ulang/Cadangan, Larangan Penjualan Seragam, serta Lembaga Pendukung secara terstruktur dan interaktif.
 - [x] Fitur Premium: Penggabungan Kalkulator Kriteria Piagam Resmi (NK) ke dalam Simulasi Nilai Akhir (NA) secara terpadu.
 - [x] Refactor UI & UX: Penerapan Sistem iOS-Style Toggle Switch Cerdas untuk mengaktifkan/menonaktifkan Piagam Kejuaraan secara 100% otomatis tanpa input manual yang membingungkan.
-
-
-
-
-
+- [x] Fitur Premium: Pembaruan 10 Berkas Dokumen Resmi, Integrasi Catatan Kurasi Puspresnas, & Penyempurnaan Alur Pendaftaran ("Daftar / Pilih Jurusan").
+- [x] Refactor UI & UX: Optimalisasi Desain Kolom Kiri Jadwal melalui Dynamic Font Scaling & Independent Scrollbar Premium khusus Resolusi Laptop.
+- [x] Perbaikan Keterbacaan & Desain: Menambahkan variabel warna `--brand-200` yang hilang, menebalkan kartu Dokumen/Berkas (padding ditingkatkan, border dipertebal menjadi 2.5px solid `var(--brand-300)`, dan drop shadow diperjelas) agar visual "pill" lebih tegas dan memudahkan ekstraksi/penghapusan latar belakang otomatis di Canva.
 ## 3. Catatan Teknis / Konfigurasi
 - **Struktur Data:** Data konfigurasi teks, warna, persentase kuota, dan aturan dipisah di `src/data/spmb.js`. Ini bertujuan agar administrator tidak perlu membuka *source code component* jika ada perubahan kecil.
 - **Responsivitas:** Menggunakan CSS Grid, Flexbox, dan Clamp() function agar layout adaptif dari Mobile hingga TV Display.
