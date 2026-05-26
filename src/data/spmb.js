@@ -204,6 +204,65 @@ export const ketentuanKhusus = [
   },
 ];
 
+export const persyaratanPiagam = [
+  {
+    no: 1,
+    jenis: "Berjenjang",
+    tingkat: "semua tingkat",
+    kurasi: "tidak perlu",
+    suketKs: "wajib",
+    suketOpd: "tidak perlu",
+  },
+  {
+    no: 2,
+    jenis: "Berjenjang",
+    tingkat: "dari luar prov jateng",
+    kurasi: "tidak perlu",
+    suketKs: "wajib",
+    suketOpd: "wajib OPD asal prov atau cabdin asal",
+  },
+  {
+    no: 3,
+    jenis: "Tidak berjenjang",
+    tingkat: "dari luar prov jateng",
+    kurasi: "kurasi",
+    suketKs: "wajib",
+    suketOpd: "tidak perlu",
+  },
+  {
+    no: 4,
+    jenis: "Tidak berjenjang",
+    tingkat: "dari luar prov jateng",
+    kurasi: "tidak kurasi",
+    suketKs: "wajib",
+    suketOpd: "wajib OPD asal prov atau cabdin asal",
+  },
+  {
+    no: 5,
+    jenis: "Tidak berjenjang",
+    tingkat: "nasional/internasional",
+    kurasi: "kurasi",
+    suketKs: "wajib",
+    suketOpd: "tidak perlu",
+  },
+  {
+    no: 6,
+    jenis: "Tidak berjenjang",
+    tingkat: "nasional/internasional",
+    kurasi: "tidak kurasi",
+    suketKs: "wajib",
+    suketOpd: "wajib",
+  },
+  {
+    no: 7,
+    jenis: "Tidak berjenjang",
+    tingkat: "kabupaten/provinsi",
+    kurasi: "tidak kurasi",
+    suketKs: "wajib",
+    suketOpd: "tidak perlu",
+  },
+];
+
 const rawJadwalSeleksi = [
   {
     tanggal: "18 Mei 2026",

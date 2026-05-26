@@ -6,7 +6,6 @@ import HeroSection from "./components/HeroSection";
 import SelectionComponents from "./components/SelectionComponents";
 import QuotaChart from "./components/QuotaChart";
 import SpecialRules from "./components/SpecialRules";
-import WarningBanner from "./components/WarningBanner";
 import Footer from "./components/Footer";
 import SchoolInfo from "./components/SchoolInfo";
 import ScheduleView from "./components/ScheduleView";
@@ -159,7 +158,6 @@ export default function App() {
 
         {/* FOOTER SECTION */}
         <div className="grid-footer">
-          <WarningBanner />
           <Footer />
         </div>
 

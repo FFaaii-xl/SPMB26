@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { komponenSeleksi } from "../data/spmb";
+import { komponenSeleksi, persyaratanPiagam } from "../data/spmb";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -494,6 +494,13 @@ export default function SelectionComponents() {
                         <span style={{ fontSize: "0.58rem", color: "rgba(255,255,255,0.5)", marginTop: "4px", display: "block" }}>
                           Bobot nilai dihitung secara otomatis dan akurat berdasarkan kriteria piagam kejuaraan resmi Anda.
                         </span>
+                        <button
+                          type="button"
+                          className="calc-reference-link"
+                          onClick={() => setActiveTab("kejuaraan")}
+                        >
+                          Lihat acuan persyaratan piagam penghargaan
+                        </button>
                       </div>
 
                       {/* 4. Nilai Organisasi */}
@@ -642,7 +649,47 @@ export default function SelectionComponents() {
                 )}
 
                 {activeTab === "kejuaraan" && (
-                  <div className="directory-grid">
+                  <div className="lookup-reference-layout">
+                    <div className="reference-table-card">
+                      <div className="reference-table-head">
+                        <span className="reference-table-badge">Acuan Resmi</span>
+                        <h4 className="reference-table-title">Daftar Persyaratan Piagam Penghargaan</h4>
+                        <p className="reference-table-desc">
+                          Tabel ini menjadi acuan utama untuk menentukan apakah piagam masuk kategori berjenjang atau tidak berjenjang, serta dokumen pendukung yang harus dilampirkan.
+                        </p>
+                      </div>
+
+                      <div className="reference-table-wrap">
+                        <div className="reference-table">
+                          <div className="reference-table-row reference-table-row-head">
+                            <span>No</span>
+                            <span>Jenis Kejuaraan</span>
+                            <span>Tingkat</span>
+                            <span>Kurasi</span>
+                            <span>Suket KS</span>
+                            <span>Suket OPD bidang terkait</span>
+                          </div>
+                          {persyaratanPiagam.map((item) => (
+                            <div key={item.no} className="reference-table-row">
+                              <span>{item.no}</span>
+                              <span>{item.jenis}</span>
+                              <span>{item.tingkat}</span>
+                              <span>{item.kurasi}</span>
+                              <span>{item.suketKs}</span>
+                              <span>{item.suketOpd}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="reference-table-notes">
+                        <p>keterangan :</p>
+                        <p>Daftar kejuaraan berjenjang terdapat pada Jukop. Kejuaraan di luar itu =&gt; tidak berjenjang</p>
+                        <p>Kejuaraan minimal tingkat Kabupaten, paling lama 16 Juni 2023 (terdapat nomor piagam dan tanggal)</p>
+                      </div>
+                    </div>
+
+                    <div className="directory-grid">
                     {/* Column 1: Berjenjang Nasional */}
                     <div className="directory-column">
                       <div className="dir-card">
@@ -734,6 +781,7 @@ export default function SelectionComponents() {
                         </p>
                       </div>
                     </div>
+                  </div>
                   </div>
                 )}
               </div>

@@ -17,12 +17,7 @@ const itemVariants = {
 
 export default function SchoolInfo({ activeSlide }) {
   return (
-    <motion.div
-      className="school-info-layout"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
+    <div className="school-info-layout">
       {/* Kolom Kiri: Identitas & Sejarah */}
       <motion.div 
         className={`grid-col-left ${activeSlide === 0 ? "slide-active" : "slide-inactive"}`}
@@ -182,6 +177,6 @@ export default function SchoolInfo({ activeSlide }) {
           </p>
         </div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 }
