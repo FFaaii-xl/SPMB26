@@ -47,7 +47,7 @@ export const sejarahSingkat = [
 export const programKeahlian = [
   {
     id: "busana",
-    nama: "Busana (Tata Busana)",
+    nama: "Busana",
     icon: "👗",
     deskripsi: "Menguasai desain busana, pembuatan pola, teknik menjahit, dan pengelolaan bisnis butik mandiri.",
     warna: "#EC4899", // Pink
