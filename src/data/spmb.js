@@ -57,7 +57,7 @@ export const programKeahlian = [
   },
   {
     id: "kuliner",
-    nama: "Kuliner (Tata Boga)",
+    nama: "Kuliner",
     icon: "🍳",
     deskripsi: "Teknik memasak nusantara/internasional, pastry & bakery, katering, serta operasional bisnis kuliner.",
     warna: "#F59E0B", // Amber
